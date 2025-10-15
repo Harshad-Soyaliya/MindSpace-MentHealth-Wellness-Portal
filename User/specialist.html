@@ -1,0 +1,364 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpace - specialist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Quicksand:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <link href="CSS/style.css" rel="stylesheet">
+
+    <style>
+
+        .intro-section {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .intro-section h1 {
+            font-weight: 700;
+            color: #198754;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 10px;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card-modern {
+            min-width: 280px;
+            max-width: 350px;
+            background-color: #fff;
+            border-radius: 1.5rem;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-modern img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="index.html">
+                    <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0 gap-lg-4 text-center">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark hover-link"
+                                href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark dropdown-toggle" href="#"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Service
+                            </a>
+                            <div class="dropdown-menu p-3 border-0 shadow-lg rounded-4" aria-labelledby="navbarDropdown"
+                                style="min-width:700px;">
+                                <div class="row">
+                                    <div class="col-12 col-md-4 border-end">
+                                        <ul class="nav flex-md-column nav-pills category-list" id="service-tabs"
+                                            role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button
+                                                    class="nav-link active w-100 text-start text-success fw-semibold"
+                                                    id="tools-tab" data-bs-toggle="pill" data-bs-target="#tools"
+                                                    type="button" role="tab">Self - Help Tools</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link w-100 text-start text-success fw-semibold"
+                                                    id="session-tab" data-bs-toggle="pill" data-bs-target="#session"
+                                                    type="button" role="tab">Session Booking</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="tools" role="tabpanel"
+                                                aria-labelledby="tools-tab">
+                                                <h6 class="fw-bold text-success">Self - Help Tools</h6>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <a href="write.html" class="dropdown-item">Write Diary</a>
+                                                        <a href="habbit-page.html" class="dropdown-item">HabitTracker</a>
+                                                        <a href="mediation.html" class="dropdown-item">Meditation</a>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="exercise.html" class="dropdown-item">Exercises</a>
+                                                        <a href="goal.html" class="dropdown-item">Goal Setting</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="session" role="tabpanel"
+                                                aria-labelledby="session-tab">
+                                                <h6 class="fw-bold text-success">Session Booking</h6>
+                                                <a href="specialist.html" class="dropdown-item">Psychologist</a>
+                                                <a href="specialist.html" class="dropdown-item">Therapist</a>
+                                                <a href="specialist.html" class="dropdown-item">Life Coach</a>
+                                                <a href="specialist.html" class="dropdown-item">Group Session</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark hover-link"
+                                href="about-us-page.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark hover-link"
+                                href="feedback-form.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <form class="d-flex ms-lg-3 mt-3 mt-lg-0 w-10 w-lg-auto">
+                    <input class="form-control rounded-pill border-success" type="search" placeholder="Search..."
+                        aria-label="Search">
+                    <button class="btn ms-2" type="submit">
+                        <i class="bi bi-search text-success fs-5"></i>
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <br><br><br>
+   
+
+    <main>
+
+        <section class="intro-section">
+            <h1>Book Your Appointment</h1>
+            <p>Choose the professional that suits you best. View their experience, specialization, and credentials to
+                make the right choice for your journey.</p>
+        </section>
+
+        <!-- Example: Psychologists -->
+
+        <!-- Psychologists -->
+        <section class="container mb-5">
+            <h2 class="mb-3">Psychologists</h2>
+            <div class="scroll-container">
+                <div class="card-modern d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <h5 class="text-success fw-bold">Dr. Jane Doe</h5>
+                        <p class="mb-1"><strong>Degree:</strong> Ph.D. Clinical Psychology</p>
+                        <p class="mb-1"><strong>Specialization:</strong> Anxiety & Stress Management</p>
+                        <p class="mb-1"><strong>Experience:</strong> 10 Years</p>
+                        <p class="mb-1"><strong>Contact:</strong> jane@example.com | +91 9876543210</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <a href="session-book.html" class="btn btn-success btn-sm">Book Session</a>
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dr. Jane Doe">
+                    </div>
+                </div>
+                <div class="card-modern d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <h5 class="text-success fw-bold">Dr. John Smith</h5>
+                        <p class="mb-1"><strong>Degree:</strong> Ph.D. Counseling</p>
+                        <p class="mb-1"><strong>Specialization:</strong> Depression & Life Coaching</p>
+                        <p class="mb-1"><strong>Experience:</strong> 8 Years</p>
+                        <p class="mb-1"><strong>Contact:</strong> john@example.com | +91 9876543211</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <a href="session-book.html" class="btn btn-success btn-sm">Book Session</a>
+                        <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="Dr. John Smith">
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section>
+
+        <!-- Therapists -->
+        <section class="container mb-5">
+            <h2 class="mb-3">Therapists</h2>
+            <div class="scroll-container">
+                <div class="card-modern d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <h5 class="text-success fw-bold">Emma Watson</h5>
+                        <p class="mb-1"><strong>Degree:</strong> CBT Therapist</p>
+                        <p class="mb-1"><strong>Specialization:</strong> Family & Personal Therapy</p>
+                        <p class="mb-1"><strong>Experience:</strong> 6 Years</p>
+                        <p class="mb-1"><strong>Contact:</strong> emma@example.com | +91 9876543212</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <a href="session-book.html" class="btn btn-success btn-sm">Book Session</a>
+                        <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Emma Watson">
+                    </div>
+                </div>
+                <div class="card-modern d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <h5 class="text-success fw-bold">Liam Johnson</h5>
+                        <p class="mb-1"><strong>Degree:</strong> Licensed Therapist</p>
+                        <p class="mb-1"><strong>Specialization:</strong> Couples Therapy</p>
+                        <p class="mb-1"><strong>Experience:</strong> 9 Years</p>
+                        <p class="mb-1"><strong>Contact:</strong> liam@example.com | +91 9876543213</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <a href="session-book.html" class="btn btn-success btn-sm">Book Session</a>
+                        <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Liam Johnson">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Life Coaches -->
+        <section class="container mb-5">
+            <h2 class="mb-3">Life Coaches</h2>
+            <div class="scroll-container">
+                <div class="card-modern d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <h5 class="text-success fw-bold">Sophia Lee</h5>
+                        <p class="mb-1"><strong>Degree:</strong> Certified Life Coach</p>
+                        <p class="mb-1"><strong>Specialization:</strong> Career & Personal Growth</p>
+                        <p class="mb-1"><strong>Experience:</strong> 5 Years</p>
+                        <p class="mb-1"><strong>Contact:</strong> sophia@example.com | +91 9876543214</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <a href="session-book.html" class="btn btn-success btn-sm">Book Session</a>
+                        <img src="https://randomuser.me/api/portraits/women/69.jpg" alt="Sophia Lee">
+                    </div>
+                </div>
+                <div class="card-modern d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <h5 class="text-success fw-bold">Michael Brown</h5>
+                        <p class="mb-1"><strong>Degree:</strong> Life & Career Coach</p>
+                        <p class="mb-1"><strong>Specialization:</strong> Motivation & Success Coaching</p>
+                        <p class="mb-1"><strong>Experience:</strong> 7 Years</p>
+                        <p class="mb-1"><strong>Contact:</strong> michael@example.com | +91 9876543215</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <a href="session-book.html" class="btn btn-success btn-sm">Book Session</a>
+                        <img src="https://randomuser.me/api/portraits/men/70.jpg" alt="Michael Brown">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Group Sessions -->
+        <section class="container mb-5">
+            <h2 class="mb-3">Group Sessions</h2>
+            <div class="scroll-container">
+                <div class="card-modern d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <h5 class="text-success fw-bold">Mindfulness Group</h5>
+                        <p class="mb-1"><strong>Focus:</strong> Stress Relief & Meditation</p>
+                        <p class="mb-1"><strong>Schedule:</strong> Weekly Sessions</p>
+                        <p class="mb-1"><strong>Experience:</strong> Guided by Experts</p>
+                        <p class="mb-1"><strong>Contact:</strong> group@example.com | +91 9876543216</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <a href="session-book.html" class="btn btn-success btn-sm">Book Session</a>
+                        <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="Mindfulness Group">
+                    </div>
+                </div>
+                <div class="card-modern d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <h5 class="text-success fw-bold">Personal Growth Circle</h5>
+                        <p class="mb-1"><strong>Focus:</strong> Self Development & Discussion</p>
+                        <p class="mb-1"><strong>Schedule:</strong> Bi-weekly</p>
+                        <p class="mb-1"><strong>Experience:</strong> Guided by Experts</p>
+                        <p class="mb-1"><strong>Contact:</strong> circle@example.com | +91 9876543217</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-end mt-3">
+                        <a href="session-book.html" class="btn btn-success btn-sm">Book Session</a>
+                        <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="Personal Growth Circle">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <hr class="hr-dashed">
+
+    <footer class="bg-dark text-light pt-5 pb-4">
+        <div class="container text-md-left">
+            <div class="row text-md-left">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-success">MindSpace</h5>
+                    <p>
+                        A mental health & wellness portal to help you explore mindfulness,
+                        reduce stress, and improve emotional balance.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-success">Quick Links</h5>
+                    <p><a href="index.html" class="text-light text-decoration-none">Home</a></p>
+                    <p><a href="about-us-page.html" class="text-light text-decoration-none">About</a></p>
+                    <p><a href="feedback-form.html" class="text-light text-decoration-none">Contact Us & feedback</a>
+                    </p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-success">Contact</h5>
+                    <p><i class="bi bi-house-door-fill me-2"></i> Surat, India</p>
+                    <p><i class="bi bi-envelope-fill me-2"></i> mindspace@email.com</p>
+                    <p><i class="bi bi-phone-fill me-2"></i> +91 9876543210</p>
+                    <p><i class="bi bi-whatsapp me-2"></i> +91 9876543210</p>
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p class="text-md-start">© 2025 MindSpace. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-5 col-lg-4 text-md-end">
+                    <a href="#" class="text-light me-4"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-light me-4"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-light me-4"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-light me-4"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

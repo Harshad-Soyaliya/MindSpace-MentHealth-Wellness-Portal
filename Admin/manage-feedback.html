@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Manage Feedback</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .feedback-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .05);
+    }
+    .feedback-card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-white shadow-sm d-md-none">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold fs-3 text-success" href="index.html">
+        <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarCanvas"
+        aria-controls="sidebarCanvas">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-lg-2 d-none d-md-block sidebar">
+        <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="dashboard.html">
+          <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+        </a>
+
+        <a href="dashboard.html" class="nav-link ">
+          <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
+          Dashboard
+        </a>
+
+        <a href="self-help-tools.html" class="nav-link ">
+          <div class="icon-box"><i class="bi bi-heart-pulse"></i></div>
+          Self-Help Tools
+        </a>
+
+        <a href="manage-specialist.html" class="nav-link ">
+          <div class="icon-box"><i class="bi bi-calendar-check"></i></div>
+          Manage Specialist
+        </a>
+
+        <a href="feedback-help.html" class="nav-link active">
+          <div class="icon-box"><i class="bi bi-chat-left-text"></i></div>
+          Help & Feedback
+        </a>
+
+        <!-- Bottom Links for Large Screen -->
+
+        <a href="profile.html" class="nav-link d-flex align-items-center gap-2 text-success">
+          <div class="icon-box"><i class="bi bi-person-circle"></i></div>
+          Profile
+        </a>
+        <a href="index.html" class="nav-link d-flex align-items-center gap-2 text-danger">
+          <div class="icon-box"><i class="bi bi-box-arrow-right"></i></div>
+          Logout
+        </a>
+
+      </div>
+
+      <!-- Sidebar Offcanvas for small screens -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarCanvas">
+        <div class="offcanvas-header">
+          <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1"
+            href="dashboard.html">
+            <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+          </a>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body p-0 sidebar">
+          <a href="dashboard.html" class="nav-link ">
+            <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
+            Dashboard
+          </a>
+          <a href="self-help-tools.html" class="nav-link">
+            <div class="icon-box"><i class="bi bi-heart-pulse"></i></div>
+            Self-Help Tools
+          </a>
+          <a href="manage-specialist.html" class="nav-link ">
+            <div class="icon-box"><i class="bi bi-calendar-check"></i></div>
+            Manage Specialist
+          </a>
+          <a href="feedback-help.html" class="nav-link active">
+            <div class="icon-box"><i class="bi bi-chat-left-text"></i></div>
+            Help & Feedback
+          </a>
+          <a href="profile.html" class="nav-link d-flex align-items-center gap-2 text-success">
+            <div class="icon-box"><i class="bi bi-person-circle"></i></div>
+            Profile
+          </a>
+          <a href="index.html" class="nav-link d-flex align-items-center gap-2 text-danger">
+            <div class="icon-box"><i class="bi bi-box-arrow-right"></i></div>
+            Logout
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9 col-lg-10 p-4">
+        <div class="dashboard-header">User Feedback</div>
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="breadcrumb-container">
+          <ol class="breadcrumb mb-0 flex-wrap">
+            <li class="breadcrumb-item">
+              <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="feedback-help.html" class="breadcrumb-link">Help & Feedback</a>
+            </li>
+            <li class="breadcrumb-item active text-dark" aria-current="page">View Feedback</li>
+          </ol>
+        </nav>
+
+        <div class="dashboard-content">
+
+          <!-- Feedback Card 1 -->
+          <div class="feedback-card d-flex justify-content-between align-items-start">
+            <div>
+              <h5 class="fw-bold text-success">Jane Smith</h5>
+              <p class="mb-1"><strong>Email:</strong> jane@example.com</p>
+              <p class="mb-1"><strong>Feedback:</strong> Can you add a weekly mood tracking report?...</p>
+            </div>
+            <div class="ms-3">
+              <button class="btn btn-success rounded-pill" data-bs-toggle="modal"
+                data-bs-target="#feedbackModal1">View</button>
+            </div>
+          </div>
+
+          <!-- Feedback Card 2 -->
+          <div class="feedback-card d-flex justify-content-between align-items-start">
+            <div>
+              <h5 class="fw-bold text-success">John Doe</h5>
+              <p class="mb-1"><strong>Email:</strong> john@example.com</p>
+              <p class="mb-1"><strong>Feedback:</strong> Loving the meditation exercises, very helpful!...</p>
+            </div>
+            <div class="ms-3">
+              <button class="btn btn-success rounded-pill" data-bs-toggle="modal"
+                data-bs-target="#feedbackModal2">View</button>
+            </div>
+          </div>
+
+          <!-- Modal 1 -->
+          <div class="modal fade" id="feedbackModal1" tabindex="-1" aria-labelledby="feedbackModalLabel1"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                  <h5 class="modal-title" id="feedbackModalLabel1">Feedback from Jane Smith</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Email:</strong> jane@example.com</p>
+                  <p><strong>Feedback:</strong> Can you add a weekly mood tracking report? It would help me track my
+                    emotions over time and plan my meditation sessions better.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-success rounded-pill"
+                    data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal 2 -->
+          <div class="modal fade" id="feedbackModal2" tabindex="-1" aria-labelledby="feedbackModalLabel2"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                  <h5 class="modal-title" id="feedbackModalLabel2">Feedback from John Doe</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Email:</strong> john@example.com</p>
+                  <p><strong>Feedback:</strong> Loving the meditation exercises, very helpful! Also, the mood tracker
+                    feature is nice, maybe you can add some tips for beginners.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-success rounded-pill"
+                    data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

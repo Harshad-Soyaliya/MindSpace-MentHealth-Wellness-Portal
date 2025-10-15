@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindSpace - Exercise</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Quicksand:wght@600;700&display=swap"
+    rel="stylesheet">
+
+  <link href="CSS/style.css" rel="stylesheet">
+
+  <style>
+    .step-card {
+      min-width: 220px;
+      background: #f8f9fa;
+      border-left: 4px solid green;
+      flex-shrink: 0;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: green;
+      border-radius: 4px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+
+    <nav class="navbar fixed-top navbar-expand-lg bg-light">
+
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="index.html">
+          <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mb-lg-0 gap-lg-4 text-center">
+            <li class="nav-item">
+              <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark hover-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark dropdown-toggle" href="#"
+                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Service
+              </a>
+              <div class="dropdown-menu p-3 border-0 shadow-lg rounded-4" aria-labelledby="navbarDropdown"
+                style="min-width:700px;">
+                <div class="row">
+                  <div class="col-12 col-md-4 border-end">
+                    <ul class="nav flex-md-column nav-pills category-list" id="service-tabs" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active w-100 text-start text-success fw-semibold" id="tools-tab"
+                          data-bs-toggle="pill" data-bs-target="#tools" type="button" role="tab">Self - Help
+                          Tools</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link w-100 text-start text-success fw-semibold" id="session-tab"
+                          data-bs-toggle="pill" data-bs-target="#session" type="button" role="tab">Session
+                          Booking</button>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="tab-content">
+                      <div class="tab-pane fade show active" id="tools" role="tabpanel" aria-labelledby="tools-tab">
+                        <h6 class="fw-bold text-success">Self - Help Tools</h6>
+                        <div class="row">
+                          <div class="col-6">
+                            <a href="write.html" class="dropdown-item">Write Diary</a>
+                            <a href="habbit-page.html" class="dropdown-item">Habit Tracker</a>
+                            <a href="mediation.html" class="dropdown-item">Meditation</a>
+                          </div>
+                          <div class="col-6">
+                            <a href="exercise.html" class="dropdown-item">Exercises</a>
+                            <a href="goal.html" class="dropdown-item">Goal Setting</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="session" role="tabpanel" aria-labelledby="session-tab">
+                        <h6 class="fw-bold text-success">Session Booking</h6>
+                        <a href="specialist.html" class="dropdown-item">Psychologist</a>
+                        <a href="specialist.html" class="dropdown-item">Therapist</a>
+                        <a href="specialist.html" class="dropdown-item">Life Coach</a>
+                        <a href="specialist.html" class="dropdown-item">Group Session</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark hover-link"
+                href="about-us-page.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark hover-link"
+                href="feedback-form.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <form class="d-flex ms-lg-3 mt-3 mt-lg-0 w-10 w-lg-auto">
+          <input class="form-control rounded-pill border-success" type="search" placeholder="Search..."
+            aria-label="Search">
+          <button class="btn ms-2" type="submit">
+            <i class="bi bi-search text-success fs-5"></i>
+          </button>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+  <br><br><br>
+
+  <main>
+
+    <section class="container my-5">
+      <div class="container mb-5">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-5 text-center text-md-start mb-3 mb-md-0">
+            <img src="IMG/exercise/gym.png" alt="Exercise Image" class="img-fluid" style="max-height: 400px;">
+          </div>
+          <div class="col-12 col-md-7 text-center text-md-start">
+            <h1 class="fw-bold text-success">Exercise & Fitness Guide</h1>
+            <p class="lead text-muted">
+              Step-by-step routines for fat loss, muscle building, full body workouts, and stretching.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="hr-dashed">
+
+      <div class="mb-5">
+        <h3 class="fw-bold text-success mb-3">Fat Loss Exercises</h3>
+        <h5 class="fw-semibold text-secondary">Jumping Jacks (4 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Start <br><small>Stand upright, arms at sides.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Jump Out <br><small>Feet apart, arms overhead.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Jump In <br><small>Feet together, arms down.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 4: Repeat <br><small>Continue rhythmically, steady
+              breathing.</small></div>
+        </div>
+        <h5 class="fw-semibold text-secondary">High Knees (3 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Stand Tall <br><small>Arms at sides, feet hip-width
+              apart.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Drive Knees <br><small>Lift knees alternately to chest
+              level.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Pump Arms <br><small>Move arms naturally, increase
+              speed.</small></div>
+        </div>
+      </div>
+      <div class="mb-5">
+
+        <h3 class="fw-bold text-success mb-3">Muscle Building</h3>
+
+        <h5 class="fw-semibold text-secondary">Push-Ups (4 Steps)</h5>
+
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Start <br><small>Hands shoulder-width, body
+              straight.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Lower Down <br><small>Chest moves toward floor.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Hold <br><small>Pause briefly, keep core tight.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 4: Push Up <br><small>Return to start, arms
+              extended.</small></div>
+        </div>
+
+        <h5 class="fw-semibold text-secondary">Squats (4 Steps)</h5>
+
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Stand Tall <br><small>Feet shoulder-width apart.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Lower Hips <br><small>Bend knees, hips back.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Hold <br><small>Thighs parallel to floor.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 4: Rise Up <br><small>Push through heels, stand
+              tall.</small></div>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <h3 class="fw-bold text-success mb-3">Full Body Workouts</h3>
+
+        <h5 class="fw-semibold text-secondary">Burpees (5 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Stand <br><small>Feet shoulder-width apart.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Squat Down <br><small>Hands on floor.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Kick Back <br><small>Into push-up position.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 4: Push-Up <br><small>Optional for strength.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 5: Jump Up <br><small>Explosive jump, arms overhead.</small>
+          </div>
+        </div>
+
+        <!-- Mountain Climbers -->
+        <h5 class="fw-semibold text-secondary">Mountain Climbers (4 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Start <br><small>High plank, hands under
+              shoulders.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Drive Knee <br><small>Bring one knee to chest.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Switch Legs <br><small>Alternate knees quickly.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 4: Maintain Pace <br><small>Keep back flat, core
+              tight.</small></div>
+        </div>
+      </div>
+
+      <!-- ====================== STRETCHING ====================== -->
+      <div class="mb-5">
+        <h3 class="fw-bold text-success mb-3">Stretching & Flexibility</h3>
+
+        <!-- Forward Bend -->
+        <h5 class="fw-semibold text-secondary">Forward Bend (3 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Stand Tall <br><small>Feet hip-width apart.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Bend Forward <br><small>Hinge from hips, reach
+              down.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Relax <br><small>Neck loose, hold 20–30 sec.</small>
+          </div>
+        </div>
+
+        <!-- Shoulder Stretch -->
+        <h5 class="fw-semibold text-secondary">Shoulder Stretch (3 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Extend Arm <br><small>Bring right arm across
+              chest.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Hold <br><small>Use left hand to press closer.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Switch Sides <br><small>Repeat with left arm.</small>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ====================== DIETING SECTION ====================== -->
+      <div class="mb-5">
+        <h3 class="fw-bold text-success mb-3">Healthy Dieting & Nutrition</h3>
+
+        <!-- Dieting 1: Balanced Plate -->
+        <h5 class="fw-semibold text-secondary">Balanced Plate (4 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Vegetables <br><small>Fill half your plate with colorful
+              veggies.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Protein <br><small>Add lean protein like beans, fish, or
+              chicken.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Whole Grains <br><small>Quarter of plate with brown rice
+              or oats.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 4: Healthy Fats <br><small>Add nuts, seeds, or olive
+              oil.</small></div>
+        </div>
+
+        <!-- Dieting 2: Hydration -->
+        <h5 class="fw-semibold text-secondary">Hydration (3 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Start Day <br><small>Drink 1 glass of water in the
+              morning.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Throughout Day <br><small>Keep sipping water
+              regularly.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Limit Sugary Drinks <br><small>Choose water or herbal
+              teas instead.</small></div>
+        </div>
+
+        <!-- Dieting 3: Mindful Eating -->
+        <h5 class="fw-semibold text-secondary">Mindful Eating (4 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3 mb-4">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Pause <br><small>Take a moment before eating.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Eat Slowly <br><small>Chew thoroughly, enjoy
+              flavors.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Listen <br><small>Notice hunger and fullness
+              signals.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 4: Gratitude <br><small>Appreciate the food you
+              have.</small></div>
+        </div>
+
+        <!-- Dieting 4: Portion Control -->
+        <h5 class="fw-semibold text-secondary">Portion Control (3 Steps)</h5>
+        <div class="scroll-container d-flex overflow-auto gap-3 pb-3">
+          <div class="step-card p-3 rounded shadow-sm">Step 1: Use Smaller Plates <br><small>Helps avoid
+              overeating.</small></div>
+          <div class="step-card p-3 rounded shadow-sm">Step 2: Measure Portions <br><small>Check serving sizes.</small>
+          </div>
+          <div class="step-card p-3 rounded shadow-sm">Step 3: Stop at 80% Full <br><small>Leave some space in
+              stomach.</small></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <hr class="hr-dashed">
+
+  <footer class="bg-dark text-light pt-5 pb-4">
+    <div class="container text-md-left">
+      <div class="row text-md-left">
+
+        <!-- Brand/About -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold text-success">MindSpace</h5>
+          <p>
+            A mental health & wellness portal to help you explore mindfulness,
+            reduce stress, and improve emotional balance.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold text-success">Quick Links</h5>
+          <p><a href="index.html" class="text-light text-decoration-none">Home</a></p>
+          <p><a href="about-us-page.html" class="text-light text-decoration-none">About</a></p>
+          <p><a href="feedback-form.html" class="text-light text-decoration-none">Contact Us & feedback</a></p>
+        </div>
+
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold text-success">Contact</h5>
+          <p><i class="bi bi-house-door-fill me-2"></i> Surat, India</p>
+          <p><i class="bi bi-envelope-fill me-2"></i> mindspace@email.com</p>
+          <p><i class="bi bi-phone-fill me-2"></i> +91 9876543210</p>
+          <p><i class="bi bi-whatsapp me-2"></i> +91 9876543210</p>
+        </div>
+      </div>
+
+      <hr class="mb-4">
+
+      <div class="row align-items-center">
+        <div class="col-md-7 col-lg-8">
+          <p class="text-md-start">© 2025 MindSpace. All Rights Reserved.</p>
+        </div>
+
+        <div class="col-md-5 col-lg-4 text-md-end">
+          <a href="#" class="text-light me-4"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-light me-4"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-light me-4"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-light me-4"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

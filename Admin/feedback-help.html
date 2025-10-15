@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Help & Feedback</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link href="css/style.css" rel="stylesheet">
+
+  <style>
+    .option-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .option-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .option-card i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #16a34a;
+    }
+
+    .option-card h3 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .option-card p {
+      font-size: 0.95rem;
+      color: #555;
+      flex-grow: 1;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-light bg-white shadow-sm d-md-none">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold fs-3 text-success" href="dashboard.html">
+        <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarCanvas"
+        aria-controls="sidebarCanvas">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar for large screens -->
+      <div class="col-md-3 col-lg-2 d-none d-md-block sidebar">
+        <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="dashboard.html">
+          <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+        </a>
+
+        <a href="dashboard.html" class="nav-link ">
+          <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
+          Dashboard
+        </a>
+
+        <a href="self-help-tools.html" class="nav-link ">
+          <div class="icon-box"><i class="bi bi-heart-pulse"></i></div>
+          Self-Help Tools
+        </a>
+
+        <a href="manage-specialist.html" class="nav-link ">
+          <div class="icon-box"><i class="bi bi-calendar-check"></i></div>
+          Manage Specialist
+        </a>
+
+        <a href="feedback-help.html" class="nav-link active">
+          <div class="icon-box"><i class="bi bi-chat-left-text"></i></div>
+          Help & Feedback
+        </a>
+
+        <!-- Bottom Links for Large Screen -->
+
+        <a href="profile.html" class="nav-link d-flex align-items-center gap-2 text-success">
+          <div class="icon-box"><i class="bi bi-person-circle"></i></div>
+          Profile
+        </a>
+        <a href="index.html" class="nav-link d-flex align-items-center gap-2 text-danger">
+          <div class="icon-box"><i class="bi bi-box-arrow-right"></i></div>
+          Logout
+        </a>
+      </div>
+      
+      <!-- Sidebar Offcanvas for small screens -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarCanvas">
+        <div class="offcanvas-header">
+          <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1"
+            href="dashboard.html">
+            <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+          </a>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body p-0 sidebar">
+          <a href="dashboard.html" class="nav-link ">
+            <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
+            Dashboard
+          </a>
+          <a href="self-help-tools.html" class="nav-link">
+            <div class="icon-box"><i class="bi bi-heart-pulse"></i></div>
+            Self-Help Tools
+          </a>
+          <a href="manage-specialist.html" class="nav-link active">
+            <div class="icon-box"><i class="bi bi-calendar-check"></i></div>
+            Manage Specialist
+          </a>
+          <a href="feedback-help.html" class="nav-link active">
+            <div class="icon-box"><i class="bi bi-chat-left-text"></i></div>
+            Help & Feedback
+          </a>
+          <a href="profile.html" class="nav-link d-flex align-items-center gap-2 text-success">
+            <div class="icon-box"><i class="bi bi-person-circle"></i></div>
+            Profile
+          </a>
+          <a href="index.html" class="nav-link d-flex align-items-center gap-2 text-danger">
+            <div class="icon-box"><i class="bi bi-box-arrow-right"></i></div>
+            Logout
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9 col-lg-10 p-4">
+        <div class="dashboard-header">Help & Feedback Options</div>
+
+        <nav aria-label="breadcrumb" class="breadcrumb-container">
+          <ol class="breadcrumb mb-0 flex-wrap">
+            <li class="breadcrumb-item">
+              <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active text-dark" aria-current="page">Help & Feedback</li>
+          </ol>
+        </nav>
+
+
+        <div class="container py-4">
+          <div class="row justify-content-center g-4">
+
+            <!-- Help Card -->
+            <div class="col-12 col-md-5">
+              <a href="manage-help.html" class="text-decoration-none text-dark">
+                <div class="option-card">
+                  <i class="bi bi-life-preserver"></i>
+                  <h3>Help</h3>
+                  <p>View and manage all current help requests from users with options to mark as resolved.</p>
+                </div>
+              </a>
+            </div>
+
+            <!-- Feedback Card -->
+            <div class="col-12 col-md-5">
+              <a href="manage-feedback.html" class="text-decoration-none text-dark">
+                <div class="option-card">
+                  <i class="bi bi-chat-dots"></i>
+                  <h3>Feedback</h3>
+                  <p>View all user feedback, reviews, and suggestions in a clean and organized manner.</p>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

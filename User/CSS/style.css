@@ -1,0 +1,99 @@
+.hover-link:hover {
+    border-color: green;
+    color: black !important;
+}
+
+
+
+/* .nav-link:hover { */
+    /* border-bottom: 2px solid green !important; */
+    /* text-decoration: underline ;
+    
+    color: green !important; */
+/* } */
+
+.nav-link {
+  position: relative;
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: large;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: green;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: green !important;
+}
+
+.nav-link:hover::after {
+  width: 50%; /* smaller width, centered under text */
+}
+
+/* Optional: dropdown link styling */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown-item:hover {
+  background-color: #f0fff4; /* light green hover */
+  color: green !important;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav .nav-link {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+        border-radius: 10px;
+    }
+
+    form.d-flex {
+        width: 100% !important;
+    }
+}
+
+.hr-dashed {
+    border: none;
+    border-top: 5px dashed green;
+    margin: 1rem 0;
+}
+
+.dropdown-item:hover {
+    background-color: #d1f5d3;
+    border-radius: 5px
+}
+
+.category-list .nav-link {
+    border-radius: .5rem;
+    margin-bottom: .25rem;
+}
+
+.category-list .nav-link.active,
+.category-list .nav-link:hover {
+    background-color: #d1f5d3;
+    color: #198754 !important;
+}
+
+@media (max-width: 767px) {
+    .dropdown-menu {
+        min-width: 100% !important;
+    }
+
+    .border-end {
+        border-right: none !important;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 1rem;
+    }
+}

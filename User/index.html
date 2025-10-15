@@ -1,0 +1,395 @@
+<!doctype html>
+<html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Quicksand:wght@600;700&display=swap"
+        rel="stylesheet">
+    <title>Mind Space - Home</title>
+
+    <link href="CSS/style.css" rel="stylesheet">
+
+</head>
+
+<style>
+
+    .help-center {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .help-center img {
+        width: 24px;
+        height: 24px;
+    }
+
+    #help-toggle {
+        display: none;
+    }
+
+    .help-form {
+        position: fixed;
+        bottom: 80px;
+        left: 20px;
+        width: 300px;
+        background: white;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        display: none;
+        z-index: 99;
+    }
+
+    #help-toggle:checked+label+.help-form {
+        display: block;
+    }
+
+</style>
+
+<body>
+
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="index.html">
+                    <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0 gap-lg-4 text-center">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark hover-link"
+                                href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark dropdown-toggle" href="#"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Service
+                            </a>
+                            <div class="dropdown-menu p-3 border-0 shadow-lg rounded-4" aria-labelledby="navbarDropdown"
+                                style="min-width:700px;">
+                                <div class="row">
+                                    <div class="col-12 col-md-4 border-end">
+                                        <ul class="nav flex-md-column nav-pills category-list" id="service-tabs"
+                                            role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button
+                                                    class="nav-link active w-100 text-start text-success fw-semibold"
+                                                    id="tools-tab" data-bs-toggle="pill" data-bs-target="#tools"
+                                                    type="button" role="tab">Self - Help Tools</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link w-100 text-start text-success fw-semibold"
+                                                    id="session-tab" data-bs-toggle="pill" data-bs-target="#session"
+                                                    type="button" role="tab">Session Booking</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="tools" role="tabpanel"
+                                                aria-labelledby="tools-tab">
+                                                <h6 class="fw-bold text-success">Self - Help Tools</h6>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <a href="write.html" class="dropdown-item">Write Diary</a>
+                                                        <a href="habbit-page.html" class="dropdown-item">Habit
+                                                            Tracker</a>
+                                                        <a href="mediation.html" class="dropdown-item">Meditation</a>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="exercise.html" class="dropdown-item">Exercises</a>
+                                                        <a href="goal.html" class="dropdown-item">Goal Setting</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="session" role="tabpanel"
+                                                aria-labelledby="session-tab">
+                                                <h6 class="fw-bold text-success">Session Booking</h6>
+                                                <a href="specialist.html" class="dropdown-item">Psychologist</a>
+                                                <a href="specialist.html" class="dropdown-item">Therapist</a>
+                                                <a href="specialist.html" class="dropdown-item">Life Coach</a>
+                                                <a href="specialist.html" class="dropdown-item">Group Session</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark hover-link"
+                                href="about-us-page.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-1 rounded-pill fw-semibold text-dark hover-link"
+                                href="feedback-form.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <form class="d-flex ms-lg-3 mt-3 mt-lg-0 w-10 w-lg-auto">
+                    <input class="form-control rounded-pill border-success" type="search" placeholder="Search..."
+                        aria-label="Search">
+                    <button class="btn ms-2" type="submit">
+                        <i class="bi bi-search text-success fs-5"></i>
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section>
+            <div style="background-color: var(--light-bg);"
+                class="help-section d-flex flex-column flex-lg-row align-items-center justify-content-between rounded-4  mx-4 p-5 my-5">
+                <div class="mb-4 mb-lg-0 text-center text-lg-start">
+                    <img src="IMG/index/need_help.png" alt="img" class="img-fluid rounded-3" style="max-width: 500px;">
+                </div>
+                <div class="ms-lg-5 text-center text-lg-start">
+                    <h2 class="fw-semibold text-secondary">Need Some</h2>
+                    <h1 class="fw-bold display-5 text-success mb-3">Help ?</h1>
+                    <p class="fs-5 fst-italic text-muted">
+                        "Every problem has a solution. <br> Sometimes, you just need the right guidance."
+                    </p>
+                    <button class="btn btn-success btn-lg rounded-pill mt-3 shadow-sm px-4">
+                        Get Guidance
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center py-5 px-10 px-3">
+            <h2 class="mb-4 fw-bold">Welcome to MindSpace</h2>
+            <p class="lead mb-5">
+                In today’s fast-paced world, it’s easy to feel lost, overwhelmed, or unheard.
+                Many of us silently carry the weight of stress, anxiety, and self-doubt,
+                unsure where to turn for relief. <br><br>
+                <strong>MindSpace</strong> is here to change that — a calm, private, and
+                stigma-free corner where you can pause, reflect, and nurture your emotional
+                well-being. Whether it’s journaling your thoughts, practicing guided breathing,
+                setting mindful goals, or simply reading a comforting blog, MindSpace provides
+                tools that remind you: <em>you are not alone in this journey</em>.
+            </p>
+
+            <div class="mt-5">
+                <h3 class="fw-semibold mb-3">🌿 Emotional Reminders</h3>
+                <blockquote class="fs-5 fst-italic mb-4">
+                    “Your feelings are valid. Healing doesn’t happen overnight, but every small step counts.”
+                </blockquote>
+                <blockquote class="fs-5 fst-italic mb-4">
+                    “It’s okay to not be okay. What matters is that you give yourself the chance to breathe and begin
+                    again.”
+                </blockquote>
+                <blockquote class="fs-5 fst-italic mb-4">
+                    “Mental wellness is not about avoiding struggles — it’s about finding the strength to move through
+                    them.”
+                </blockquote>
+                <blockquote class="fs-5 fst-italic mb-0">
+                    “MindSpace is your safe space — for reflection, for growth, and for self-love.”
+                </blockquote>
+            </div>
+        </section>
+
+        <hr class="hr-dashed">
+
+        <section>
+            <div style="background-color: var(--light-bg);"
+                class="help-section d-flex flex-column flex-lg-row align-items-center justify-content-between rounded-4 mx-4 p-5 my-5">
+
+                <div class="ms-lg-5 text-center text-lg-start mb-4 mb-lg-0">
+                    <h2 class="fw-semibold text-secondary">Self - Help</h2>
+                    <h1 class="fw-bold display-5 text-success mb-3">Tools</h1>
+                    <p class="fs-5 fst-italic text-muted">
+                        "Your place to reduce confusion, <br> gain clarity, and feel lighter"
+                    </p>
+                    <button class="btn btn-success btn-lg rounded-pill mt-3 shadow-sm px-4 mb-4">
+                        Get Guidance
+                    </button>
+                </div>
+                <div class="text-center text-lg-end">
+                    <img src="IMG/index/self_help_tool.png" alt="Self-Help Image" class="img-fluid rounded-3"
+                        style="max-width: 500px;">
+                </div>
+            </div>
+        </section>
+
+        <section class="container my-5">
+            <div class="row g-4 justify-content-center">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+                    <div class="flowcard p-4 rounded-4 shadow-sm h-100 d-flex flex-column align-items-center">
+                        <h4 class="mb-2">Write Diary</h4>
+                        <div class="arrow mb-3">
+                            <i class="bi bi-arrow-down text-success fs-3"></i>
+                        </div>
+                        <img src="IMG/index/self-help-write_Diary.png" alt="Write Diary"
+                            class="img-fluid mb-3 rounded">
+                        <p class="mb-3">Record your thoughts and memories daily.</p>
+
+                        <a href="write.html" class="btn btn-success rounded-pill mt-auto">Write...</a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+                    <div class="flowcard p-4 rounded-4 shadow-sm h-100 d-flex flex-column align-items-center">
+                        <h4 class="mb-2">Habit</h4>
+                        <div class="arrow mb-3">
+                            <i class="bi bi-arrow-down text-success fs-3"></i>
+                        </div>
+                        <img src="IMG/index/self-help-habbit.png" alt="Habit" class="img-fluid mb-3 rounded">
+                        <p class="mb-3">Track and build your daily habits efficiently.</p>
+                        <a href="habbit-page.html" class="btn btn-success rounded-pill mt-auto">Challenge ?...</a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+                    <div class="flowcard p-4 rounded-4 shadow-sm h-100 d-flex flex-column align-items-center">
+                        <h4 class="mb-2">Meditation</h4>
+                        <div class="arrow mb-3">
+                            <i class="bi bi-arrow-down text-success fs-3"></i>
+                        </div>
+                        <img src="IMG/index/self-help-Meditation.png" alt="Meditation" class="img-fluid mb-3 rounded">
+                        <p class="mb-3">Relax and clear your mind with guided meditation.</p>
+                        <a href="mediation.html" class="btn btn-success rounded-pill mt-auto">Mind Reset</a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+                    <div class="flowcard p-4 rounded-4 shadow-sm h-100 d-flex flex-column align-items-center">
+                        <h4 class="mb-2">Exercises</h4>
+                        <div class="arrow mb-3">
+                            <i class="bi bi-arrow-down text-success fs-3"></i>
+                        </div>
+                        <img src="IMG/index/self-help-Exercises.svg" alt="Exercises" class="img-fluid mb-3 rounded">
+                        <p class="mb-3">Stay fit and active with simple daily exercises.</p>
+                        <a href="exercise.html" class="btn btn-success rounded-pill mt-auto">Keep fit & healthy</a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+                    <div class="flowcard p-4 rounded-4 shadow-sm h-100 d-flex flex-column align-items-center">
+                        <h4 class="mb-2">Goal Set & Track</h4>
+                        <div class="arrow mb-3">
+                            <i class="bi bi-arrow-down text-success fs-3"></i>
+                        </div>
+                        <img src="IMG/index/self-help-Goal_Set_&_Track.png" alt="Goal Set"
+                            class="img-fluid mb-3 rounded">
+                        <p class="mb-3">Set goals and track your progress over time.</p>
+                        <a href="goal.html" class="btn btn-success rounded-pill mt-auto">Achieve Something...</a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+                    <div class="flowcard p-4 rounded-4 shadow-sm h-100 d-flex flex-column align-items-center">
+                        <h4 class="mb-2">Learning</h4>
+                        <div class="arrow mb-3">
+                            <i class="bi bi-arrow-down text-success fs-3"></i>
+                        </div>
+                        <img src="IMG/index/self-help-Learning.png" alt="Blog" class="img-fluid mb-3 rounded">
+                        <p class="mb-3">Read articles and learn new skills every day.</p>
+                        <a href="learn.html" class="btn btn-success rounded-pill mt-auto">Learn & Understand</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <hr class="hr-dashed">
+
+    <input type="checkbox" id="help-toggle">
+
+    <label for="help-toggle" class="btn btn-outline-success rounded-pill help-center">
+        <img src="IMG/index/help_center_form_icon.png" style="border-radius:50%; object-fit:cover; margin-right:8px;">
+        Help Center
+    </label>
+
+    <div class="help-form">
+        <h5>Help!!</h5>
+        <form>
+            <div class="mb-2">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" placeholder="Your Name">
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="Your Email">
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Issue</label>
+                <input type="text" class="form-control" placeholder="Issue">
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Describe Issue</label>
+                <textarea class="form-control" rows="3" placeholder="Describe your issue"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success w-100 mt-2">Submit</button>
+        </form>
+    </div>
+    
+
+    <footer class="bg-dark text-light pt-5 pb-4">
+        <div class="container text-md-left">
+            <div class="row text-md-left">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-success">MindSpace</h5>
+                    <p>
+                        A mental health & wellness portal to help you explore mindfulness,
+                        reduce stress, and improve emotional balance.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-success">Quick Links</h5>
+                    <p><a href="index.html" class="text-light text-decoration-none">Home</a></p>
+                    <p><a href="about-us-page.html" class="text-light text-decoration-none">About</a></p>
+                    <p><a href="feedback-form.html" class="text-light text-decoration-none">Contact Us & feedback</a>
+                    </p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-success">Contact</h5>
+                    <p><i class="bi bi-house-door-fill me-2"></i> Surat, India</p>
+                    <p><i class="bi bi-envelope-fill me-2"></i> mindspace@email.com</p>
+                    <p><i class="bi bi-phone-fill me-2"></i> +91 9876543210</p>
+                    <p><i class="bi bi-whatsapp me-2"></i> +91 9876543210</p>
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p class="text-md-start">© 2025 MindSpace. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-5 col-lg-4 text-md-end">
+                    <a href="#" class="text-light me-4"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-light me-4"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-light me-4"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-light me-4"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

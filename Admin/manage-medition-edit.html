@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Manage Meditation : edit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Quicksand:wght@600;700&display=swap"
+    rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .step-card {
+      background: #f8f9fa;
+      border-left: 4px solid #4CAF50;
+      border-radius: 8px;
+      padding: 1rem;
+      flex-shrink: 0;
+    }
+
+    .scroll-container {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #4CAF50;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <div class="dashboard-header">Edit Meditation</div>
+    <nav aria-label="breadcrumb" class="breadcrumb-container">
+      <ol class="breadcrumb mb-0 flex-wrap">
+        <li class="breadcrumb-item">
+          <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="self-help-tools.html" class="breadcrumb-link">Self - Help Tools</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="manage-medition.html" class="breadcrumb-link">Manage Meditation</a>
+        </li>
+        <li class="breadcrumb-item active text-dark" aria-current="page">Edit Meditation</li>
+      </ol>
+    </nav>
+
+    <div class="dashboard-content">
+
+      <!-- Edit Meditation Form -->
+      <form>
+        <div class="mb-3">
+          <label for="meditationTitle" class="form-label fw-semibold"> Title</label>
+          <input type="text" class="form-control" id="meditationTitle" value="Mindful Breathing">
+        </div>
+
+        <div class="mb-3">
+          <label for="meditationDescription" class="form-label fw-semibold"> Description</label>
+          <textarea class="form-control" id="meditationDescription"
+            rows="4">A calming practice focusing on breath awareness to reduce stress.</textarea>
+        </div>
+
+        <button type="button" class="btn btn-success btn-sm mb-3"><i class="bi bi-plus-circle"></i> Add Step</button>
+
+        <!-- Meditation Steps -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Meditation Steps</label>
+          <div class="scroll-container mb-3">
+            <div class="step-card d-flex flex-column  p-3  mb-3">
+              <!-- Step Header: Editable Step Number + Title + Delete -->
+              <div class="d-flex align-items-center mb-2 gap-2">
+                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="1"
+                  style="width: 60px;" placeholder="Step #">
+                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="Breathing Exercise"
+                  placeholder="Step Title">
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+
+              <!-- Step Description / Editable -->
+              <textarea class="form-control rounded-4" rows="2"
+                placeholder="Step Description">Sit comfortably, keep spine straight.</textarea>
+            </div>
+
+            <div class="step-card d-flex flex-column  p-3  mb-3">
+              <!-- Step Header: Editable Step Number + Title + Delete -->
+              <div class="d-flex align-items-center mb-2 gap-2">
+                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="2"
+                  style="width: 60px;" placeholder="Step #">
+                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="Breathing Exercise"
+                  placeholder="Step Title">
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+
+              <!-- Step Description / Editable -->
+              <textarea class="form-control rounded-4" rows="2"
+                placeholder="Step Description">Focus on breath and inhale deeply.</textarea>
+            </div>
+
+
+            <div class="step-card d-flex flex-column  p-3  mb-3">
+              <!-- Step Header: Editable Step Number + Title + Delete -->
+              <div class="d-flex align-items-center mb-2 gap-2">
+                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="3"
+                  style="width: 60px;" placeholder="Step #">
+                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="Breathing Exercise"
+                  placeholder="Step Title">
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+
+              <!-- Step Description / Editable -->
+              <textarea class="form-control rounded-4" rows="2"
+                placeholder="Step Description">Scan body from head to toe.</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-success rounded-pill"><i class="bi bi-save"></i> Save Changes</button>
+          <a href="manage-medition.html" class="btn btn-secondary rounded-pill"><i class="bi bi-x-circle"></i>
+            Cancel</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
