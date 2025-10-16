@@ -5,6 +5,12 @@
 
 
 
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+}
+
+
 /* .nav-link:hover { */
     /* border-bottom: 2px solid green !important; */
     /* text-decoration: underline ;
@@ -87,13 +93,16 @@
 }
 
 @media (max-width: 767px) {
-    .dropdown-menu {
-        min-width: 100% !important;
-    }
+  .dropdown-menu {
+    min-width: auto !important;
+    max-width: 100vw !important;
+    overflow-x: auto;
+  }
 
-    .border-end {
-        border-right: none !important;
-        border-bottom: 1px solid #e0e0e0;
-        margin-bottom: 1rem;
-    }
+  .border-end {
+    border-right: none !important;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 1rem;
+  }
 }
+
