@@ -211,31 +211,42 @@
                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                  <form>
-                    <div class="mb-3">
-                      <label class="form-label">Session Title</label>
-                      <input type="text" class="form-control" placeholder="Enter session title">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Date</label>
-                      <input type="date" class="form-control">
-                    </div>
-                    <div class="mb-3 row g-2">
-                      <div class="col">
-                        <label class="form-label">Start Time</label>
-                        <input type="time" class="form-control">
-                      </div>
-                      <div class="col">
-                        <label class="form-label">End Time</label>
-                        <input type="time" class="form-control">
-                      </div>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Description</label>
-                      <textarea class="form-control" rows="3" placeholder="Enter session description"></textarea>
-                    </div>
-                    <button class="btn btn-success w-100" type="submit">Add Session</button>
-                  </form>
+                  <form id="sessionForm" onsubmit="return validateSessionForm()">
+  <div class="mb-3">
+    <label class="form-label">Session Title</label>
+    <input type="text" class="form-control" id="sessionTitle" placeholder="Enter session title">
+    <small id="errSessionTitle" class="text-danger"></small>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Date</label>
+    <input type="date" class="form-control" id="sessionDate">
+    <small id="errSessionDate" class="text-danger"></small>
+  </div>
+  <div class="mb-3 row g-2">
+    <div class="col">
+      <label class="form-label">Start Time</label>
+      <input type="time" class="form-control" id="startTime">
+      <small id="errStartTime" class="text-danger"></small>
+    </div>
+    <div class="col">
+      <label class="form-label">End Time</label>
+      <input type="time" class="form-control" id="endTime">
+      <small id="errEndTime" class="text-danger"></small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" id="sessionDescription" rows="3" placeholder="Enter session description"></textarea>
+    <small id="errSessionDescription" class="text-danger"></small>
+  </div>
+
+  <a id="redirectSession" href="show-session.html" style="display:none;"></a>
+  <small id="successSessionMsg" class="text-success"></small>
+
+  <button class="btn btn-success w-100" type="submit">Add Session</button>
+</form>
+
+
                 </div>
               </div>
             </div>
@@ -250,32 +261,43 @@
                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                  <form>
-                    <div class="mb-3">
-                      <label class="form-label">Session Title</label>
-                      <input type="text" class="form-control" value="Yoga Basics">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Date</label>
-                      <input type="date" class="form-control" value="2025-10-01">
-                    </div>
-                    <div class="mb-3 row g-2">
-                      <div class="col">
-                        <label class="form-label">Start Time</label>
-                        <input type="time" class="form-control" value="10:00">
-                      </div>
-                      <div class="col">
-                        <label class="form-label">End Time</label>
-                        <input type="time" class="form-control" value="11:00">
-                      </div>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Description</label>
-                      <textarea class="form-control" rows="3">Yoga session</textarea>
-                    </div>
-                    <button class="btn btn-success w-100" type="submit">Save Changes</button>
-                  </form>
-                </div>
+  <form id="editSessionForm" onsubmit="return validateEditSessionForm()">
+    <div class="mb-3">
+      <label class="form-label">Session Title</label>
+      <input type="text" class="form-control" id="editSessionTitle" value="Yoga Basics">
+      <small id="errEditSessionTitle" class="text-danger"></small>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Date</label>
+      <input type="date" class="form-control" id="editSessionDate" value="2025-10-01">
+      <small id="errEditSessionDate" class="text-danger"></small>
+    </div>
+    <div class="mb-3 row g-2">
+      <div class="col">
+        <label class="form-label">Start Time</label>
+        <input type="time" class="form-control" id="editStartTime" value="10:00">
+        <small id="errEditStartTime" class="text-danger"></small>
+      </div>
+      <div class="col">
+        <label class="form-label">End Time</label>
+        <input type="time" class="form-control" id="editEndTime" value="11:00">
+        <small id="errEditEndTime" class="text-danger"></small>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" id="editSessionDescription" rows="3">Yoga session</textarea>
+      <small id="errEditSessionDescription" class="text-danger"></small>
+    </div>
+
+    <a id="editRedirectSession" href="show-session.html" style="display:none;"></a>
+    <small id="successEditSessionMsg" class="text-success"></small>
+
+    <button class="btn btn-success w-100" type="submit">Save Changes</button>
+  </form>
+</div>
+
+
               </div>
             </div>
           </div>
@@ -302,6 +324,139 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+function validateSessionForm() {
+  // Clear previous errors
+  document.getElementById('errSessionTitle').innerText = "";
+  document.getElementById('errSessionDate').innerText = "";
+  document.getElementById('errStartTime').innerText = "";
+  document.getElementById('errEndTime').innerText = "";
+  document.getElementById('errSessionDescription').innerText = "";
+  document.getElementById('successSessionMsg').innerText = "";
+
+  let valid = true;
+
+  // Session Title
+  let title = document.getElementById('sessionTitle');
+  if(title.value.trim() === "") {
+    document.getElementById('errSessionTitle').innerText = "Please enter session title.";
+    valid = false;
+  }
+
+  // Date
+  let date = document.getElementById('sessionDate');
+  if(date.value === "") {
+    document.getElementById('errSessionDate').innerText = "Please select a date.";
+    valid = false;
+  }
+
+  // Start Time
+  let start = document.getElementById('startTime');
+  if(start.value === "") {
+    document.getElementById('errStartTime').innerText = "Please select start time.";
+    valid = false;
+  }
+
+  // End Time
+  let end = document.getElementById('endTime');
+  if(end.value === "") {
+    document.getElementById('errEndTime').innerText = "Please select end time.";
+    valid = false;
+  }
+
+  // Description
+  let desc = document.getElementById('sessionDescription');
+  if(desc.value.trim() === "") {
+    document.getElementById('errSessionDescription').innerText = "Please enter description.";
+    valid = false;
+  }
+
+  // If all valid
+  if(valid) {
+    document.getElementById('successSessionMsg').innerText = "Session added successfully!";
+    
+    // Clear form
+    document.getElementById('sessionForm').reset();
+
+    // Redirect after 2 sec using getElementById
+    setTimeout(function() {
+      document.getElementById('redirectSession').click();
+    }, 2000);
+
+    return false; // prevent actual form submission
+  }
+
+  return false; // prevent submission if invalid
+}
+
+
+function validateEditSessionForm() {
+  // Clear previous errors
+  document.getElementById('errEditSessionTitle').innerText = "";
+  document.getElementById('errEditSessionDate').innerText = "";
+  document.getElementById('errEditStartTime').innerText = "";
+  document.getElementById('errEditEndTime').innerText = "";
+  document.getElementById('errEditSessionDescription').innerText = "";
+  document.getElementById('successEditSessionMsg').innerText = "";
+
+  let valid = true;
+
+  // Session Title
+  let title = document.getElementById('editSessionTitle');
+  if(title.value.trim() === "") {
+    document.getElementById('errEditSessionTitle').innerText = "Please enter session title.";
+    valid = false;
+  }
+
+  // Date
+  let date = document.getElementById('editSessionDate');
+  if(date.value === "") {
+    document.getElementById('errEditSessionDate').innerText = "Please select a date.";
+    valid = false;
+  }
+
+  // Start Time
+  let start = document.getElementById('editStartTime');
+  if(start.value === "") {
+    document.getElementById('errEditStartTime').innerText = "Please select start time.";
+    valid = false;
+  }
+
+  // End Time
+  let end = document.getElementById('editEndTime');
+  if(end.value === "") {
+    document.getElementById('errEditEndTime').innerText = "Please select end time.";
+    valid = false;
+  }
+
+  // Description
+  let desc = document.getElementById('editSessionDescription');
+  if(desc.value.trim() === "") {
+    document.getElementById('errEditSessionDescription').innerText = "Please enter description.";
+    valid = false;
+  }
+
+  // If all valid
+  if(valid) {
+    document.getElementById('successEditSessionMsg').innerText = "Changes saved successfully!";
+
+    // Clear form (optional, can remove if you want to keep values)
+    document.getElementById('editSessionForm').reset();
+
+    // Redirect after 2 sec using getElementById
+    setTimeout(function() {
+      document.getElementById('editRedirectSession').click();
+    }, 2000);
+
+    return false; // prevent actual submission
+  }
+
+  return false; // prevent submission if invalid
+}
+</script>
+
+
 </body>
 
 </html>

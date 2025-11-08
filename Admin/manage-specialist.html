@@ -193,47 +193,73 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
-                <form>
-                  <div class="mb-2">
-                    <label>Category Select</label>
-                    <select class="form-control">
-                      <option>Psychologist</option>
-                      <option>Therapist</option>
-                      <option>Life Coach</option>
-                      <option>Group Session</option>
-                    </select>
-                  </div>
-                  <div class="mb-2">
-                    <label>Name</label>
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="mb-2">
-                    <label>Degree</label>
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="mb-2">
-                    <label>Specialization</label>
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="mb-2">
-                    <label>Experience</label>
-                    <input type="text" class="form-control">
-                  </div>
-                  <div class="mb-2">
-                    <label>Contact email</label>
-                    <input type="email" class="form-control">
-                  </div>
-                  <div class="mb-2">
-                    <label>Contact number</label>
-                    <input type="tel" class="form-control">
-                  </div>
-                  <div class="mb-2">
-                    <label>Profile pic</label>
-                    <input type="file" class="form-control">
-                  </div>
-                  <button class="btn btn-success w-100 mt-2" type="submit">Add Specialist</button>
-                </form>
-              </div>
+  <form id="specialistForm" method="get" action="manage-specialist.html" onsubmit="return validateForm()">
+    <div class="mb-2">
+      <label>Category Select</label>
+      <select class="form-control" id="category">
+        <option value="">Select</option>
+        <option>Psychologist</option>
+        <option>Therapist</option>
+        <option>Life Coach</option>
+        <option>Group Session</option>
+      </select>
+      <small id="errCategory" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Name</label>
+      <input type="text" class="form-control" id="name">
+      <small id="errName" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Degree</label>
+      <input type="text" class="form-control" id="degree">
+      <small id="errDegree" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Specialization</label>
+      <input type="text" class="form-control" id="specialization">
+      <small id="errSpecialization" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Experience</label>
+      <input type="text" class="form-control" id="experience">
+      <small id="errExperience" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Contact email</label>
+      <input type="text" class="form-control" id="email">
+      <small id="errEmail" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Contact number</label>
+      <input type="text" class="form-control" id="phone">
+      <small id="errPhone" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Profile pic</label>
+      <input type="file" class="form-control" id="profilePic">
+      <small id="errFile" class="text-danger"></small>
+    </div>
+
+    <a id="redirectLink" href="manage-specialist.html" style="display:none;"></a>
+
+        <small id="successMsg" class="text-success"></small>
+
+
+
+    <button class="btn btn-success w-100 mt-2" type="submit">Add Specialist</button>
+
+  </form>
+</div>
+
+
             </div>
           </div>
         </div>
@@ -247,47 +273,69 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
-                <form>
-                  <div class="mb-2">
-                    <label>Category Select</label>
-                    <select class="form-control">
-                      <option value="">Psychologist</option>
-                      <option>Therapist</option>
-                      <option>Life Coach</option>
-                      <option>Group Session</option>
-                    </select>
-                  </div>
-                  <div class="mb-2">
-                    <label>Name</label>
-                    <input type="text" class="form-control" value="Dr. Jane Doe">
-                  </div>
-                  <div class="mb-2">
-                    <label>Degree</label>
-                    <input type="text" class="form-control" value="Ph.D. Clinical Psychology">
-                  </div>
-                  <div class="mb-2">
-                    <label>Specialization</label>
-                    <input type="text" class="form-control" value="Anxiety & Stress Management">
-                  </div>
-                  <div class="mb-2">
-                    <label>Experience</label>
-                    <input type="text" class="form-control" value="10 Years">
-                  </div>
-                  <div class="mb-2">
-                    <label>Contact email</label>
-                    <input type="email" class="form-control" value="jane@example.com">
-                  </div>
-                  <div class="mb-2">
-                    <label>Contact number</label>
-                    <input type="tel" class="form-control" value="9876543210">
-                  </div>
-                  <div class="mb-2">
-                    <label>Profile pic</label>
-                    <input type="file" class="form-control">
-                  </div>
-                  <button class="btn btn-primary w-100 mt-2" type="submit">Save Changes</button>
-                </form>
-              </div>
+  <form id="editSpecialistForm" onsubmit="return validateEditForm()">
+    <div class="mb-2">
+      <label>Category Select</label>
+      <select class="form-control" id="editCategory">
+        <option value="Psychologist">Select</option>
+        <option>Psychologist</option>
+        <option>Therapist</option>
+        <option>Life Coach</option>
+        <option>Group Session</option>
+      </select>
+      <small id="errEditCategory" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Name</label>
+      <input type="text" class="form-control" id="editName" value="Dr. Jane Doe">
+      <small id="errEditName" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Degree</label>
+      <input type="text" class="form-control" id="editDegree" value="Ph.D. Clinical Psychology">
+      <small id="errEditDegree" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Specialization</label>
+      <input type="text" class="form-control" id="editSpecialization" value="Anxiety & Stress Management">
+      <small id="errEditSpecialization" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Experience</label>
+      <input type="text" class="form-control" id="editExperience" value="10 Years">
+      <small id="errEditExperience" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Contact email</label>
+      <input type="text" class="form-control" id="editEmail" value="jane@example.com">
+      <small id="errEditEmail" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Contact number</label>
+      <input type="text" class="form-control" id="editPhone" value="9876543210">
+      <small id="errEditPhone" class="text-danger"></small>
+    </div>
+
+    <div class="mb-2">
+      <label>Profile pic</label>
+      <input type="file" class="form-control" id="editProfilePic" value="file.png">
+      <small id="errEditFile" class="text-danger"></small>
+    </div>
+
+    <a id="editRedirectLink" href="manage-specialist.html" style="display:none;"></a>
+    <small id="successEditMsg" class="text-success"></small>
+
+    <button class="btn btn-primary w-100 mt-2" type="submit">Save Changes</button>
+  </form>
+</div>
+
+
             </div>
           </div>
         </div>
@@ -313,6 +361,214 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+
+function validateForm() {
+  // Clear previous errors
+  document.getElementById('errCategory').innerText = "";
+  document.getElementById('errName').innerText = "";
+  document.getElementById('errDegree').innerText = "";
+  document.getElementById('errSpecialization').innerText = "";
+  document.getElementById('errExperience').innerText = "";
+  document.getElementById('errEmail').innerText = "";
+  document.getElementById('errPhone').innerText = "";
+  document.getElementById('errFile').innerText = "";
+  document.getElementById('successMsg').innerText = "";
+
+  let valid = true;
+
+  // Category
+  let category = document.getElementById('category');
+  if(category.value === "") {
+    document.getElementById('errCategory').innerText = "Please select a category.";
+    valid = false;
+  }
+
+  // Name
+  let name = document.getElementById('name');
+  if(name.value.trim() === "") {
+    document.getElementById('errName').innerText = "Please enter name.";
+    valid = false;
+  }
+
+  // Degree
+  let degree = document.getElementById('degree');
+  if(degree.value.trim() === "") {
+    document.getElementById('errDegree').innerText = "Please enter degree.";
+    valid = false;
+  }
+
+  // Specialization
+  let specialization = document.getElementById('specialization');
+  if(specialization.value.trim() === "") {
+    document.getElementById('errSpecialization').innerText = "Please enter specialization.";
+    valid = false;
+  }
+
+  // Experience
+  let experience = document.getElementById('experience');
+  if(experience.value.trim() === "") {
+    document.getElementById('errExperience').innerText = "Please enter experience.";
+    valid = false;
+  }
+
+  // Email
+  let email = document.getElementById('email');
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
+  if(email.value.trim() === "") {
+    document.getElementById('errEmail').innerText = "Please enter email.";
+    valid = false;
+  } else if(!emailRegex.test(email.value.trim())) {
+    document.getElementById('errEmail').innerText = "Please enter a valid email.";
+    valid = false;
+  }
+
+  // Phone
+  let phone = document.getElementById('phone');
+  if(phone.value.trim() === "") {
+    document.getElementById('errPhone').innerText = "Please enter phone number.";
+    valid = false;
+  } else if(!/^\d{10}$/.test(phone.value.trim())) {
+    document.getElementById('errPhone').innerText = "Enter valid 10-digit number.";
+    valid = false;
+  }
+
+  // File type
+  let file = document.getElementById('profilePic');
+  if(!file || file.files.length === 0) {
+    document.getElementById('errFile').innerText = "Please upload a profile picture.";
+    valid = false;
+  } else {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    const fileName = file.files[0].name;
+    if(!allowedExtensions.exec(fileName)) {
+      document.getElementById('errFile').innerText = "Only .jpg and .png files are allowed.";
+      valid = false;
+    }
+  }
+
+  // If all valid
+  if(valid) {
+    document.getElementById('successMsg').innerText = "Form submitted successfully!";
+    
+    // Clear form
+    document.getElementById('specialistForm').reset();
+
+    // Redirect using hidden link after 2 sec
+    setTimeout(function() {
+      document.getElementById('redirectLink').click();
+    }, 2000);
+
+    return false; // Prevent actual form submission
+  }
+
+  return false; // Prevent submission if invalid
+}
+
+
+
+function validateEditForm() {
+  // Clear previous errors
+  document.getElementById('errEditCategory').innerText = "";
+  document.getElementById('errEditName').innerText = "";
+  document.getElementById('errEditDegree').innerText = "";
+  document.getElementById('errEditSpecialization').innerText = "";
+  document.getElementById('errEditExperience').innerText = "";
+  document.getElementById('errEditEmail').innerText = "";
+  document.getElementById('errEditPhone').innerText = "";
+  document.getElementById('errEditFile').innerText = "";
+  document.getElementById('successEditMsg').innerText = "";
+
+  let valid = true;
+
+  // Category
+  let category = document.getElementById('editCategory');
+  if(category.value === "") {
+    document.getElementById('errEditCategory').innerText = "Please select a category.";
+    valid = false;
+  }
+
+  // Name
+  let name = document.getElementById('editName');
+  if(name.value.trim() === "") {
+    document.getElementById('errEditName').innerText = "Please enter name.";
+    valid = false;
+  }
+
+  // Degree
+  let degree = document.getElementById('editDegree');
+  if(degree.value.trim() === "") {
+    document.getElementById('errEditDegree').innerText = "Please enter degree.";
+    valid = false;
+  }
+
+  // Specialization
+  let specialization = document.getElementById('editSpecialization');
+  if(specialization.value.trim() === "") {
+    document.getElementById('errEditSpecialization').innerText = "Please enter specialization.";
+    valid = false;
+  }
+
+  // Experience
+  let experience = document.getElementById('editExperience');
+  if(experience.value.trim() === "") {
+    document.getElementById('errEditExperience').innerText = "Please enter experience.";
+    valid = false;
+  }
+
+  // Email
+  let email = document.getElementById('editEmail');
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
+  if(email.value.trim() === "") {
+    document.getElementById('errEditEmail').innerText = "Please enter email.";
+    valid = false;
+  } else if(!emailRegex.test(email.value.trim())) {
+    document.getElementById('errEditEmail').innerText = "Please enter a valid email.";
+    valid = false;
+  }
+
+  // Phone
+  let phone = document.getElementById('editPhone');
+  if(phone.value.trim() === "") {
+    document.getElementById('errEditPhone').innerText = "Please enter phone number.";
+    valid = false;
+  } else if(!/^\d{10}$/.test(phone.value.trim())) {
+    document.getElementById('errEditPhone').innerText = "Enter valid 10-digit number.";
+    valid = false;
+  }
+
+  // File type only
+  let file = document.getElementById('editProfilePic');
+  if(file && file.files.length > 0) {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    const fileName = file.files[0].name;
+    if(!allowedExtensions.exec(fileName)) {
+      document.getElementById('errEditFile').innerText = "Only .jpg and .png files are allowed.";
+      valid = false;
+    }
+  }
+
+  // If all valid
+  if(valid) {
+    document.getElementById('successEditMsg').innerText = "Changes saved successfully!";
+    
+    // Clear form (optional: remove values or just leave them)
+    document.getElementById('editSpecialistForm').reset();
+
+    // Redirect after 2 sec using getElementById
+    setTimeout(function() {
+      document.getElementById('editRedirectLink').click();
+    }, 2000);
+
+    return false; // prevent actual form submission
+  }
+
+  return false; // prevent submission if invalid
+}
+</script>
+
+
 </body>
 
 </html>

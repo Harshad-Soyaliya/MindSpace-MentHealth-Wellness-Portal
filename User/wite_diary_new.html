@@ -153,13 +153,25 @@
 
             <h3 class="text-success text-center mb-4">📝 Write Your Thoughts</h3>
 
-            <input type="text" class="note-title" placeholder="Title">
-            <textarea class="note-area" placeholder="Start writing your notes..."></textarea>
+            <form id="noteForm" method="get" action="write.html" onsubmit="return saveNote()">
+
+            <input type="text" id="noteTitle" class="form-control note-title" placeholder="Title">
+            <small class="text-danger fw-semibold" id="errTitle"></small>
+
+            <textarea id="noteArea" class="form-control note-area" placeholder="Start writing your notes..."></textarea>
+            <small class="text-danger fw-semibold" id="errArea"></small>
+
+            <div id="successBox" class="alert alert-success mt-3 d-none">
+                Note saved successfully!
+            </div>
 
             <div class="text-end mt-3">
                 <a href="write.html" class="btn btn-outline-success rounded-pill px-4">Back</a>
-                <button class="btn btn-success rounded-pill px-4">Save</button>
+                <button type="submit" class="btn btn-success rounded-pill px-4">Save</button>
             </div>
+
+            </form>
+
 
         </section>
 
@@ -213,6 +225,69 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <script>
+        
+    function saveNote() {
+        let title = document.getElementById("noteTitle");
+        let note = document.getElementById("noteArea");
+
+        let errTitle = document.getElementById("errTitle");
+        let errArea = document.getElementById("errArea");
+        let successBox = document.getElementById("successBox");
+
+        let valid = true;
+
+        const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
+
+        
+        errTitle.innerHTML = "";
+        errArea.innerHTML = "";
+        title.classList.remove("error", "success");
+        note.classList.remove("error", "success");
+        successBox.classList.add("d-none");
+
+        if (title.value.trim() == "") {
+            errTitle.innerHTML = `${icon} Please enter a title.`;
+            title.classList.add("error");
+            valid = false;
+        } else if (!isNaN(title.value)) {
+            errTitle.innerHTML = `${icon} Title must contain letters.`;
+            title.classList.add("error");
+            valid = false;
+        } else if (title.value.length > 150) {
+            errTitle.innerHTML = `${icon} Title must be under 150 characters.`;
+            title.classList.add("error");
+            valid = false;
+        } else {
+            title.classList.add("success");
+        }
+
+        if (note.value.trim() == "") {
+            errArea.innerHTML = `${icon} Please write your note.`;
+            note.classList.add("error");
+            valid = false;
+        } else if (note.value.length < 10) {
+            errArea.innerHTML = `${icon} Note must be at least 10 characters.`;
+            note.classList.add("error");
+            valid = false;
+        } else {
+            note.classList.add("success");
+        }
+
+        if (!valid) return false;
+
+        successBox.classList.remove("d-none");
+
+        setTimeout(function () {
+            document.getElementById("noteForm").submit();
+        }, 2000);
+
+        return false; 
+    }
+
+
+    </script>
 
 </body>
 

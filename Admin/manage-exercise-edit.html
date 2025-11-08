@@ -70,85 +70,67 @@
     <div class="dashboard-content">
 
       <!-- Edit Exercise Form -->
-      <form>
+      <form onsubmit="return validateExerciseForm()">
+
         <div class="mb-3">
-          <label for="exerciseTitle" class="form-label fw-semibold">Exercise Title</label>
+          <label class="form-label fw-semibold">Exercise Title</label>
           <input type="text" class="form-control" id="exerciseTitle" value="Morning Stretch">
+          <small id="errTitle" class="text-danger"></small>
         </div>
 
         <div class="mb-3">
-          <label for="exerciseDescription" class="form-label fw-semibold">Exercise Description</label>
-          <textarea class="form-control" id="exerciseDescription"
-            rows="4">A set of simple stretches to wake up your body in the morning.</textarea>
+          <label class="form-label fw-semibold">Exercise Description</label>
+          <textarea class="form-control" id="exerciseDescription" rows="4">A set of simple stretches to wake up your body in the morning.</textarea>
+          <small id="errDesc" class="text-danger"></small>
         </div>
 
         <button type="button" class="btn btn-success btn-sm mb-3"><i class="bi bi-plus-circle"></i> Add Step</button>
 
-        <!-- Exercise Steps -->
-
         <div class="mb-3">
           <label class="form-label fw-semibold">Exercise Steps</label>
-          <div class="scroll-container mb-3">
 
-            <div class="step-card d-flex flex-column  p-3  mb-3">
-              <!-- Step Header: Editable Step Number + Title + Delete -->
+          <div class="scroll-container mb-3" id="stepsContainer">
+
+            <div class="step-card d-flex flex-column p-3 mb-3">
               <div class="d-flex align-items-center mb-2 gap-2">
-                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="1"
-                  style="width: 60px;" placeholder="Step #">
-                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="title"
-                  placeholder="Step Title">
-                <button type="button" class="btn btn-outline-success btn-sm ms-auto">
-                  <i class="bi bi-trash"></i>
-                </button>
+                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="1" style="width: 60px;">
+                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="title">
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto"><i class="bi bi-trash"></i></button>
               </div>
-
-              <!-- Step Description / Editable -->
-              <textarea class="form-control rounded-4" rows="2"
-                placeholder="Step Description">Stand tall, stretch arms overhead.</textarea>
+              <textarea class="form-control rounded-4" rows="2">Stand tall, stretch arms overhead.</textarea>
             </div>
 
-            <div class="step-card d-flex flex-column  p-3  mb-3">
-              <!-- Step Header: Editable Step Number + Title + Delete -->
+            <div class="step-card d-flex flex-column p-3 mb-3">
               <div class="d-flex align-items-center mb-2 gap-2">
-                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="2"
-                  style="width: 60px;" placeholder="Step #">
-                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="title"
-                  placeholder="Step Title">
-                <button type="button" class="btn btn-outline-success btn-sm ms-auto">
-                  <i class="bi bi-trash"></i>
-                </button>
+                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="2" style="width: 60px;">
+                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="title">
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto"><i class="bi bi-trash"></i></button>
               </div>
-
-              <!-- Step Description / Editable -->
-              <textarea class="form-control rounded-4" rows="2"
-                placeholder="Step Description">Bend sideways gently to stretch the sides.</textarea>
+              <textarea class="form-control rounded-4" rows="2">Bend sideways gently to stretch the sides.</textarea>
             </div>
 
-            <div class="step-card d-flex flex-column  p-3  mb-3">
-              <!-- Step Header: Editable Step Number + Title + Delete -->
+            <div class="step-card d-flex flex-column p-3 mb-3">
               <div class="d-flex align-items-center mb-2 gap-2">
-                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="3"
-                  style="width: 60px;" placeholder="Step #">
-                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="title"
-                  placeholder="Step Title">
-                <button type="button" class="btn btn-outline-success btn-sm ms-auto">
-                  <i class="bi bi-trash"></i>
-                </button>
+                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="3" style="width: 60px;">
+                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="title">
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto"><i class="bi bi-trash"></i></button>
               </div>
-
-              <!-- Step Description / Editable -->
-              <textarea class="form-control rounded-4" rows="2"
-                placeholder="Step Description">Twist torso gently from left to right.</textarea>
+              <textarea class="form-control rounded-4" rows="2">Twist torso gently from left to right.</textarea>
             </div>
 
           </div>
 
+          <small id="errSteps" class="text-danger"></small>
         </div>
 
         <div class="d-flex gap-2">
           <button type="submit" class="btn btn-success rounded-pill"><i class="bi bi-save"></i> Save Changes</button>
-          <a href="manage-exercise.html" class="btn btn-secondary rounded-pill"><i class="bi bi-x-circle"></i>
-            Cancel</a>
+          <a href="manage-exercise.html" class="btn btn-secondary rounded-pill"><i class="bi bi-x-circle"></i> Cancel</a>
+        </div>
+
+        <!-- SUCCESS MESSAGE -->
+        <div id="successBox" class="text-success fw-semibold mt-3 d-none">
+          Exercise updated successfully!
         </div>
 
       </form>
@@ -157,6 +139,76 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+function validateExerciseForm() {
+
+  document.getElementById("errTitle").innerHTML = "";
+  document.getElementById("errDesc").innerHTML = "";
+  document.getElementById("errSteps").innerHTML = "";
+
+  let title = document.getElementById("exerciseTitle").value.trim();
+  let desc = document.getElementById("exerciseDescription").value.trim();
+  let steps = document.getElementsByClassName("step-card");
+
+  let valid = true;
+
+  // Title
+  if (title === "") {
+    document.getElementById("errTitle").innerHTML = "Please enter a title.";
+    valid = false;
+  }
+
+  // Description
+  if (desc === "") {
+    document.getElementById("errDesc").innerHTML = "Please enter a description.";
+    valid = false;
+  }
+
+  // Steps count
+  if (steps.length === 0) {
+    document.getElementById("errSteps").innerHTML = "Please add at least one step.";
+    valid = false;
+  }
+
+  // Validate each step
+  for (let i = 0; i < steps.length; i++) {
+    let stepNo = steps[i].getElementsByTagName("input")[0].value.trim();
+    let stepTitle = steps[i].getElementsByTagName("input")[1].value.trim();
+    let stepDesc = steps[i].getElementsByTagName("textarea")[0].value.trim();
+
+    if (stepNo === "" || stepTitle === "" || stepDesc === "") {
+      document.getElementById("errSteps").innerHTML = "All steps must be fully filled.";
+      valid = false;
+      break;
+    }
+  }
+
+  if (!valid) return false;
+
+  // SUCCESS
+  let box = document.getElementById("successBox");
+  box.classList.remove("d-none");
+
+  // Clear fields
+  document.getElementById("exerciseTitle").value = "";
+  document.getElementById("exerciseDescription").value = "";
+
+  // Clear all steps
+  let container = document.getElementById("stepsContainer");
+  container.innerHTML = "";
+
+  // Hide after 2 sec + redirect
+  setTimeout(function () {
+    box.classList.add("d-none");
+    window.location.href = "manage-exercise.html";
+  }, 2000);
+
+  return false;
+}
+</script>
+
+
 </body>
 
 </html>

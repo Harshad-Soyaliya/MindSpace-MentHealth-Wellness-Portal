@@ -33,7 +33,29 @@
             background-color: #145c32;
             color: #fff;
         }
-    </style>
+
+
+/* Make inputs look disabled initially */
+form input[readonly], form input:disabled {
+  background-color: #e9ecef;
+  pointer-events: none;
+}
+
+/* Visual edit mode when checkbox checked */
+#editToggle:checked ~ form input[readonly] {
+  pointer-events: auto;
+  background-color: #fff;
+}
+
+/* Show Update button only in edit mode */
+form button[type="submit"] {
+  display: none;
+}
+
+#editToggle:checked ~ form button[type="submit"] {
+  display: inline-block;
+}
+</style>
 </head>
 
 <body>
@@ -148,64 +170,191 @@
                 <div class="dashboard-content container py-4">
 
                     <!-- Profile Info -->
-                    <div class="card shadow-sm rounded-4 p-4 mb-4">
-                        <h5 class="text-success fw-bold mb-3">Profile Information</h5>
-                        <form>
-                            <div class="mb-3 text-center">
-                                <img src="IMG/index/profile_icon.png" alt="Profile Photo" class="rounded-circle mb-2"
-                                    width="120" height="120">
-                                <input type="file" class="form-control mt-2" style="max-width: 250px; margin: 0 auto;">
-                            </div>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label text-success fw-semibold">Name</label>
-                                    <input type="text" class="form-control" value="John Doe">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label text-success fw-semibold">Email</label>
-                                    <input type="email" class="form-control" value="john.doe@example.com">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label text-success fw-semibold">Phone Number</label>
-                                    <input type="tel" class="form-control" value="+91 9876543210">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label text-success fw-semibold">Company Name</label>
-                                    <input type="text" class="form-control" value="MindSpace Pvt Ltd">
-                                </div>
 
-                            </div>
-                            <button type="submit" class="btn btn-success mt-4">Update Profile</button>
-                        </form>
-                    </div>
+<div class="card shadow-sm rounded-4 p-4 mb-4">
+  <h5 class="text-success fw-bold mb-3">Profile Information</h5>
 
-                    <!-- Change Password -->
-                    <div class="card shadow-sm rounded-4 p-4">
-                        <h5 class="text-success fw-bold mb-3">Change Password</h5>
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label class="form-label text-success fw-semibold">Old Password</label>
-                                    <input type="password" class="form-control" placeholder="Enter old password">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label text-success fw-semibold">New Password</label>
-                                    <input type="password" class="form-control" placeholder="Enter new password">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label text-success fw-semibold">Confirm Password</label>
-                                    <input type="password" class="form-control" placeholder="Confirm new password">
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-success mt-4">Change Password</button>
-                        </form>
-                    </div>
+  <!-- Hidden checkbox for toggle -->
+  <input type="checkbox" id="editToggle" style="display:none;">
+
+  <form>
+    <div class="mb-3 text-center">
+      <img src="IMG/index/profile_icon.png" alt="Profile Photo" class="rounded-circle mb-2"
+        width="120" height="120">
+      <input type="file" class="form-control mt-2" style="max-width: 250px; margin: 0 auto;" disabled>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label text-success fw-semibold">Name</label>
+        <input type="text" class="form-control" value="John Doe" readonly>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label text-success fw-semibold">Email</label>
+        <input type="email" class="form-control" value="john.doe@example.com" readonly>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label text-success fw-semibold">Phone Number</label>
+        <input type="tel" class="form-control" value="+91 9876543210" readonly>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label text-success fw-semibold">Company Name</label>
+        <input type="text" class="form-control" value="MindSpace Pvt Ltd" readonly>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <label for="editToggle" class="btn btn-primary mt-3">Edit</label>
+    <button type="submit" class="btn btn-success mt-3">Update Profile</button>
+  </form>
+</div>
+
+
+
+
+
+
+<!-- Change Password Form -->
+<div class="card shadow-sm rounded-4 p-4">
+  <h5 class="text-success fw-bold mb-3">Change Password</h5>
+  <form id="passwordForm" onsubmit="return validatePasswordForm()">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label text-success fw-semibold">Old Password</label>
+        <input type="password" class="form-control" id="oldPassword" placeholder="Enter old password">
+        <small id="errOldPassword" class="text-danger"></small>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label text-success fw-semibold">New Password</label>
+        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+        <small id="errNewPassword" class="text-danger"></small>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label text-success fw-semibold">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
+        <small id="errConfirmPassword" class="text-danger"></small>
+      </div>
+    </div>
+    <small id="successPasswordMsg" class="text-success"></small>
+    <button type="submit" class="btn btn-success mt-4">Change Password</button>
+  </form>
+</div>
+
 
                 </div>
             </div>
 
         </div>
     </div>
+
+
+    <script>
+
+function validateProfileForm() {
+  // Clear previous errors
+  document.getElementById('errProfilePic').innerText = "";
+  document.getElementById('errProfileName').innerText = "";
+  document.getElementById('errProfileEmail').innerText = "";
+  document.getElementById('errProfilePhone').innerText = "";
+  document.getElementById('errProfileCompany').innerText = "";
+  document.getElementById('successProfileMsg').innerText = "";
+
+  let valid = true;
+
+  // Name
+  let name = document.getElementById('profileName');
+  if(name.value.trim() === "") {
+    document.getElementById('errProfileName').innerText = "Please enter your name.";
+    valid = false;
+  }
+
+  // Email
+  let email = document.getElementById('profileEmail');
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
+  if(email.value.trim() === "") {
+    document.getElementById('errProfileEmail').innerText = "Please enter your email.";
+    valid = false;
+  } else if(!emailRegex.test(email.value.trim())) {
+    document.getElementById('errProfileEmail').innerText = "Enter a valid email.";
+    valid = false;
+  }
+
+  // Phone
+  let phone = document.getElementById('profilePhone');
+  if(phone.value.trim() === "") {
+    document.getElementById('errProfilePhone').innerText = "Please enter phone number.";
+    valid = false;
+  } else if(!/^\+?\d{10,15}$/.test(phone.value.trim())) {
+    document.getElementById('errProfilePhone').innerText = "Enter valid phone number.";
+    valid = false;
+  }
+
+  // Company
+  let company = document.getElementById('profileCompany');
+  if(company.value.trim() === "") {
+    document.getElementById('errProfileCompany').innerText = "Please enter company name.";
+    valid = false;
+  }
+
+  // Profile Pic file type optional
+  let file = document.getElementById('profilePic');
+  if(file && file.files.length > 0) {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    const fileName = file.files[0].name;
+    if(!allowedExtensions.exec(fileName)) {
+      document.getElementById('errProfilePic').innerText = "Only .jpg and .png files allowed.";
+      valid = false;
+    }
+  }
+
+  if(valid) {
+    document.getElementById('successProfileMsg').innerText = "Profile updated successfully!";
+    // Uncheck editToggle to revert fields to readonly
+    document.getElementById('editToggle').checked = false;
+  }
+
+  return false; // prevent default form submission
+}
+
+function validatePasswordForm() {
+  // Clear previous errors
+  document.getElementById('errOldPassword').innerText = "";
+  document.getElementById('errNewPassword').innerText = "";
+  document.getElementById('errConfirmPassword').innerText = "";
+  document.getElementById('successPasswordMsg').innerText = "";
+
+  let valid = true;
+
+  let oldPwd = document.getElementById('oldPassword');
+  let newPwd = document.getElementById('newPassword');
+  let confirmPwd = document.getElementById('confirmPassword');
+
+  if(oldPwd.value.trim() === "") {
+    document.getElementById('errOldPassword').innerText = "Enter old password.";
+    valid = false;
+  }
+  if(newPwd.value.trim() === "") {
+    document.getElementById('errNewPassword').innerText = "Enter new password.";
+    valid = false;
+  }
+  if(confirmPwd.value.trim() === "") {
+    document.getElementById('errConfirmPassword').innerText = "Confirm new password.";
+    valid = false;
+  } else if(newPwd.value.trim() !== confirmPwd.value.trim()) {
+    document.getElementById('errConfirmPassword').innerText = "Passwords do not match.";
+    valid = false;
+  }
+
+  if(valid) {
+    document.getElementById('successPasswordMsg').innerText = "Password changed successfully!";
+    // Optional: clear form
+    // document.getElementById('passwordForm').reset();
+  }
+
+  return false; // prevent default submission
+}
+</script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

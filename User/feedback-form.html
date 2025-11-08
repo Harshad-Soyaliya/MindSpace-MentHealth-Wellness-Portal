@@ -146,32 +146,42 @@
         <div class="card shadow-sm p-4">
           <h2 class="fw-bold text-success mb-4">Share Your Feedback...</h2>
 
-          <form>
+          <form id="supportForm" method="get" action="feedback-form.html" onsubmit="return validatefeedbackForm()">
+
+              <div id="successBox" class="alert alert-success mt-3 d-none">
+                feedback send successfully!
+              </div>
             <div class="row g-3">
               <!-- Personal Details -->
               <div class="col-md-6">
                 <label class="form-label">Full Name</label>
-                <input type="text" class="form-control" placeholder="Enter your name">
+                <input type="text" class="form-control" id="fname" placeholder="Enter your name">
+                <small class="text-danger fw-semibold" id="errfname"></small>
+
               </div>
               <div class="col-md-6">
                 <label class="form-label">Age</label>
-                <input type="number" class="form-control" placeholder="Enter your age">
+                <input type="text" class="form-control" id="age" placeholder="Enter your age">
+                <small class="text-danger fw-semibold" id="errage"></small>
               </div>
 
               <!-- Contact Details -->
               <div class="col-md-6">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" placeholder="Enter your email">
+                <input type="text" class="form-control" id="email" aria-grabbed="email" placeholder="Enter your email">
+                <small class="text-danger fw-semibold" id="erremail"></small>
               </div>
               <div class="col-md-6">
                 <label class="form-label">Phone</label>
-                <input type="tel" class="form-control" placeholder="Enter your phone">
+                <input type="text" class="form-control" id="mnumber" placeholder="Enter your phone">
+                <small class="text-danger fw-semibold" id="errmnumber"></small>
               </div>
 
               <!-- Feedback -->
               <div class="col-12">
                 <label class="form-label">Your Experience</label>
-                <textarea class="form-control" rows="4" placeholder="Write your feedback here..."></textarea>
+                <textarea class="form-control" rows="4" id="Experience" placeholder="Write your feedback here..."></textarea>
+                <small class="text-danger fw-semibold" id="errExperience"></small>
               </div>
 
               <!-- Submit Button -->
@@ -184,6 +194,8 @@
           </form>
         </div>
       </div>
+
+    
     </section>
 
   </main>
@@ -236,6 +248,139 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
+
+    
+      
+  <script>
+
+  function validatefeedbackForm() {
+
+    let name = document.getElementById('fname');
+    let age = document.getElementById('age');
+    let email = document.getElementById('email');   // fixed id
+    let mnumber = document.getElementById('mnumber');
+    let experience = document.getElementById('Experience');
+
+    // error fields
+    let errName = document.getElementById('errfname');
+    let errAge = document.getElementById('errage');
+    let errEmail = document.getElementById('erremail');
+    let errNumber = document.getElementById('errmnumber');
+    let errExperience = document.getElementById('errExperience');
+
+
+    name.classList.remove("error", "success");
+    age.classList.remove("error", "success");
+    email.classList.remove("error", "success");
+    mnumber.classList.remove("error", "success");
+    experience.classList.remove("error", "success");
+
+    // reset errors
+    errName.innerHTML = "";
+    errAge.innerHTML = "";
+    errEmail.innerHTML = "";
+    errNumber.innerHTML = "";
+    errExperience.innerHTML = "";
+
+    let isValid = true;
+
+    const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
+
+
+    if (name.value.trim() == "") {
+      errName.innerHTML = `${icon} Please enter your name`;
+      name.classList.add("error");
+      isValid = false;
+    } else if (!isNaN(name.value)) {
+      errName.innerHTML = `${icon} Name must contain letters only`;
+      name.classList.add("error");
+      isValid = false;
+    } else {
+       name.classList.add("success");
+    }
+
+
+    if (age.value.trim() == "") {
+      errAge.innerHTML = `${icon} Enter your age`;
+      age.classList.add("error");
+      isValid = false;
+
+    } else if (!/^\d+$/.test(age.value)) {  
+      errAge.innerHTML = `${icon} Age must be a number`;
+      age.classList.add("error");
+      isValid = false;
+
+    } else if (age.value < 5 || age.value > 120) {
+      errAge.innerHTML = `${icon} Enter a valid age (5-120)`;
+      age.classList.add("error");
+      isValid = false;
+
+    } else {
+      age.classList.add("success");
+    }
+
+    let emailFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[A-Za-z]{2,}$/;
+
+    if (email.value.trim() == "") {
+      errEmail.innerHTML = `${icon} Please enter email`;
+      email.classList.add("error");
+      isValid = false;
+    } else if (!emailFormat.test(email.value)) {
+      errEmail.innerHTML = `${icon} Enter valid email`;
+      email.classList.add("error");
+      isValid = false;
+    } else {
+       email.classList.add("success");
+    }
+
+    if (mnumber.value.trim() == "") {
+      errNumber.innerHTML = `${icon} Enter phone number`;
+      mnumber.classList.add("error");
+      isValid = false;
+    } else if (!/^\d+$/.test(mnumber.value)) { 
+        errNumber.innerHTML = `${icon} Phone number must contain digits only`;
+        mnumber.classList.add("error");
+        isValid = false;
+    } else if (mnumber.value.length !== 10) {
+        errNumber.innerHTML = `${icon} Phone must be 10 digits`;
+        mnumber.classList.add("error");
+        isValid = false;
+    } else {
+        mnumber.classList.add("success");
+    }
+
+
+    if (experience.value.trim() == "") {
+      errExperience.innerHTML = `${icon} Please write your experience`;
+      experience.classList.add("error");
+      isValid = false;
+    } else {
+      experience.classList.add("success");
+    }
+
+
+    if (isValid) {
+      if (successBox) {
+        successBox.classList.remove("d-none");
+        
+        setTimeout(() => {
+            successBox.classList.add("d-none");
+        }, 3000);
+      }
+      
+      name.value = "";
+      age.value = "";
+      email.value = "";
+      mnumber.value = "";
+      experience.value = "";
+
+      return false;
+  }
+
+  return false;
+
+}
+</script>
 
 
 </body>

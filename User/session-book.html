@@ -136,34 +136,51 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h4 class="mb-4">Book Your Session</h4>
-                        <form>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Your Name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" placeholder="example@mail.com">
-                            </div>
-                            <div class="mb-3">
-                                <label for="contact" class="form-label">Contact Number</label>
-                                <input type="tel" class="form-control" id="contact" placeholder="1234567890">
-                            </div>
-                            <div class="mb-3">
-                                <label for="date" class="form-label">Preferred Date</label>
-                                <input type="date" class="form-control" id="date">
-                            </div>
-                            <div class="mb-3">
-                                <label for="time" class="form-label">Preferred Time</label>
-                                <input type="time" class="form-control" id="time">
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label">Additional Message</label>
-                                <textarea class="form-control" id="message" rows="3"
-                                    placeholder="Write any notes..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-success w-100">Book Session</button>
-                        </form>
+                        <form id="bookForm" method="get" action="session-book.html" onsubmit="return validateBookingForm()">
+
+                        <div id="successBox" class="alert alert-success mt-3 d-none">
+                            Session booked successfully!
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                            <small class="text-danger fw-semibold" id="errname"></small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="example@mail.com">
+                            <small class="text-danger fw-semibold" id="erremail"></small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Contact Number</label>
+                            <input type="tel" class="form-control" id="contact" placeholder="1234567890">
+                            <small class="text-danger fw-semibold" id="errcontact"></small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Preferred Date</label>
+                            <input type="date" class="form-control" id="date">
+                            <small class="text-danger fw-semibold" id="errdate"></small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Preferred Time</label>
+                            <input type="time" class="form-control" id="time">
+                            <small class="text-danger fw-semibold" id="errtime"></small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Additional Message</label>
+                            <textarea class="form-control" id="message" rows="3" placeholder="Write any notes..."></textarea>
+                            <small class="text-danger fw-semibold" id="errmessage"></small>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Book Session</button>
+                    </form>
+
                     </div>
                 </div>
             </div>
@@ -218,6 +235,126 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous">
     </script>
+
+    <script>
+        function validateBookingForm() {
+            var name = document.getElementById('name');
+            var email = document.getElementById('email');
+            var contact = document.getElementById('contact');
+            var date = document.getElementById('date');
+            var time = document.getElementById('time');
+            var message = document.getElementById('message');
+
+            var errName = document.getElementById('errname');
+            var errEmail = document.getElementById('erremail');
+            var errContact = document.getElementById('errcontact');
+            var errDate = document.getElementById('errdate');
+            var errTime = document.getElementById('errtime');
+            var errMessage = document.getElementById('errmessage');
+
+            var successBox = document.getElementById('successBox');
+
+            const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
+
+            name.classList.remove("error", "success");
+            email.classList.remove("error", "success");
+            contact.classList.remove("error", "success");
+            date.classList.remove("error", "success");
+            time.classList.remove("error", "success");
+            message.classList.remove("error", "success");
+
+            errName.innerHTML = "";
+            errEmail.innerHTML = "";
+            errContact.innerHTML = "";
+            errDate.innerHTML = "";
+            errTime.innerHTML = "";
+            errMessage.innerHTML = "";
+            successBox.classList.add("d-none");
+
+            var isValid = true;
+
+            if (name.value.trim() == "") {
+                errName.innerHTML = `${icon} Please enter your name`;
+                name.classList.add("error");
+                isValid = false;
+            } else if (!isNaN(name.value)) {
+                errName.innerHTML = `${icon} Name must contain letters only`;
+                name.classList.add("error");
+                isValid = false;
+            } else {
+                name.classList.add("success");
+            }
+
+            var emailFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[A-Za-z]{2,}$/;
+            if (email.value.trim() == "") {
+                errEmail.innerHTML = `${icon} Please enter your email`;
+                email.classList.add("error");
+                isValid = false;
+            } else if (!emailFormat.test(email.value)) {
+                errEmail.innerHTML = `${icon} Enter valid email`;
+                email.classList.add("error");
+                isValid = false;
+            } else {
+                email.classList.add("success");
+            }
+
+            if (contact.value.trim() == "") {
+                errContact.innerHTML = `${icon} Enter phone number`;
+                contact.classList.add("error");
+                isValid = false;
+            } else if (contact.value.length != 10) {
+                errContact.innerHTML = `${icon} Phone must be 10 digits`;
+                contact.classList.add("error");
+                isValid = false;
+            } else {
+                contact.classList.add("success");
+            }
+
+            if (date.value.trim() == "") {
+                errDate.innerHTML = `${icon} Select a date`;
+                date.classList.add("error");
+                isValid = false;
+            } else {
+                date.classList.add("success");
+            }
+
+            if (time.value.trim() == "") {
+                errTime.innerHTML = `${icon} Select a time`;
+                time.classList.add("error");
+                isValid = false;
+            } else {
+                time.classList.add("success");
+            }
+
+            if (message.value.trim() == "") {
+                errMessage.innerHTML = `${icon} Please enter a message`;
+                message.classList.add("error");
+                isValid = false;
+            } else {
+                message.classList.add("success");
+            }
+
+            if (isValid) {
+                successBox.classList.remove("d-none");
+
+                name.value = "";
+                email.value = "";
+                contact.value = "";
+                date.value = "";
+                time.value = "";
+                message.value = "";
+
+                setTimeout(function () {
+                    successBox.classList.add("d-none");
+                }, 3000);
+
+                return false;
+            }
+
+            return false;
+        }
+    </script>
+
 
 </body>
 

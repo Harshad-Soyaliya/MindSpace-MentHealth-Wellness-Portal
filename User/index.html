@@ -18,44 +18,90 @@
 </head>
 
 <style>
+/* Help Center Button */
+.help-center {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    background-color: rgb(68, 205, 68);
+    color: #fff;
+    padding: 10px 12px;
+    border-radius: 50px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
 
-    .help-center {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        z-index: 100;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        cursor: pointer;
-    }
+.help-center:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
 
-    .help-center img {
-        width: 24px;
-        height: 24px;
-    }
+.help-center img {
+    width: 24px;
+    height: 24px;
+}
 
-    #help-toggle {
-        display: none;
-    }
+/* Hide default checkbox */
+#help-toggle {
+    display: none;
+}
 
-    .help-form {
-        position: fixed;
-        bottom: 80px;
-        left: 20px;
-        width: 300px;
-        background: white;
-        border: 1px solid #ccc;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        display: none;
-        z-index: 99;
-    }
+/* Help Form */
+.help-form {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 320px;
+    max-width: 90vw;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    padding: 20px;
+    display: none;
+    z-index: 99;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    max-height: 80vh;
+}
 
-    #help-toggle:checked+label+.help-form {
-        display: block;
-    }
+/* Show form when toggle is checked */
+#help-toggle:checked + label + .help-form {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* Scrollbar styling */
+.help-form::-webkit-scrollbar {
+    width: 6px;
+}
+
+.help-form::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.help-form::-webkit-scrollbar-thumb {
+    background-color: rgb(68, 205, 68);
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+}
+
+/* Optional padding for bottom */
+.help-form form {
+    padding-bottom: 10px;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
 
 </style>
 
@@ -84,7 +130,7 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Service
                             </a>
-                            <div class="dropdown-menu p-3 border-0 shadow-lg rounded-4" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu p-3 border-0 shadow-lg rounded-4" aria-labelledby="navbarDropdown"  style="min-width:700px;">
                                 <div class="row">
                                     <div class="col-12 col-md-4 border-end">
                                         <ul class="nav flex-md-column nav-pills category-list" id="service-tabs"
@@ -320,29 +366,43 @@
         Help Center
     </label>
 
-    <div class="help-form">
+    <div class="help-form scrollable">
         <h5>Help!!</h5>
-        <form>
+        <form id="supportForm" method="get" action="index.html" onsubmit="return validateSupportForm()">
+
+            <div id="successBox" class="alert alert-success mt-3 d-none">
+                Sent successfully!
+            </div>
+
             <div class="mb-2">
                 <label class="form-label">Name</label>
-                <input type="text" class="form-control" placeholder="Your Name">
+                <input type="text" id="name" class="form-control" placeholder="Your Name">
+                <small class="text-danger fw-semibold" id="errName"></small>
             </div>
+
             <div class="mb-2">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" placeholder="Your Email">
+                <input type="text" id="email" class="form-control" placeholder="Your Email">
+                <small class="text-danger fw-semibold" id="errEmail"></small>
             </div>
+
             <div class="mb-2">
                 <label class="form-label">Issue</label>
-                <input type="text" class="form-control" placeholder="Issue">
+                <input type="text" id="issue" class="form-control" placeholder="Issue">
+                <small class="text-danger fw-semibold" id="errIssue"></small>
             </div>
+
             <div class="mb-2">
                 <label class="form-label">Describe Issue</label>
-                <textarea class="form-control" rows="3" placeholder="Describe your issue"></textarea>
+                <textarea id="desc" class="form-control" rows="3" placeholder="Describe your issue"></textarea>
+                <small class="text-danger fw-semibold" id="errDesc"></small>
             </div>
+
             <button type="submit" class="btn btn-success w-100 mt-2">Submit</button>
+            <a href="index.html" class="btn btn-secondary w-100 mt-2">Close</a>
         </form>
     </div>
-    
+
 
     <footer class="bg-dark text-light pt-5 pb-4">
         <div class="container text-md-left">
@@ -390,6 +450,106 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
+
+    <script>
+
+    function validateSupportForm() {
+
+        let name = document.getElementById('name');
+        let email = document.getElementById('email');
+        let issue = document.getElementById('issue');
+        let desc = document.getElementById('desc');
+
+        let errName = document.getElementById('errName');
+        let errEmail = document.getElementById('errEmail');
+        let errIssue = document.getElementById('errIssue');
+        let errDesc = document.getElementById('errDesc');
+
+        let successBox = document.getElementById('successBox');
+
+        let isValid = true;
+        const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
+
+    
+        errName.innerHTML = "";
+        errEmail.innerHTML = "";
+        errIssue.innerHTML = "";
+        errDesc.innerHTML = "";
+
+        name.classList.remove("error", "success");
+        email.classList.remove("error", "success");
+        issue.classList.remove("error", "success");
+        desc.classList.remove("error", "success");
+
+
+        // Name validation
+        if (name.value.trim() == "") {
+            errName.innerHTML = `${icon} Please enter your name`;
+            name.classList.add("error");
+            isValid = false;
+        } else if (!isNaN(name.value.trim())) {
+            errName.innerHTML = `${icon} Name must contain letters only`;
+            name.classList.add("error");
+            isValid = false;
+        } else {
+            name.classList.add("success");
+        }
+
+        // Email validation
+        let emailFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+
+        if (email.value.trim() == "") {
+            errEmail.innerHTML = `${icon} Please enter your email`;
+            email.classList.add("error");
+            isValid = false;
+        } else if (!emailFormat.test(email.value.trim())) {
+            errEmail.innerHTML = `${icon} Enter a valid email`;
+            email.classList.add("error");
+            isValid = false;
+        } else {
+            email.classList.add("success");
+        }
+
+        // Issue validation
+        if (issue.value.trim() == "") {
+            errIssue.innerHTML = `${icon} Please enter your issue`;
+            issue.classList.add("error");
+            isValid = false;
+        } else {
+            issue.classList.add("success");
+        }
+
+        // Description validation
+        if (desc.value.trim() == "") {
+            errDesc.innerHTML = `${icon} Please describe your issue`;
+            desc.classList.add("error");
+            isValid = false;
+        } else {
+            desc.classList.add("success");
+        }
+
+        // If not valid → stop
+        if (!isValid) return false;
+
+
+        // Show success for 3 seconds
+        successBox.classList.remove("d-none");
+
+        setTimeout(() => {
+            successBox.classList.add("d-none");
+        }, 3000);
+
+
+        // Clear fields (CORRECT WAY)
+        name.value = "";
+        email.value = "";
+        issue.value = "";
+        desc.value = "";
+
+        return false; 
+    }
+
+    </script>
 
 </body>
 

@@ -196,7 +196,7 @@
                   <div class="d-flex gap-2">
                     <!-- Edit Steps Button: Solid Green -->
                     <a href="manage-medition-edit.html" class="btn btn-success btn-sm rounded-pill text-white">
-                      <i class="bi bi-pencil"></i> Edit steps
+                      <i class="bi bi-pencil"></i> Add / Edit steps
                     </a>
 
                     <!-- Delete Button: Green outline -->
@@ -217,7 +217,7 @@
                   <div class="d-flex gap-2">
                     <!-- Edit Steps Button: Solid Green -->
                     <a href="manage-medition-edit.html" class="btn btn-success btn-sm rounded-pill text-white">
-                      <i class="bi bi-pencil"></i> Edit steps
+                      <i class="bi bi-pencil"></i> Add / Edit steps
                     </a>
 
                     <!-- Delete Button: Green outline -->
@@ -238,7 +238,7 @@
                   <div class="d-flex gap-2">
                     <!-- Edit Steps Button: Solid Green -->
                     <a href="manage-medition-edit.html" class="btn btn-success btn-sm rounded-pill text-white">
-                      <i class="bi bi-pencil"></i> Edit steps
+                      <i class="bi bi-pencil"></i> Add / Edit steps
                     </a>
 
                     <!-- Delete Button: Green outline -->
@@ -271,23 +271,31 @@
 
         <!-- Modal Body -->
         <div class="modal-body">
-          <form>
+          <form id="meditationForm" onsubmit="return validateMeditation()">
+
             <div class="mb-3">
               <label for="meditationTitle" class="form-label fw-semibold">Meditation Title</label>
               <input type="text" class="form-control rounded-pill" id="meditationTitle" placeholder="Enter title">
+              <small id="errTitle" class="text-danger fw-semibold"></small>
             </div>
+
             <div class="mb-3">
               <label for="meditationDescription" class="form-label fw-semibold">Description</label>
-              <textarea class="form-control rounded-4" id="meditationDescription" rows="4"
-                placeholder="Enter description"></textarea>
+              <textarea class="form-control rounded-4" id="meditationDescription" rows="4" placeholder="Enter description"></textarea>
+              <small id="errDesc" class="text-danger fw-semibold"></small>
             </div>
+
+            <div id="successBox" class="alert alert-success d-none">
+                Meditation details saved successfully!
+            </div>
+
+            <button class="btn btn-success w-100 rounded-pill">Add Meditation</button>
+
           </form>
-        </div>
 
         <!-- Modal Footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-success rounded-pill" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-success rounded-pill">Add Meditation</button>
         </div>
       </div>
     </div>
@@ -340,11 +348,81 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function validateMeditation() {
+    let title = document.getElementById("meditationTitle");
+    let desc  = document.getElementById("meditationDescription");
+
+    let errTitle = document.getElementById("errTitle");
+    let errDesc  = document.getElementById("errDesc");
+    let successBox = document.getElementById("successBox");
+
+    let valid = true;
+
+    // Reset error messages & styles
+    errTitle.innerHTML = "";
+    errDesc.innerHTML = "";
+    successBox.classList.add("d-none");
+
+    title.classList.remove("error", "success");
+    desc.classList.remove("error", "success");
+
+    // ✅ Title validation
+    if (title.value.trim() === "") {
+        errTitle.innerHTML = "Please enter a title.";
+        title.classList.add("error");
+        valid = false;
+    } 
+    else if (!isNaN(title.value.trim())) {
+        errTitle.innerHTML = "Title must contain letters.";
+        title.classList.add("error");
+        valid = false;
+    }
+    else if (title.value.length > 100) {
+        errTitle.innerHTML = "Title must be under 100 characters.";
+        title.classList.add("error");
+        valid = false;
+    } 
+    else {
+        title.classList.add("success");
+    }
+
+    // ✅ Description validation
+    if (desc.value.trim() === "") {
+        errDesc.innerHTML = "Please enter a description.";
+        desc.classList.add("error");
+        valid = false;
+    } 
+    else if (desc.value.trim().length < 10) {
+        errDesc.innerHTML = "Description must be at least 10 characters.";
+        desc.classList.add("error");
+        valid = false;
+    } 
+    else {
+        desc.classList.add("success");
+    }
+
+    // ❌ Stop if errors
+    if (!valid) return false;
+
+    // ✅ Show success message
+    successBox.classList.remove("d-none");
+
+    // ✅ Clear inputs
+    title.value = "";
+    desc.value = "";
+
+    // ✅ Hide success + redirect after 2 sec
+    setTimeout(() => {
+        successBox.classList.add("d-none");
+        window.location.href = "manage-medition.html";
+    }, 2500);
+
+    return false; // prevent form submit reload
+}
+</script>
+
 </body>
 
 </html>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>

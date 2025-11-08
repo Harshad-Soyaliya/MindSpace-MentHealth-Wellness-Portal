@@ -142,121 +142,110 @@
 
       <h3 class="text-center text-success mb-4">📝 Edit Habit</h3>
 
-      <form>
+      <form id="habitForm" method="get" action="habbit-page.html" onsubmit="return saveHabit()">
 
         <div class="row g-4">
-          <div class="col-md-6">
-            <div class="card rounded-4 shadow-sm p-4">
-              <label class="fw-semibold text-success mb-2">Old Habit Name</label>
-              <input type="text" class="form-control" value="Mobile Addiction">
-            </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="card rounded-4 shadow-sm p-4">
-              <label class="fw-semibold text-success mb-2">Replaced Habit</label>
-              <input type="text" class="form-control" value="Read Books">
+            <div class="col-md-6">
+                <div class="card rounded-4 shadow-sm p-4">
+                    <label class="fw-semibold text-success mb-2">Old Habit Name</label>
+                    <input type="text" id="oldHabit" class="form-control" value="Mobile Addiction">
+                    <small id="errOld" class="text-danger"></small>
+                </div>
             </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="card rounded-4 shadow-sm p-4">
-              <label class="fw-semibold text-success mb-2">Date Starting</label>
-              <input type="date" class="form-control" value="2025-09-12">
+            <div class="col-md-6">
+                <div class="card rounded-4 shadow-sm p-4">
+                    <label class="fw-semibold text-success mb-2">Replaced Habit</label>
+                    <input type="text" id="newHabit" class="form-control" value="Read Books">
+                    <small id="errNew" class="text-danger"></small>
+                </div>
             </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="card rounded-4 shadow-sm p-4">
-              <label class="fw-semibold text-success mb-2">Day</label>
-              <input type="number" class="form-control" value="20">
+            <div class="col-md-6">
+                <div class="card rounded-4 shadow-sm p-4">
+                    <label class="fw-semibold text-success mb-2">Date Starting</label>
+                    <input type="date" id="startDate" class="form-control" value="2025-09-12">
+                    <small id="errDate" class="text-danger"></small>
+                </div>
             </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="card rounded-4 shadow-sm p-4">
-              <label class="fw-bold text-success mb-2">💡 Motivation</label>
-              <textarea class="form-control" rows="3">
-              Discipline is the bridge between goals and achievements. Every step in Brahmacharya builds strength like Hanuman Ji — fearless and unstoppable.
-            </textarea>
+            <div class="col-md-6">
+                <div class="card rounded-4 shadow-sm p-4">
+                    <label class="fw-semibold text-success mb-2">Day</label>
+                    <input type="text" id="totalDays" class="form-control" value="20">
+                    <small id="errDays" class="text-danger"></small>
+                </div>
             </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="card rounded-4 shadow-sm p-4">
-              <label class="fw-bold text-success mb-2">📖 Description</label>
-              <textarea class="form-control" rows="3">
-              Remove mobile addiction and keep fit and healthy.
-              </textarea>
+            <div class="col-md-6">
+                <div class="card rounded-4 shadow-sm p-4">
+                    <label class="fw-bold text-success mb-2">💡 Motivation</label>
+                    <textarea id="motivation" class="form-control" rows="3">Discipline is the bridge between goals and achievements. Every step in Brahmacharya builds strength like Hanuman Ji — fearless and unstoppable.</textarea>
+                    <small id="errMotivation" class="text-danger"></small>
+                </div>
             </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="card rounded-4 shadow-sm p-4">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="fw-bold text-success mb-0">🚫 Ignore List</h5>
-                <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3">Add</button>
-              </div>
-              <div class="list-input-group">
-                <div class="input-group">
-                  <input type="text" class="form-control" value="Avoid junk food">
-                  <button class="btn btn-outline-danger btn-remove" type="button">×</button>
+            <div class="col-md-6">
+                <div class="card rounded-4 shadow-sm p-4">
+                    <label class="fw-bold text-success mb-2">📖 Description</label>
+                    <textarea id="description" class="form-control" rows="3">Remove mobile addiction and keep fit and healthy.</textarea>
+                    <small id="errDescription" class="text-danger"></small>
                 </div>
-                <div class="input-group">
-                  <input type="text" class="form-control" value="No late-night scrolling">
-                  <button class="btn btn-outline-danger btn-remove" type="button">×</button>
-                </div>
-                <div class="input-group">
-                  <input type="text" class="form-control" value="Reduce unnecessary talking">
-                  <button class="btn btn-outline-danger btn-remove" type="button">×</button>
-                </div>
-                <div class="input-group">
-                  <input type="text" class="form-control" value="Stay away from negative company">
-                  <button class="btn btn-outline-danger btn-remove" type="button">×</button>
-                </div>
-              </div>
             </div>
-          </div>
 
-          <div class="col-md-6">
-            <div class="card rounded-4 shadow-sm p-4">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="fw-bold text-success mb-0">⚖ Discipline & Rules</h5>
-                <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3">Add</button>
-              </div>
-              <div class="list-input-group">
-                <div class="input-group">
-                  <input type="text" class="form-control" value="Wake up early (before sunrise)">
-                  <button class="btn btn-outline-danger btn-remove" type="button">×</button>
+            <div class="col-md-6">
+                <div class="card rounded-4 shadow-sm p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold text-success mb-0">🚫 Ignore List</h5>
+                        <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3">Add</button>
+                    </div>
+                    <div class="list-input-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="ignore1" value="Avoid junk food">
+                            <button class="btn btn-outline-danger btn-remove" type="button">×</button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="ignore2" value="No late-night scrolling">
+                            <button class="btn btn-outline-danger btn-remove" type="button">×</button>
+                        </div>
+                    </div>
+                    <small id="errIgnore" class="text-danger"></small>
                 </div>
-                <div class="input-group">
-                  <input type="text" class="form-control" value="Daily meditation & prayer">
-                  <button class="btn btn-outline-danger btn-remove" type="button">×</button>
-                </div>
-                <div class="input-group">
-                  <input type="text" class="form-control" value="Follow a fixed study/work routine">
-                  <button class="btn btn-outline-danger btn-remove" type="button">×</button>
-                </div>
-                <div class="input-group">
-                  <input type="text" class="form-control" value="Avoid distractions during focus time">
-                  <button class="btn btn-outline-danger btn-remove" type="button">×</button>
-                </div>
-                <div class="input-group">
-                  <input type="text" class="form-control" value="Maintain Brahmacharya discipline">
-                  <button class="btn btn-outline-danger btn-remove" type="button">×</button>
-                </div>
-              </div>
             </div>
-          </div>
 
-          <div class="mt-4 text-end">
-            <a href="habbit-page.html" class="btn btn-outline-success rounded-pill px-4 me-2">Back</a>
-            <button type="submit" class="btn btn-success rounded-pill px-4">Update Habit</button>
-          </div>
+            <div class="col-md-6">
+                <div class="card rounded-4 shadow-sm p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold text-success mb-0">⚖ Discipline & Rules</h5>
+                        <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3">Add</button>
+                    </div>
+                    <div class="list-input-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="rule1" value="Wake up early (before sunrise)">
+                            <button class="btn btn-outline-danger btn-remove" type="button">×</button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="rule2" value="Daily meditation & prayer">
+                            <button class="btn btn-outline-danger btn-remove" type="button">×</button>
+                        </div>
+                    </div>
+                    <small id="errRule" class="text-danger"></small>
+                </div>
+            </div>
+
+            <div class="mt-4 text-end">
+                <a href="habbit-page.html" class="btn btn-outline-success rounded-pill px-4 me-2">Back</a>
+                <button type="submit" class="btn btn-success rounded-pill px-4">Update Habit</button>
+            </div>
+
+            <div id="successBox" class="alert alert-success mt-3 d-none">
+                Habit updated successfully!
+            </div>
 
         </div>
+    </form>
 
-      </form>
 
     </section>
 
@@ -311,6 +300,147 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
+
+
+  <script>
+
+    function saveHabit() {
+    var oldHabit = document.getElementById("oldHabit");
+    var newHabit = document.getElementById("newHabit");
+    var startDate = document.getElementById("startDate");
+    var totalDays = document.getElementById("totalDays");
+    var motivation = document.getElementById("motivation");
+    var description = document.getElementById("description");
+    var ignore1 = document.getElementById("ignore1");
+    var ignore2 = document.getElementById("ignore2");
+    var rule1 = document.getElementById("rule1");
+    var rule2 = document.getElementById("rule2");
+
+    var errOld = document.getElementById("errOld");
+    var errNew = document.getElementById("errNew");
+    var errDate = document.getElementById("errDate");
+    var errDays = document.getElementById("errDays");
+    var errMotivation = document.getElementById("errMotivation");
+    var errDescription = document.getElementById("errDescription");
+    var errIgnore = document.getElementById("errIgnore");
+    var errRule = document.getElementById("errRule");
+    var successBox = document.getElementById("successBox");
+
+    var icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
+    var valid = true;
+
+    oldHabit.classList.remove("error","success");
+    newHabit.classList.remove("error","success");
+    startDate.classList.remove("error","success");
+    totalDays.classList.remove("error","success");
+    motivation.classList.remove("error","success");
+    description.classList.remove("error","success");
+    ignore1.classList.remove("error","success");
+    ignore2.classList.remove("error","success");
+    rule1.classList.remove("error","success");
+    rule2.classList.remove("error","success");
+
+    errOld.innerHTML = "";
+    errNew.innerHTML = "";
+    errDate.innerHTML = "";
+    errDays.innerHTML = "";
+    errMotivation.innerHTML = "";
+    errDescription.innerHTML = "";
+    errIgnore.innerHTML = "";
+    errRule.innerHTML = "";
+    successBox.classList.add("d-none");
+
+    if (oldHabit.value.trim() == "") {
+        errOld.innerHTML = `${icon} Please enter old habit.`;
+        oldHabit.classList.add("error");
+        valid = false;
+    } else {
+        oldHabit.classList.add("success");
+    }
+
+    if (newHabit.value.trim() == "") {
+        errNew.innerHTML = `${icon} Please enter new habit.`;
+        newHabit.classList.add("error");
+        valid = false;
+    } else {
+        newHabit.classList.add("success");
+    }
+
+    if (startDate.value == "") {
+        errDate.innerHTML = `${icon} Select a date.`;
+        startDate.classList.add("error");
+        valid = false;
+    } else {
+        startDate.classList.add("success");
+    }
+
+    if (totalDays.value.trim() == "") {
+        errDays.innerHTML = `${icon} Please enter total days.`;
+        totalDays.classList.add("error");
+        valid = false;
+    } else if (isNaN(totalDays.value)) {
+        errDays.innerHTML = `${icon} Only numbers allowed.`;
+        totalDays.classList.add("error");
+        valid = false;
+    } else if (totalDays.value <= 0) {
+        errDays.innerHTML = `${icon} Days must be greater than 0.`;
+        totalDays.classList.add("error");
+        valid = false;
+    } else {
+        totalDays.classList.add("success");
+    }
+
+    if (motivation.value.trim().length < 10) {
+        errMotivation.innerHTML = `${icon} Min 10 characters.`;
+        motivation.classList.add("error");
+        valid = false;
+    } else {
+        motivation.classList.add("success");
+    }
+
+    if (description.value.trim().length < 10) {
+        errDescription.innerHTML = `${icon} Min 10 characters.`;
+        description.classList.add("error");
+        valid = false;
+    } else {
+        description.classList.add("success");
+    }
+
+    if (ignore1.value.trim() == "" || ignore2.value.trim() == "") {
+        errIgnore.innerHTML = `${icon} Add at least 2 ignore items.`;
+        ignore1.classList.add("error");
+        ignore2.classList.add("error");
+        valid = false;
+    } else {
+        ignore1.classList.add("success");
+        ignore2.classList.add("success");
+    }
+
+    if (rule1.value.trim() == "" || rule2.value.trim() == "") {
+        errRule.innerHTML = `${icon} Add at least 2 rules.`;
+        rule1.classList.add("error");
+        rule2.classList.add("error");
+        valid = false;
+    } else {
+        rule1.classList.add("success");
+        rule2.classList.add("success");
+    }
+
+    if (valid == false) return false;
+
+    
+    successBox.classList.remove("d-none");
+
+    setTimeout(function() {
+        document.getElementById("habitForm").submit();
+    }, 2000);
+
+    return false;
+  }
+
+
+
+  </script>
 
 
 </body>

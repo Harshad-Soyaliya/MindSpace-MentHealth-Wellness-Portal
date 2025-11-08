@@ -15,7 +15,6 @@
   <link href="CSS/style.css" rel="stylesheet">
 
   <style>
-
     .card {
       border-radius: 20px;
     }
@@ -45,7 +44,6 @@
     .roadmap-item input[type="text"] {
       flex: 1;
     }
-
   </style>
 
 </head>
@@ -145,82 +143,90 @@
   </header>
 
   <br> <br> <br>
- 
+
   <main>
 
     <section class="container mt-5">
-
       <div class="text-center mb-4">
         <h2 class="text-success fw-bold">Edit Goal</h2>
       </div>
 
-      <div class="row g-4 mb-5 justify-content-center">
+      <form id="editGoalForm" method="get" action="goal.html" onsubmit="return saveEditGoal()">
 
-        <div class="col-6 col-md-3">
-          <div class="card rounded-pill shadow-sm text-center p-3">
-            <input type="text" class="form-control fw-semibold text-center" value="Computer Engineering">
-          </div>
-        </div>
+        <div class="row g-4 mb-5 justify-content-center">
 
-        <div class="col-6 col-md-3">
-          <div class="card rounded-pill shadow-sm text-center p-3">
-            <input type="date" class="form-control fw-semibold text-center" value="2022-09-20">
-          </div>
-        </div>
-
-        <div class="col-12 col-md-3">
-          <div class="d-flex gap-2 h-100 flex-wrap">
-            <button class="btn btn-outline-success rounded-pill fw-semibold shadow-sm flex-fill">
-              Save Changes
-            </button>
-            <a href="goal.html"
-              class="btn btn-success rounded-pill fw-semibold shadow-sm flex-fill d-flex justify-content-center align-items-center p-2">
-              Back
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card shadow-sm rounded-4 h-100">
-            <div class="card-body">
-              <h5 class="text-success">Note</h5>
-              <textarea class="form-control" rows="4">“Discipline is the bridge between goals and achievement.”  
-              “Small daily improvements lead to stunning results.”</textarea>
+          <div class="col-6 col-md-3">
+            <div class="card rounded-pill shadow-sm text-center p-3">
+              <input type="text" id="editGoalName" class="form-control fw-semibold text-center"
+                value="Computer Engineering">
+              <small id="errEditGoalName" class="text-danger"></small>
             </div>
           </div>
+
+          <div class="col-6 col-md-3">
+            <div class="card rounded-pill shadow-sm text-center p-3">
+              <input type="date" id="editGoalDate" class="form-control fw-semibold text-center" value="2022-09-20">
+              <small id="errEditGoalDate" class="text-danger"></small>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-3">
+            <div class="d-flex gap-2 h-100 flex-wrap">
+              <button type="submit" class="btn btn-outline-success rounded-pill fw-semibold shadow-sm flex-fill">
+                Save Changes
+              </button>
+              <a href="goal.html"
+                class="btn btn-success rounded-pill fw-semibold shadow-sm flex-fill d-flex justify-content-center align-items-center p-2">
+                Back
+              </a>
+            </div>
+          </div>
+
         </div>
-        <div class="col-md-6">
-          <div class="card shadow-sm rounded-4 h-100">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="text-success mb-0">Roadmap / Phases</h5>
-                <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3">Add</button>
-              </div>
-              <div class="roadmap-item">
-                <input type="text" class="form-control" value="full job">
-                <button type="button" class="btn btn-sm btn-outline-danger btn-remove">×</button>
-              </div>
-              <div class="roadmap-item">
-                <input type="text" class="form-control" value="part time job">
-                <button type="button" class="btn btn-sm btn-outline-danger btn-remove">×</button>
-              </div>
-              <div class="roadmap-item">
-                <input type="text" class="form-control" value="intership 4 months">
-                <button type="button" class="btn btn-sm btn-outline-danger btn-remove">×</button>
-              </div>
-              <div class="roadmap-item">
-                <input type="text" class="form-control" value="website project">
-                <button type="button" class="btn btn-sm btn-outline-danger btn-remove">×</button>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card shadow-sm rounded-4 h-100">
+              <div class="card-body">
+                <h5 class="text-success">Note</h5>
+                <textarea id="editNote" class="form-control" rows="4">“Discipline is the bridge between goals and achievement.”  
+                “Small daily improvements lead to stunning results.”</textarea>
+                <small id="errEditNote" class="text-danger"></small>
               </div>
             </div>
           </div>
+
+          <div class="col-md-6">
+            <div class="card shadow-sm rounded-4 h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="text-success mb-0">Roadmap / Phases</h5>
+                  <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3">Add</button>
+                </div>
+
+                <div class="roadmap-item">
+                  <input type="text" id="editPhase1" class="form-control mb-2" value="full job">
+                </div>
+                <div class="roadmap-item">
+                  <input type="text" id="editPhase2" class="form-control mb-2" value="part time job">
+                </div>
+                <div class="roadmap-item">
+                  <input type="text" id="editPhase3" class="form-control mb-2" value="intership 4 months">
+                </div>
+                <div class="roadmap-item">
+                  <input type="text" id="editPhase4" class="form-control mb-2" value="website project">
+                </div>
+                <small id="errEditPhase" class="text-danger"></small>
+              </div>
+            </div>
+          </div>
         </div>
 
-      </div>
+        <div id="successBoxEdit" class="alert alert-success mt-3 d-none">
+          Goal updated successfully!
+        </div>
 
+      </form>
     </section>
 
   </main>
@@ -290,12 +296,91 @@
         </div>
       </div>
     </div>
-    
+
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
+
+
+  <script>
+
+    function saveEditGoal() {
+      var goalName = document.getElementById("editGoalName");
+      var goalDate = document.getElementById("editGoalDate");
+      var note = document.getElementById("editNote");
+      var phase1 = document.getElementById("editPhase1");
+      var phase2 = document.getElementById("editPhase2");
+
+      var errGoalName = document.getElementById("errEditGoalName");
+      var errGoalDate = document.getElementById("errEditGoalDate");
+      var errNote = document.getElementById("errEditNote");
+      var errPhase = document.getElementById("errEditPhase");
+      var successBox = document.getElementById("successBoxEdit");
+
+      var icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
+      var valid = true;
+
+      goalName.classList.remove("error", "success");
+      goalDate.classList.remove("error", "success");
+      note.classList.remove("error", "success");
+      phase1.classList.remove("error", "success");
+      phase2.classList.remove("error", "success");
+
+      errGoalName.innerHTML = "";
+      errGoalDate.innerHTML = "";
+      errNote.innerHTML = "";
+      errPhase.innerHTML = "";
+      successBox.classList.add("d-none");
+
+      if (goalName.value.trim() == "") {
+        errGoalName.innerHTML = `${icon} Please enter goal name.`;
+        goalName.classList.add("error");
+        valid = false;
+      } else {
+        goalName.classList.add("success");
+      }
+
+      if (goalDate.value == "") {
+        errGoalDate.innerHTML = `${icon} Select a starting date.`;
+        goalDate.classList.add("error");
+        valid = false;
+      } else {
+        goalDate.classList.add("success");
+      }
+
+      if (note.value.trim().length < 10) {
+        errNote.innerHTML = `${icon} Min 10 characters.`;
+        note.classList.add("error");
+        valid = false;
+      } else {
+        note.classList.add("success");
+      }
+
+      if (phase1.value.trim() == "" || phase2.value.trim() == "") {
+        errPhase.innerHTML = `${icon} Add at least 2 roadmap phases.`;
+        phase1.classList.add("error");
+        phase2.classList.add("error");
+        valid = false;
+      } else {
+        phase1.classList.add("success");
+        phase2.classList.add("success");
+      }
+
+      if (valid == false) return false;
+
+      successBox.classList.remove("d-none");
+
+      setTimeout(function () {
+        document.getElementById("editGoalForm").submit();
+      }, 2000);
+
+      return false;
+    }
+
+
+  </script>
 
 
 </body>
