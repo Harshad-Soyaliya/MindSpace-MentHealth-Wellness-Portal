@@ -18,7 +18,7 @@
   <style>
     .meditation-card {
       background: #fff;
-      border-radius: 16px;
+      border-radius: 30px;
       padding: 2rem;
       max-height: 400px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -123,8 +123,7 @@
       <!-- Sidebar Offcanvas for small screens -->
       <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarCanvas">
         <div class="offcanvas-header">
-          <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1"
-            href="dashboard.html">
+          <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="dashboard.html">
             <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
           </a>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
@@ -188,7 +187,7 @@
 
               <!-- Meditation Card Example -->
               <div class="col-12 col-md-6 col-lg-4">
-                <div class="meditation-card p-4 rounded-4 shadow-sm d-flex flex-column align-items-center">
+                <div class="meditation-card p-4  shadow-sm d-flex flex-column align-items-center">
 
                   <h5 class="fw-bold text-success mb-2">Mindful Breathing</h5>
                   <p class="text-muted text-center mb-3">A calming practice focusing on breath awareness to reduce
@@ -209,7 +208,7 @@
               </div>
 
               <div class="col-12 col-md-6 col-lg-4">
-                <div class="meditation-card p-4 rounded-4 shadow-sm d-flex flex-column align-items-center">
+                <div class="meditation-card p-4 shadow-sm d-flex flex-column align-items-center">
 
                   <h5 class="fw-bold text-success mb-2">Surya Namaskar</h5>
                   <p class="text-muted text-center mb-3">A sequence of 12 yoga poses to energize and stretch the body.
@@ -230,7 +229,7 @@
               </div>
 
               <div class="col-12 col-md-6 col-lg-4">
-                <div class="meditation-card p-4 rounded-4 shadow-sm d-flex flex-column align-items-center">
+                <div class="meditation-card p-4 shadow-sm d-flex flex-column align-items-center">
 
                   <h5 class="fw-bold text-success mb-2">Body Scan Meditation</h5>
                   <p class="text-muted text-center mb-3">Scan your body mentally to release tension and enhance
@@ -251,7 +250,7 @@
               </div>
 
               <!-- Add more meditation cards as needed -->
-               
+
             </div>
           </section>
         </div>
@@ -271,7 +270,7 @@
 
         <!-- Modal Body -->
         <div class="modal-body">
-          <form id="meditationForm" onsubmit="return validateMeditation()">
+          <form id="meditationForm" method="get" action="manage-medition.html" onsubmit="return validateMeditation()">
 
             <div class="mb-3">
               <label for="meditationTitle" class="form-label fw-semibold">Meditation Title</label>
@@ -281,21 +280,23 @@
 
             <div class="mb-3">
               <label for="meditationDescription" class="form-label fw-semibold">Description</label>
-              <textarea class="form-control rounded-4" id="meditationDescription" rows="4" placeholder="Enter description"></textarea>
+              <textarea class="form-control rounded-4" id="meditationDescription" rows="4"
+                placeholder="Enter description"></textarea>
               <small id="errDesc" class="text-danger fw-semibold"></small>
             </div>
 
             <div id="successBox" class="alert alert-success d-none">
-                Meditation details saved successfully!
+              Meditation details saved successfully!
             </div>
 
             <button class="btn btn-success w-100 rounded-pill">Add Meditation</button>
 
           </form>
 
-        <!-- Modal Footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-success rounded-pill" data-bs-dismiss="modal">Cancel</button>
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-success rounded-pill" data-bs-dismiss="modal">Cancel</button>
+          </div>
         </div>
       </div>
     </div>
@@ -319,7 +320,6 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-success rounded-pill" data-bs-dismiss="modal">Cancel</button>
-          <!-- "Delete" button simulates deletion -->
           <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal" data-bs-toggle="modal"
             data-bs-target="#successModal">Delete</button>
         </div>
@@ -332,97 +332,88 @@
   <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-
         <div class="modal-body text-center py-4">
           <i class="bi bi-check-circle-fill text-success fs-1 mb-2"></i>
           <h5 class="fw-bold">Successfully Deleted!</h5>
         </div>
-
         <div class="modal-footer justify-content-center">
           <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal">OK</button>
         </div>
-
       </div>
     </div>
   </div>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-function validateMeditation() {
-    let title = document.getElementById("meditationTitle");
-    let desc  = document.getElementById("meditationDescription");
+  <script>
+    function validateMeditation() {
+      let title = document.getElementById("meditationTitle");
+      let desc = document.getElementById("meditationDescription");
 
-    let errTitle = document.getElementById("errTitle");
-    let errDesc  = document.getElementById("errDesc");
-    let successBox = document.getElementById("successBox");
+      let errTitle = document.getElementById("errTitle");
+      let errDesc = document.getElementById("errDesc");
+      let successBox = document.getElementById("successBox");
 
-    let valid = true;
+      let valid = true;
+      const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
 
-    // Reset error messages & styles
-    errTitle.innerHTML = "";
-    errDesc.innerHTML = "";
-    successBox.classList.add("d-none");
+      errTitle.innerHTML = "";
+      errDesc.innerHTML = "";
+      successBox.classList.add("d-none");
 
-    title.classList.remove("error", "success");
-    desc.classList.remove("error", "success");
+      title.classList.remove("error", "success");
+      desc.classList.remove("error", "success");
 
-    // ✅ Title validation
-    if (title.value.trim() === "") {
-        errTitle.innerHTML = "Please enter a title.";
+      if (title.value.trim() == "") {
+        errTitle.innerHTML = `${icon} Please enter a title.`;
         title.classList.add("error");
         valid = false;
-    } 
-    else if (!isNaN(title.value.trim())) {
-        errTitle.innerHTML = "Title must contain letters.";
+      }
+      else if (!isNaN(title.value.trim())) {
+        errTitle.innerHTML = `${icon} Title must contain letters.`;
         title.classList.add("error");
         valid = false;
-    }
-    else if (title.value.length > 100) {
-        errTitle.innerHTML = "Title must be under 100 characters.";
+      }
+      else if (title.value.length > 100) {
+        errTitle.innerHTML = `${icon} Title must be under 100 characters.`;
         title.classList.add("error");
         valid = false;
-    } 
-    else {
+      }
+      else {
         title.classList.add("success");
-    }
+      }
 
-    // ✅ Description validation
-    if (desc.value.trim() === "") {
-        errDesc.innerHTML = "Please enter a description.";
+      if (desc.value.trim() == "") {
+        errDesc.innerHTML = `${icon} Please enter a description. `;
         desc.classList.add("error");
         valid = false;
-    } 
-    else if (desc.value.trim().length < 10) {
-        errDesc.innerHTML = "Description must be at least 10 characters.";
+      }
+      else if (desc.value.trim().length < 10) {
+        errDesc.innerHTML = `${icon} Description must be at least 10 characters.`;
         desc.classList.add("error");
         valid = false;
-    } 
-    else {
+      }
+      else {
         desc.classList.add("success");
+      }
+
+      if (!valid) return false;
+
+      successBox.classList.remove("d-none");
+
+      title.value = "";
+      desc.value = "";
+
+      setTimeout(() => {
+        successBox.classList.add("d-none");
+        document.getElementById("meditationForm").submit();
+      }, 2500);
+
+      return false;
     }
 
-    // ❌ Stop if errors
-    if (!valid) return false;
-
-    // ✅ Show success message
-    successBox.classList.remove("d-none");
-
-    // ✅ Clear inputs
-    title.value = "";
-    desc.value = "";
-
-    // ✅ Hide success + redirect after 2 sec
-    setTimeout(() => {
-        successBox.classList.add("d-none");
-        window.location.href = "manage-medition.html";
-    }, 2500);
-
-    return false; // prevent form submit reload
-}
-</script>
+  </script>
 
 </body>
 
 </html>
-

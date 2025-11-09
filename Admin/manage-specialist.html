@@ -15,7 +15,7 @@
     .card-modern {
       background-color: #fff;
       padding: 15px;
-      border-radius: 12px;
+      border-radius: 30px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       margin-bottom: 20px;
       flex: 0 0 300px;
@@ -98,8 +98,7 @@
       <!-- Sidebar Offcanvas for small screens -->
       <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarCanvas">
         <div class="offcanvas-header">
-          <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1"
-            href="dashboard.html">
+          <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="dashboard.html">
             <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
           </a>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
@@ -137,10 +136,24 @@
         <div class="container py-4">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="dashboard-header mb-2 mb-md-0">Specialists</div>
+
+
             <!-- Add Specialist Button -->
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSpecialistModal">Add
+            <button class="btn btn-success rounded-pill" data-bs-toggle="modal" data-bs-target="#addSpecialistModal"> <i
+                class="bi bi-plus-circle"></i> Add
               Specialist</button>
           </div>
+
+
+
+          <nav aria-label="breadcrumb" class="breadcrumb-container">
+            <ol class="breadcrumb mb-0 flex-wrap">
+              <li class="breadcrumb-item">
+                <a href="dashboard.html" class="breadcrumb-link">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Manage Specialists</li>
+            </ol>
+          </nav>
 
           <hr class="hr-dashed">
           <!-- Psychologists Section -->
@@ -162,22 +175,22 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center mt-3 p-2">
                   <div class="d-flex gap-2 flex-wrap align-items-center">
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                      data-bs-target="#editSpecialistModal">Edit</button>
-                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                      data-bs-target="#removeSpecialistModal">Remove</button>
-                    <a href="show-session.html" class="btn btn-success btn-sm">Show Sessions</a>
+                    <button class="btn btn-success btn-sm rounded-pill" data-bs-toggle="modal"
+                      data-bs-target="#editSpecialistModal"><i class="bi bi-pencil"></i> Edit</button>
+                    <button class="btn btn-success btn-sm rounded-pill" data-bs-toggle="modal"
+                      data-bs-target="#deleteModal"><i class="bi bi-trash"></i> Remove</button>
+                    <a href="show-session.html" class="btn btn-success rounded-pill btn-sm"><i class="bi bi-eye"></i>
+                      Show Sessions</a>
                   </div>
                   <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Emma Watson"
                     class="rounded-circle border border-success" width="60" height="60">
                 </div>
 
               </div>
-              <!-- Add more cards similarly -->
+
             </div>
           </section>
 
-          <!-- Other Sections: Therapists, Life Coaches, Groups (repeat card layout) -->
 
           <hr class="hr-dashed">
           <!-- Example: Therapists -->
@@ -188,76 +201,74 @@
         <div class="modal fade" id="addSpecialistModal" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header bg-success text-white">
                 <h5 class="modal-title">Add Specialist</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
-  <form id="specialistForm" method="get" action="manage-specialist.html" onsubmit="return validateForm()">
-    <div class="mb-2">
-      <label>Category Select</label>
-      <select class="form-control" id="category">
-        <option value="">Select</option>
-        <option>Psychologist</option>
-        <option>Therapist</option>
-        <option>Life Coach</option>
-        <option>Group Session</option>
-      </select>
-      <small id="errCategory" class="text-danger"></small>
-    </div>
+                <form id="specialistForm" method="get" action="manage-specialist.html" onsubmit="return validateForm()">
+                  <div class="mb-2">
+                    <label>Category Select</label>
+                    <select class="form-control" id="category">
+                      <option value="">Select</option>
+                      <option>Psychologist</option>
+                      <option>Therapist</option>
+                      <option>Life Coach</option>
+                      <option>Group Session</option>
+                    </select>
+                    <small id="errCategory" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Name</label>
-      <input type="text" class="form-control" id="name">
-      <small id="errName" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Name</label>
+                    <input type="text" class="form-control" id="name">
+                    <small id="errName" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Degree</label>
-      <input type="text" class="form-control" id="degree">
-      <small id="errDegree" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Degree</label>
+                    <input type="text" class="form-control" id="degree">
+                    <small id="errDegree" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Specialization</label>
-      <input type="text" class="form-control" id="specialization">
-      <small id="errSpecialization" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Specialization</label>
+                    <input type="text" class="form-control" id="specialization">
+                    <small id="errSpecialization" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Experience</label>
-      <input type="text" class="form-control" id="experience">
-      <small id="errExperience" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Experience</label>
+                    <input type="text" class="form-control" id="experience">
+                    <small id="errExperience" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Contact email</label>
-      <input type="text" class="form-control" id="email">
-      <small id="errEmail" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Contact email</label>
+                    <input type="text" class="form-control" id="email">
+                    <small id="errEmail" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Contact number</label>
-      <input type="text" class="form-control" id="phone">
-      <small id="errPhone" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Contact number</label>
+                    <input type="text" class="form-control" id="phone">
+                    <small id="errPhone" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Profile pic</label>
-      <input type="file" class="form-control" id="profilePic">
-      <small id="errFile" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Profile pic</label>
+                    <input type="file" class="form-control" id="profilePic">
+                    <small id="errFile" class="text-danger"></small>
+                  </div>
 
-    <a id="redirectLink" href="manage-specialist.html" style="display:none;"></a>
+                  <div id="sucessadd" class="alert alert-success d-none">
+                    Added Sucessfully!
+                  </div>
 
-        <small id="successMsg" class="text-success"></small>
+                  <button class="btn btn-success w-100 mt-2" type="submit">Add Specialist</button>
 
-
-
-    <button class="btn btn-success w-100 mt-2" type="submit">Add Specialist</button>
-
-  </form>
-</div>
+                </form>
+              </div>
 
 
             </div>
@@ -268,72 +279,74 @@
         <div class="modal fade" id="editSpecialistModal" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header bg-success text-white">
                 <h5 class="modal-title">Edit Specialist</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
               </div>
               <div class="modal-body">
-  <form id="editSpecialistForm" onsubmit="return validateEditForm()">
-    <div class="mb-2">
-      <label>Category Select</label>
-      <select class="form-control" id="editCategory">
-        <option value="Psychologist">Select</option>
-        <option>Psychologist</option>
-        <option>Therapist</option>
-        <option>Life Coach</option>
-        <option>Group Session</option>
-      </select>
-      <small id="errEditCategory" class="text-danger"></small>
-    </div>
+                <form id="editSpecialistForm" method="get" action="manage-specialist.html"
+                  onsubmit="return validateEditForm()">
+                  <div class="mb-2">
+                    <label>Category Select</label>
+                    <select class="form-control" id="editCategory">
+                      <option value="Psychologist">Select</option>
+                      <option value="Psychologist">Psychologist</option>
+                      <option>Therapist</option>
+                      <option>Life Coach</option>
+                      <option>Group Session</option>
+                    </select>
+                    <small id="errEditCategory" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Name</label>
-      <input type="text" class="form-control" id="editName" value="Dr. Jane Doe">
-      <small id="errEditName" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Name</label>
+                    <input type="text" class="form-control" id="editName" value="Dr. Jane Doe">
+                    <small id="errEditName" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Degree</label>
-      <input type="text" class="form-control" id="editDegree" value="Ph.D. Clinical Psychology">
-      <small id="errEditDegree" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Degree</label>
+                    <input type="text" class="form-control" id="editDegree" value="Ph.D. Clinical Psychology">
+                    <small id="errEditDegree" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Specialization</label>
-      <input type="text" class="form-control" id="editSpecialization" value="Anxiety & Stress Management">
-      <small id="errEditSpecialization" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Specialization</label>
+                    <input type="text" class="form-control" id="editSpecialization" value="Anxiety & Stress Management">
+                    <small id="errEditSpecialization" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Experience</label>
-      <input type="text" class="form-control" id="editExperience" value="10 Years">
-      <small id="errEditExperience" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Experience</label>
+                    <input type="text" class="form-control" id="editExperience" value="10 Years">
+                    <small id="errEditExperience" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Contact email</label>
-      <input type="text" class="form-control" id="editEmail" value="jane@example.com">
-      <small id="errEditEmail" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Contact email</label>
+                    <input type="text" class="form-control" id="editEmail" value="jane@example.com">
+                    <small id="errEditEmail" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Contact number</label>
-      <input type="text" class="form-control" id="editPhone" value="9876543210">
-      <small id="errEditPhone" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Contact number</label>
+                    <input type="text" class="form-control" id="editPhone" value="9876543210">
+                    <small id="errEditPhone" class="text-danger"></small>
+                  </div>
 
-    <div class="mb-2">
-      <label>Profile pic</label>
-      <input type="file" class="form-control" id="editProfilePic" value="file.png">
-      <small id="errEditFile" class="text-danger"></small>
-    </div>
+                  <div class="mb-2">
+                    <label>Profile pic</label>
+                    <input type="file" class="form-control" id="editProfilePic" value="file.png">
+                    <small id="errEditFile" class="text-danger"></small>
+                  </div>
 
-    <a id="editRedirectLink" href="manage-specialist.html" style="display:none;"></a>
-    <small id="successEditMsg" class="text-success"></small>
+                  <div id="editspecialist" class="alert alert-success d-none">
+                    Updated Sucessfully!
+                  </div>
 
-    <button class="btn btn-primary w-100 mt-2" type="submit">Save Changes</button>
-  </form>
-</div>
+                  <button class="btn btn-success w-100 mt-2" type="submit">Save Changes</button>
+                </form>
+              </div>
 
 
             </div>
@@ -341,20 +354,49 @@
         </div>
 
         <!-- Remove Specialist Modal -->
-        <div class="modal fade" id="removeSpecialistModal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog">
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+
               <div class="modal-header">
-                <h5 class="modal-title text-danger">Remove Specialist</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title text-success fw-bold" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+
               <div class="modal-body">
-                <p>Are you sure you want to remove this specialist?</p>
-                <button class="btn btn-danger w-100">Remove</button>
+                Are you sure you want to delete this Specialists ?
               </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success rounded-pill"
+                  data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal"
+                  data-bs-toggle="modal" data-bs-target="#successModal">Delete</button>
+              </div>
+
             </div>
           </div>
         </div>
+
+
+        <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+              <div class="modal-body text-center py-4">
+                <i class="bi bi-check-circle-fill text-success fs-1 mb-2"></i>
+                <h5 class="fw-bold">Successfully Deleted!</h5>
+              </div>
+
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-success rounded-pill" data-bs-dismiss="modal">OK</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
@@ -364,209 +406,273 @@
 
   <script>
 
-function validateForm() {
-  // Clear previous errors
-  document.getElementById('errCategory').innerText = "";
-  document.getElementById('errName').innerText = "";
-  document.getElementById('errDegree').innerText = "";
-  document.getElementById('errSpecialization').innerText = "";
-  document.getElementById('errExperience').innerText = "";
-  document.getElementById('errEmail').innerText = "";
-  document.getElementById('errPhone').innerText = "";
-  document.getElementById('errFile').innerText = "";
-  document.getElementById('successMsg').innerText = "";
+    function validateForm() {
+      const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
 
-  let valid = true;
+      let category = document.getElementById('category');
+      let name = document.getElementById('name');
+      let degree = document.getElementById('degree');
+      let specialization = document.getElementById('specialization');
+      let experience = document.getElementById('experience');
+      let email = document.getElementById('email');
+      let phone = document.getElementById('phone');
+      let file = document.getElementById('profilePic');
 
-  // Category
-  let category = document.getElementById('category');
-  if(category.value === "") {
-    document.getElementById('errCategory').innerText = "Please select a category.";
-    valid = false;
-  }
+      let errCategory = document.getElementById('errCategory');
+      let errName = document.getElementById('errName');
+      let errDegree = document.getElementById('errDegree');
+      let errSpecialization = document.getElementById('errSpecialization');
+      let errExperience = document.getElementById('errExperience');
+      let errEmail = document.getElementById('errEmail');
+      let errPhone = document.getElementById('errPhone');
+      let errFile = document.getElementById('errFile');
+      let successBox = document.getElementById('sucessadd');
 
-  // Name
-  let name = document.getElementById('name');
-  if(name.value.trim() === "") {
-    document.getElementById('errName').innerText = "Please enter name.";
-    valid = false;
-  }
+      errCategory.innerHTML = "";
+      errName.innerHTML = "";
+      errDegree.innerHTML = "";
+      errSpecialization.innerHTML = "";
+      errExperience.innerHTML = "";
+      errEmail.innerHTML = "";
+      errPhone.innerHTML = "";
+      errFile.innerHTML = "";
+      successBox.classList.add("d-none");
 
-  // Degree
-  let degree = document.getElementById('degree');
-  if(degree.value.trim() === "") {
-    document.getElementById('errDegree').innerText = "Please enter degree.";
-    valid = false;
-  }
+      category.classList.remove("error", "success");
+      name.classList.remove("error", "success");
+      degree.classList.remove("error", "success");
+      specialization.classList.remove("error", "success");
+      experience.classList.remove("error", "success");
+      email.classList.remove("error", "success");
+      phone.classList.remove("error", "success");
+      file.classList.remove("error", "success");
 
-  // Specialization
-  let specialization = document.getElementById('specialization');
-  if(specialization.value.trim() === "") {
-    document.getElementById('errSpecialization').innerText = "Please enter specialization.";
-    valid = false;
-  }
+      let valid = true;
 
-  // Experience
-  let experience = document.getElementById('experience');
-  if(experience.value.trim() === "") {
-    document.getElementById('errExperience').innerText = "Please enter experience.";
-    valid = false;
-  }
+      if (category.value == "") {
+        errCategory.innerHTML = `${icon} Please select a category.`;
+        category.classList.add("error");
+        valid = false;
+      } else {
+        category.classList.add("success");
+      }
 
-  // Email
-  let email = document.getElementById('email');
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
-  if(email.value.trim() === "") {
-    document.getElementById('errEmail').innerText = "Please enter email.";
-    valid = false;
-  } else if(!emailRegex.test(email.value.trim())) {
-    document.getElementById('errEmail').innerText = "Please enter a valid email.";
-    valid = false;
-  }
+      if (name.value.trim() == "") {
+        errName.innerHTML = `${icon} Please enter name.`;
+        name.classList.add("error");
+        valid = false;
+      } else {
+        name.classList.add("success");
+      }
 
-  // Phone
-  let phone = document.getElementById('phone');
-  if(phone.value.trim() === "") {
-    document.getElementById('errPhone').innerText = "Please enter phone number.";
-    valid = false;
-  } else if(!/^\d{10}$/.test(phone.value.trim())) {
-    document.getElementById('errPhone').innerText = "Enter valid 10-digit number.";
-    valid = false;
-  }
+      if (degree.value.trim() == "") {
+        errDegree.innerHTML = `${icon} Please enter degree.`;
+        degree.classList.add("error");
+        valid = false;
+      } else {
+        degree.classList.add("success");
+      }
 
-  // File type
-  let file = document.getElementById('profilePic');
-  if(!file || file.files.length === 0) {
-    document.getElementById('errFile').innerText = "Please upload a profile picture.";
-    valid = false;
-  } else {
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-    const fileName = file.files[0].name;
-    if(!allowedExtensions.exec(fileName)) {
-      document.getElementById('errFile').innerText = "Only .jpg and .png files are allowed.";
-      valid = false;
+      if (specialization.value.trim() == "") {
+        errSpecialization.innerHTML = `${icon} Please enter specialization.`;
+        specialization.classList.add("error");
+        valid = false;
+      } else {
+        specialization.classList.add("success");
+      }
+
+      if (experience.value.trim() == "") {
+        errExperience.innerHTML = `${icon} Please enter experience.`;
+        experience.classList.add("error");
+        valid = false;
+      } else {
+        experience.classList.add("success");
+      }
+
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
+      if (email.value.trim() == "") {
+        errEmail.innerHTML = `${icon} Please enter email.`;
+        email.classList.add("error");
+        valid = false;
+      } else if (!emailRegex.test(email.value.trim())) {
+        errEmail.innerHTML = `${icon} Please enter a valid email.`;
+        email.classList.add("error");
+        valid = false;
+      } else {
+        email.classList.add("success");
+      }
+
+      if (phone.value.trim() == "") {
+        errPhone.innerHTML = `${icon} Please enter phone number.`;
+        phone.classList.add("error");
+        valid = false;
+      } else if (!/^\d{10}$/.test(phone.value.trim())) {
+        errPhone.innerHTML = `${icon} Enter valid 10-digit number.`;
+        phone.classList.add("error");
+        valid = false;
+      } else {
+        phone.classList.add("success");
+      }
+
+      if (!file || file.files.length == 0) {
+        errFile.innerHTML = `${icon} Please upload a profile picture.`;
+        file.classList.add("error");
+        valid = false;
+      } else {
+        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+        if (!allowedExtensions.exec(file.files[0].name)) {
+          errFile.innerHTML = `${icon} Only .jpg and .png files are allowed.`;
+          file.classList.add("error");
+          valid = false;
+        } else {
+          file.classList.add("success");
+        }
+      }
+
+      if (!valid) return false;
+
+      successBox.classList.remove("d-none");
+
+      setTimeout(function () {
+        successBox.classList.add("d-none");
+        document.getElementById('specialistForm').submit();
+      }, 1500);
+
+      return false;
     }
-  }
-
-  // If all valid
-  if(valid) {
-    document.getElementById('successMsg').innerText = "Form submitted successfully!";
-    
-    // Clear form
-    document.getElementById('specialistForm').reset();
-
-    // Redirect using hidden link after 2 sec
-    setTimeout(function() {
-      document.getElementById('redirectLink').click();
-    }, 2000);
-
-    return false; // Prevent actual form submission
-  }
-
-  return false; // Prevent submission if invalid
-}
 
 
+    function validateEditForm() {
+      const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
 
-function validateEditForm() {
-  // Clear previous errors
-  document.getElementById('errEditCategory').innerText = "";
-  document.getElementById('errEditName').innerText = "";
-  document.getElementById('errEditDegree').innerText = "";
-  document.getElementById('errEditSpecialization').innerText = "";
-  document.getElementById('errEditExperience').innerText = "";
-  document.getElementById('errEditEmail').innerText = "";
-  document.getElementById('errEditPhone').innerText = "";
-  document.getElementById('errEditFile').innerText = "";
-  document.getElementById('successEditMsg').innerText = "";
+      let category = document.getElementById('editCategory');
+      let name = document.getElementById('editName');
+      let degree = document.getElementById('editDegree');
+      let specialization = document.getElementById('editSpecialization');
+      let experience = document.getElementById('editExperience');
+      let email = document.getElementById('editEmail');
+      let phone = document.getElementById('editPhone');
+      let file = document.getElementById('editProfilePic');
 
-  let valid = true;
+      let errCategory = document.getElementById('errEditCategory');
+      let errName = document.getElementById('errEditName');
+      let errDegree = document.getElementById('errEditDegree');
+      let errSpecialization = document.getElementById('errEditSpecialization');
+      let errExperience = document.getElementById('errEditExperience');
+      let errEmail = document.getElementById('errEditEmail');
+      let errPhone = document.getElementById('errEditPhone');
+      let errFile = document.getElementById('errEditFile');
+      let successBox = document.getElementById('editspecialist');
 
-  // Category
-  let category = document.getElementById('editCategory');
-  if(category.value === "") {
-    document.getElementById('errEditCategory').innerText = "Please select a category.";
-    valid = false;
-  }
+      errCategory.innerHTML = "";
+      errName.innerHTML = "";
+      errDegree.innerHTML = "";
+      errSpecialization.innerHTML = "";
+      errExperience.innerHTML = "";
+      errEmail.innerHTML = "";
+      errPhone.innerHTML = "";
+      errFile.innerHTML = "";
+      successBox.classList.add("d-none");
 
-  // Name
-  let name = document.getElementById('editName');
-  if(name.value.trim() === "") {
-    document.getElementById('errEditName').innerText = "Please enter name.";
-    valid = false;
-  }
+      category.classList.remove("error", "success");
+      name.classList.remove("error", "success");
+      degree.classList.remove("error", "success");
+      specialization.classList.remove("error", "success");
+      experience.classList.remove("error", "success");
+      email.classList.remove("error", "success");
+      phone.classList.remove("error", "success");
+      file.classList.remove("error", "success");
 
-  // Degree
-  let degree = document.getElementById('editDegree');
-  if(degree.value.trim() === "") {
-    document.getElementById('errEditDegree').innerText = "Please enter degree.";
-    valid = false;
-  }
+      let valid = true;
 
-  // Specialization
-  let specialization = document.getElementById('editSpecialization');
-  if(specialization.value.trim() === "") {
-    document.getElementById('errEditSpecialization').innerText = "Please enter specialization.";
-    valid = false;
-  }
+      if (category.value == "") {
+        errCategory.innerHTML = `${icon} Please select a category.`;
+        category.classList.add("error");
+        valid = false;
+      } else {
+        category.classList.add("success");
+      }
 
-  // Experience
-  let experience = document.getElementById('editExperience');
-  if(experience.value.trim() === "") {
-    document.getElementById('errEditExperience').innerText = "Please enter experience.";
-    valid = false;
-  }
+      if (name.value.trim() == "") {
+        errName.innerHTML = `${icon} Please enter name.`;
+        name.classList.add("error");
+        valid = false;
+      } else {
+        name.classList.add("success");
+      }
 
-  // Email
-  let email = document.getElementById('editEmail');
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
-  if(email.value.trim() === "") {
-    document.getElementById('errEditEmail').innerText = "Please enter email.";
-    valid = false;
-  } else if(!emailRegex.test(email.value.trim())) {
-    document.getElementById('errEditEmail').innerText = "Please enter a valid email.";
-    valid = false;
-  }
+      if (degree.value.trim() == "") {
+        errDegree.innerHTML = `${icon} Please enter degree.`;
+        degree.classList.add("error");
+        valid = false;
+      } else {
+        degree.classList.add("success");
+      }
 
-  // Phone
-  let phone = document.getElementById('editPhone');
-  if(phone.value.trim() === "") {
-    document.getElementById('errEditPhone').innerText = "Please enter phone number.";
-    valid = false;
-  } else if(!/^\d{10}$/.test(phone.value.trim())) {
-    document.getElementById('errEditPhone').innerText = "Enter valid 10-digit number.";
-    valid = false;
-  }
+      if (specialization.value.trim() == "") {
+        errSpecialization.innerHTML = `${icon} Please enter specialization.`;
+        specialization.classList.add("error");
+        valid = false;
+      } else {
+        specialization.classList.add("success");
+      }
 
-  // File type only
-  let file = document.getElementById('editProfilePic');
-  if(file && file.files.length > 0) {
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-    const fileName = file.files[0].name;
-    if(!allowedExtensions.exec(fileName)) {
-      document.getElementById('errEditFile').innerText = "Only .jpg and .png files are allowed.";
-      valid = false;
+      if (experience.value.trim() == "") {
+        errExperience.innerHTML = `${icon} Please enter experience.`;
+        experience.classList.add("error");
+        valid = false;
+      } else {
+        experience.classList.add("success");
+      }
+
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
+      if (email.value.trim() == "") {
+        errEmail.innerHTML = `${icon} Please enter email.`;
+        email.classList.add("error");
+        valid = false;
+      } else if (!emailRegex.test(email.value.trim())) {
+        errEmail.innerHTML = `${icon} Please enter a valid email.`;
+        email.classList.add("error");
+        valid = false;
+      } else {
+        email.classList.add("success");
+      }
+
+      if (phone.value.trim() == "") {
+        errPhone.innerHTML = `${icon} Please enter phone number.`;
+        phone.classList.add("error");
+        valid = false;
+      } else if (!/^\d{10}$/.test(phone.value.trim())) {
+        errPhone.innerHTML = `${icon} Enter valid 10-digit number.`;
+        phone.classList.add("error");
+        valid = false;
+      } else {
+        phone.classList.add("success");
+      }
+
+      if (file && file.files.length > 0) {
+        const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+        if (!allowedExtensions.exec(file.files[0].name)) {
+          errFile.innerHTML = `${icon} Only .jpg and .png files are allowed.`;
+          file.classList.add("error");
+          valid = false;
+        } else {
+          file.classList.add("success");
+        }
+      }
+
+      if (!valid) return false;
+
+      successBox.classList.remove("d-none");
+
+      setTimeout(function () {
+        successBox.classList.add("d-none");
+        document.getElementById('editSpecialistForm').submit();
+      }, 1500);
+
+      return false;
     }
-  }
-
-  // If all valid
-  if(valid) {
-    document.getElementById('successEditMsg').innerText = "Changes saved successfully!";
-    
-    // Clear form (optional: remove values or just leave them)
-    document.getElementById('editSpecialistForm').reset();
-
-    // Redirect after 2 sec using getElementById
-    setTimeout(function() {
-      document.getElementById('editRedirectLink').click();
-    }, 2000);
-
-    return false; // prevent actual form submission
-  }
-
-  return false; // prevent submission if invalid
-}
-</script>
+  </script>
 
 
 </body>

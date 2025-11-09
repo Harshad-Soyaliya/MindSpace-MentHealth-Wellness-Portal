@@ -2,361 +2,549 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
-    <style>
-        .booking-table {
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
+  <style>
+    .profile-pic {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #198754;
+    }
 
-        .table thead {
-            background-color: #198754;
-            color: #fff;
-        }
+    .card-left-border {
+      border-left: 5px solid #198754;
+    }
 
-        .btn-add {
-            background-color: #198754;
-            color: #fff;
-        }
+    .card .badge {
+      background-color: #198754;
+    }
 
-        .btn-add:hover {
-            background-color: #145c32;
-            color: #fff;
-        }
+    /* Edit toggle functionality */
+    input[readonly] {
+      background-color: #e9ecef;
+      pointer-events: none;
+    }
 
+    input:disabled {
+      background-color: #e9ecef;
+      pointer-events: none;
+    }
 
-/* Make inputs look disabled initially */
-form input[readonly], form input:disabled {
-  background-color: #e9ecef;
-  pointer-events: none;
-}
+    /* Checkbox hidden */
+    .edit-toggle {
+      display: none;
+    }
 
-/* Visual edit mode when checkbox checked */
-#editToggle:checked ~ form input[readonly] {
-  pointer-events: auto;
-  background-color: #fff;
-}
+    /* Make inputs editable when toggle is checked */
+    .edit-toggle:checked~.card input[readonly],
+    .edit-toggle:checked~.card input:disabled {
+      pointer-events: auto;
+      background-color: #fff;
+    }
 
-/* Show Update button only in edit mode */
-form button[type="submit"] {
-  display: none;
-}
+    /* Buttons visibility */
+    .card .btn-save,
+    .card .btn-cancel {
+      display: none;
+    }
 
-#editToggle:checked ~ form button[type="submit"] {
-  display: inline-block;
-}
-</style>
+    .edit-toggle:checked~.card .btn-save,
+    .edit-toggle:checked~.card .btn-cancel {
+      display: inline-block;
+    }
+
+    .card .btn-edit {
+      display: inline-block;
+    }
+
+    .edit-toggle:checked~.card .btn-edit {
+      display: none;
+    }
+
+    @media (min-width: 992px) {
+      .cards-container {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .cards-container .card {
+        flex: 1;
+      }
+    }
+
+    /* Badge styles */
+    .card-header-badge {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- Navbar for small screens -->
-    <nav class="navbar navbar-light bg-white shadow-sm d-md-none">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold fs-3 text-success" href="dashboard.html">
-                <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarCanvas"
-                aria-controls="sidebarCanvas">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav>
-
+  <!-- Navbar for small screens -->
+  <nav class="navbar navbar-light bg-white shadow-sm d-md-none">
     <div class="container-fluid">
-        <div class="row">
-
-            <!-- Sidebar for large screens -->
-            <div class="col-md-3 col-lg-2 d-none d-md-block sidebar">
-                <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1"
-                    href="dashboard.html">
-                    <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
-                </a>
-
-                <a href="dashboard.html" class="nav-link ">
-                    <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
-                    Dashboard
-                </a>
-
-                <a href="self-help-tools.html" class="nav-link ">
-                    <div class="icon-box"><i class="bi bi-heart-pulse"></i></div>
-                    Self-Help Tools
-                </a>
-
-                <a href="manage-specialist.html" class="nav-link ">
-                    <div class="icon-box"><i class="bi bi-calendar-check"></i></div>
-                    Manage Specialist
-                </a>
-
-                <a href="feedback-help.html" class="nav-link">
-                    <div class="icon-box"><i class="bi bi-chat-left-text"></i></div>
-                    Help & Feedback
-                </a>
-
-                <!-- Bottom Links for Large Screen -->
-
-                <a href="profile.html" class="nav-link d-flex align-items-center active gap-2 text-success">
-                    <div class="icon-box"><i class="bi bi-person-circle"></i></div>
-                    Profile
-                </a>
-                <a href="index.html" class="nav-link d-flex align-items-center gap-2 text-danger">
-                    <div class="icon-box"><i class="bi bi-box-arrow-right"></i></div>
-                    Logout
-                </a>
-
-            </div>
-
-            <!-- Sidebar Offcanvas for small screens -->
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarCanvas">
-                <div class="offcanvas-header">
-                    <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1"
-                        href="dashboard.html">
-                        <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
-                    </a>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body p-0 sidebar">
-                    <a href="dashboard.html" class="nav-link ">
-                        <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
-                        Dashboard
-                    </a>
-                    <a href="self-help-tools.html" class="nav-link">
-                        <div class="icon-box"><i class="bi bi-heart-pulse"></i></div>
-                        Self-Help Tools
-                    </a>
-                    <a href="manage-specialist.html" class="nav-link active">
-                        <div class="icon-box"><i class="bi bi-calendar-check"></i></div>
-                        Manage Specialist
-                    </a>
-                    <a href="feedback-help.html" class="nav-link">
-                        <div class="icon-box"><i class="bi bi-chat-left-text"></i></div>
-                        Help & Feedback
-                    </a>
-                    <a href="profile.html" class="nav-link d-flex align-items-center active gap-2 text-success">
-                        <div class="icon-box"><i class="bi bi-person-circle"></i></div>
-                        Profile
-                    </a>
-                    <a href="index.html" class="nav-link d-flex align-items-center gap-2 text-danger">
-                        <div class="icon-box"><i class="bi bi-box-arrow-right"></i></div>
-                        Logout
-                    </a>
-                </div>
-            </div>
-
-            <!-- Main Content -->
-
-            <div class="col-md-9 col-lg-10 p-4">
-                <div class="dashboard-header mb-4">Manage Profile</div>
-
-                <!-- Breadcrumb -->
-                <nav aria-label="breadcrumb" class="breadcrumb-container mb-4">
-                    <ol class="breadcrumb mb-0 flex-wrap">
-                        <li class="breadcrumb-item"><a href="dashboard.html"
-                                class="breadcrumb-link">Dashboard</a></li>
-                        <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Manage Profile</li>
-                    </ol>
-                </nav>
-
-                <div class="dashboard-content container py-4">
-
-                    <!-- Profile Info -->
-
-<div class="card shadow-sm rounded-4 p-4 mb-4">
-  <h5 class="text-success fw-bold mb-3">Profile Information</h5>
-
-  <!-- Hidden checkbox for toggle -->
-  <input type="checkbox" id="editToggle" style="display:none;">
-
-  <form>
-    <div class="mb-3 text-center">
-      <img src="IMG/index/profile_icon.png" alt="Profile Photo" class="rounded-circle mb-2"
-        width="120" height="120">
-      <input type="file" class="form-control mt-2" style="max-width: 250px; margin: 0 auto;" disabled>
+      <a class="navbar-brand fw-bold fs-3 text-success" href="dashboard.html">
+        <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarCanvas"
+        aria-controls="sidebarCanvas">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
+  </nav>
 
-    <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label text-success fw-semibold">Name</label>
-        <input type="text" class="form-control" value="John Doe" readonly>
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Sidebar for large screens -->
+      <div class="col-md-3 col-lg-2 d-none d-md-block sidebar">
+        <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="dashboard.html">
+          <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+        </a>
+
+        <a href="dashboard.html" class="nav-link ">
+          <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
+          Dashboard
+        </a>
+
+        <a href="self-help-tools.html" class="nav-link ">
+          <div class="icon-box"><i class="bi bi-heart-pulse"></i></div>
+          Self-Help Tools
+        </a>
+
+        <a href="manage-specialist.html" class="nav-link ">
+          <div class="icon-box"><i class="bi bi-calendar-check"></i></div>
+          Manage Specialist
+        </a>
+
+        <a href="feedback-help.html" class="nav-link">
+          <div class="icon-box"><i class="bi bi-chat-left-text"></i></div>
+          Help & Feedback
+        </a>
+
+        <!-- Bottom Links for Large Screen -->
+
+        <a href="profile.html" class="nav-link d-flex align-items-center active gap-2 text-success">
+          <div class="icon-box"><i class="bi bi-person-circle"></i></div>
+          Profile
+        </a>
+        <a href="index.html" class="nav-link d-flex align-items-center gap-2 text-danger">
+          <div class="icon-box"><i class="bi bi-box-arrow-right"></i></div>
+          Logout
+        </a>
+
       </div>
-      <div class="col-md-6">
-        <label class="form-label text-success fw-semibold">Email</label>
-        <input type="email" class="form-control" value="john.doe@example.com" readonly>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label text-success fw-semibold">Phone Number</label>
-        <input type="tel" class="form-control" value="+91 9876543210" readonly>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label text-success fw-semibold">Company Name</label>
-        <input type="text" class="form-control" value="MindSpace Pvt Ltd" readonly>
-      </div>
-    </div>
 
-    <!-- Buttons -->
-    <label for="editToggle" class="btn btn-primary mt-3">Edit</label>
-    <button type="submit" class="btn btn-success mt-3">Update Profile</button>
-  </form>
-</div>
-
-
-
-
-
-
-<!-- Change Password Form -->
-<div class="card shadow-sm rounded-4 p-4">
-  <h5 class="text-success fw-bold mb-3">Change Password</h5>
-  <form id="passwordForm" onsubmit="return validatePasswordForm()">
-    <div class="row g-3">
-      <div class="col-md-4">
-        <label class="form-label text-success fw-semibold">Old Password</label>
-        <input type="password" class="form-control" id="oldPassword" placeholder="Enter old password">
-        <small id="errOldPassword" class="text-danger"></small>
-      </div>
-      <div class="col-md-4">
-        <label class="form-label text-success fw-semibold">New Password</label>
-        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
-        <small id="errNewPassword" class="text-danger"></small>
-      </div>
-      <div class="col-md-4">
-        <label class="form-label text-success fw-semibold">Confirm Password</label>
-        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
-        <small id="errConfirmPassword" class="text-danger"></small>
-      </div>
-    </div>
-    <small id="successPasswordMsg" class="text-success"></small>
-    <button type="submit" class="btn btn-success mt-4">Change Password</button>
-  </form>
-</div>
-
-
-                </div>
-            </div>
-
+      <!-- Sidebar Offcanvas for small screens -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarCanvas">
+        <div class="offcanvas-header">
+          <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="dashboard.html">
+            <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
+          </a>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>
+        <div class="offcanvas-body p-0 sidebar">
+          <a href="dashboard.html" class="nav-link ">
+            <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
+            Dashboard
+          </a>
+          <a href="self-help-tools.html" class="nav-link">
+            <div class="icon-box"><i class="bi bi-heart-pulse"></i></div>
+            Self-Help Tools
+          </a>
+          <a href="manage-specialist.html" class="nav-link active">
+            <div class="icon-box"><i class="bi bi-calendar-check"></i></div>
+            Manage Specialist
+          </a>
+          <a href="feedback-help.html" class="nav-link">
+            <div class="icon-box"><i class="bi bi-chat-left-text"></i></div>
+            Help & Feedback
+          </a>
+          <a href="profile.html" class="nav-link d-flex align-items-center active gap-2 text-success">
+            <div class="icon-box"><i class="bi bi-person-circle"></i></div>
+            Profile
+          </a>
+          <a href="index.html" class="nav-link d-flex align-items-center gap-2 text-danger">
+            <div class="icon-box"><i class="bi bi-box-arrow-right"></i></div>
+            Logout
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+
+      <div class="col-md-9 col-lg-10 p-4">
+        <div class="dashboard-header mb-4">Manage Profile</div>
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="breadcrumb-container mb-4">
+          <ol class="breadcrumb mb-0 flex-wrap">
+            <li class="breadcrumb-item"><a href="dashboard.html" class="breadcrumb-link">Dashboard</a></li>
+            <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Manage Profile</li>
+          </ol>
+        </nav>
+
+
+
+        <div class="container py-5">
+          <!-- Profile Picture -->
+          <div class="text-center mb-5">
+            <img src="IMG/index/profile_icon.png" alt="Profile Photo" class="profile-pic mb-3">
+            <h4 class="fw-bold text-success">John Doe</h4>
+            <span class="badge text-bg-success">Administrator</span>
+          </div>
+
+
+          <div class="cards-container">
+
+            <!-- Profile Info Card -->
+            <div class="card shadow-sm rounded-4 p-4 card-left-border mb-4">
+              <div class="card-header-badge mb-3">
+                <h5 class="text-success fw-bold">Profile Information</h5>
+              </div>
+              <form>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label text-success fw-semibold">Name</label>
+                    <input type="text" class="form-control" value="John Doe" readonly>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-success fw-semibold">Email</label>
+                    <input type="email" class="form-control" value="john.doe@example.com" readonly>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-success fw-semibold">Phone Number</label>
+                    <input type="tel" class="form-control" value="+91 9876543210" readonly>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-success fw-semibold">Company Name</label>
+                    <input type="text" class="form-control" value="MindSpace Pvt Ltd" readonly>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-success fw-semibold">Old Password</label>
+                    <input type="password" class="form-control" value="********" readonly>
+                  </div>
+                  <div class="col-md-6 d-flex align-items-end gap-2">
+                    <!-- Change Password Button -->
+                    <button type="button" class="btn btn-success btn-md rounded-pill " data-bs-toggle="modal"
+                      data-bs-target="#editPassword">
+                      <i class="bi bi-pencil"></i> Change Password
+                    </button>
+
+                    <!-- Edit Profile Button -->
+                    <button type="button" class="btn btn-success btn-md rounded-pill " data-bs-toggle="modal"
+                      data-bs-target="#editProfile">
+                      <i class="bi bi-pencil"></i> Edit Profile
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
+  </div>
 
 
-    <script>
+  <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-success border-3 rounded-4">
+        <!-- Modal Header -->
+        <div class="modal-header bg-success text-white rounded-top">
+          <h5 class="modal-title" id="editProfileLabel"><i class="bi bi-person-circle"></i> Edit Profile</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
-function validateProfileForm() {
-  // Clear previous errors
-  document.getElementById('errProfilePic').innerText = "";
-  document.getElementById('errProfileName').innerText = "";
-  document.getElementById('errProfileEmail').innerText = "";
-  document.getElementById('errProfilePhone').innerText = "";
-  document.getElementById('errProfileCompany').innerText = "";
-  document.getElementById('successProfileMsg').innerText = "";
+        <!-- Modal Body -->
+        <!-- Modal Body & Form -->
+        <div class="modal-body">
+          <form id="profileedit" action="profile.html" method="get" onsubmit="return validateEditProfileForm()">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label text-success fw-semibold">Name</label>
+                <input type="text" class="form-control" id="editProfileName" value="John Doe">
+                <small id="errEditProfileName" class="text-danger"></small>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-success fw-semibold">Email</label>
+                <input type="text" class="form-control" id="editProfileEmail" value="john.doe@example.com">
+                <small id="errEditProfileEmail" class="text-danger"></small>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-success fw-semibold">Phone Number</label>
+                <input type="text" class="form-control" id="editProfilePhone" value="9876543210">
+                <small id="errEditProfilePhone" class="text-danger"></small>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-success fw-semibold">Company Name</label>
+                <input type="text" class="form-control" id="editProfileCompany" value="MindSpace Pvt Ltd">
+                <small id="errEditProfileCompany" class="text-danger"></small>
+              </div>
+            </div>
 
-  let valid = true;
+            <br>
 
-  // Name
-  let name = document.getElementById('profileName');
-  if(name.value.trim() === "") {
-    document.getElementById('errProfileName').innerText = "Please enter your name.";
-    valid = false;
-  }
 
-  // Email
-  let email = document.getElementById('profileEmail');
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
-  if(email.value.trim() === "") {
-    document.getElementById('errProfileEmail').innerText = "Please enter your email.";
-    valid = false;
-  } else if(!emailRegex.test(email.value.trim())) {
-    document.getElementById('errProfileEmail').innerText = "Enter a valid email.";
-    valid = false;
-  }
+            <div id="successEditProfileMsg" class="alert alert-success d-none">
+              Updated Sucessfully!
+            </div>
 
-  // Phone
-  let phone = document.getElementById('profilePhone');
-  if(phone.value.trim() === "") {
-    document.getElementById('errProfilePhone').innerText = "Please enter phone number.";
-    valid = false;
-  } else if(!/^\+?\d{10,15}$/.test(phone.value.trim())) {
-    document.getElementById('errProfilePhone').innerText = "Enter valid phone number.";
-    valid = false;
-  }
 
-  // Company
-  let company = document.getElementById('profileCompany');
-  if(company.value.trim() === "") {
-    document.getElementById('errProfileCompany').innerText = "Please enter company name.";
-    valid = false;
-  }
+            <!-- Modal Footer buttons inside form -->
+            <div class="modal-footer p-0 mt-3">
+              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">
+                <i class="bi bi-x-lg"></i> Cancel
+              </button>
+              <button type="submit" class="btn btn-success rounded-pill">
+                <i class="bi bi-check2"></i> Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
 
-  // Profile Pic file type optional
-  let file = document.getElementById('profilePic');
-  if(file && file.files.length > 0) {
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-    const fileName = file.files[0].name;
-    if(!allowedExtensions.exec(fileName)) {
-      document.getElementById('errProfilePic').innerText = "Only .jpg and .png files allowed.";
-      valid = false;
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="editPassword" tabindex="-1" aria-labelledby="editPasswordLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-success border-3 rounded-4">
+
+        <!-- Modal Header -->
+        <div class="modal-header bg-success text-white rounded-top">
+          <h5 class="modal-title" id="editPasswordLabel"><i class="bi bi-shield-lock"></i> Change Password</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <form id="editPasswordForm" onsubmit="return validateEditPasswordForm()">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="form-label text-success fw-semibold">Old Password</label>
+                <input type="password" class="form-control" id="editOldPassword" placeholder="Enter old password">
+                <small id="errEditOldPassword" class="text-danger"></small>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label text-success fw-semibold">New Password</label>
+                <input type="password" class="form-control" id="editNewPassword" placeholder="Enter new password">
+                <small id="errEditNewPassword" class="text-danger"></small>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label text-success fw-semibold">Confirm Password</label>
+                <input type="password" class="form-control" id="editConfirmPassword" placeholder="Confirm new password">
+                <small id="errEditConfirmPassword" class="text-danger"></small>
+              </div>
+            </div>
+
+            <!-- Success message -->
+            <div id="successEditPasswordMsg" class="alert alert-success d-none mt-3">
+              Password updated successfully!
+            </div>
+
+            <!-- Modal Footer inside the form -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">
+                <i class="bi bi-x-lg"></i> Cancel
+              </button>
+              <button type="submit" class="btn btn-success rounded-pill">
+                <i class="bi bi-check2"></i> Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <script>
+
+    function validateEditProfileForm() {
+      
+      let name = document.getElementById("editProfileName");
+      let email = document.getElementById("editProfileEmail");
+      let phone = document.getElementById("editProfilePhone");
+      let company = document.getElementById("editProfileCompany");
+
+      let errName = document.getElementById("errEditProfileName");
+      let errEmail = document.getElementById("errEditProfileEmail");
+      let errPhone = document.getElementById("errEditProfilePhone");
+      let errCompany = document.getElementById("errEditProfileCompany");
+      let successBox = document.getElementById("successEditProfileMsg");
+
+      const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
+      let valid = true;
+
+      errName.innerHTML = "";
+      errEmail.innerHTML = "";
+      errPhone.innerHTML = "";
+      errCompany.innerHTML = "";
+      successBox.classList.add("d-none");
+
+      name.classList.remove("error", "success");
+      email.classList.remove("error", "success");
+      phone.classList.remove("error", "success");
+      company.classList.remove("error", "success");
+
+      if (name.value.trim() == "") {
+        errName.innerHTML = `${icon} Please enter your name.`;
+        name.classList.add("error");
+        valid = false;
+      } else if (!isNaN(name.value.trim())) {
+        errName.innerHTML = `${icon} Name must contain letters.`;
+        name.classList.add("error");
+        valid = false;
+      } else {
+        name.classList.add("success");
+      }
+
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
+      if (email.value.trim() == "") {
+        errEmail.innerHTML = `${icon} Please enter your email.`;
+        email.classList.add("error");
+        valid = false;
+      } else if (!emailRegex.test(email.value.trim())) {
+        errEmail.innerHTML = `${icon} Please enter a valid email.`;
+        email.classList.add("error");
+        valid = false;
+      } else {
+        email.classList.add("success");
+      }
+
+      const phoneRegex = /^\+?\d{10,15}$/;
+      if (phone.value.trim() == "") {
+        errPhone.innerHTML = `${icon} Please enter phone number.`;
+        phone.classList.add("error");
+        valid = false;
+      } else if (!phoneRegex.test(phone.value.trim())) {
+        errPhone.innerHTML = `${icon} Enter a 10-digit valid phone number.`;
+        phone.classList.add("error");
+        valid = false;
+      } else {
+        phone.classList.add("success");
+      }
+
+      if (company.value.trim() == "") {
+        errCompany.innerHTML = `${icon} Please enter company name.`;
+        company.classList.add("error");
+        valid = false;
+      } else {
+        company.classList.add("success");
+      }
+
+      if (!valid) return false;
+
+      successBox.classList.remove("d-none");
+
+      setTimeout(function () {
+        successBox.classList.add("d-none");
+        document.getElementById("profileedit").submit();
+      }, 1500);
+
+      return false; 
     }
-  }
-
-  if(valid) {
-    document.getElementById('successProfileMsg').innerText = "Profile updated successfully!";
-    // Uncheck editToggle to revert fields to readonly
-    document.getElementById('editToggle').checked = false;
-  }
-
-  return false; // prevent default form submission
-}
-
-function validatePasswordForm() {
-  // Clear previous errors
-  document.getElementById('errOldPassword').innerText = "";
-  document.getElementById('errNewPassword').innerText = "";
-  document.getElementById('errConfirmPassword').innerText = "";
-  document.getElementById('successPasswordMsg').innerText = "";
-
-  let valid = true;
-
-  let oldPwd = document.getElementById('oldPassword');
-  let newPwd = document.getElementById('newPassword');
-  let confirmPwd = document.getElementById('confirmPassword');
-
-  if(oldPwd.value.trim() === "") {
-    document.getElementById('errOldPassword').innerText = "Enter old password.";
-    valid = false;
-  }
-  if(newPwd.value.trim() === "") {
-    document.getElementById('errNewPassword').innerText = "Enter new password.";
-    valid = false;
-  }
-  if(confirmPwd.value.trim() === "") {
-    document.getElementById('errConfirmPassword').innerText = "Confirm new password.";
-    valid = false;
-  } else if(newPwd.value.trim() !== confirmPwd.value.trim()) {
-    document.getElementById('errConfirmPassword').innerText = "Passwords do not match.";
-    valid = false;
-  }
-
-  if(valid) {
-    document.getElementById('successPasswordMsg').innerText = "Password changed successfully!";
-    // Optional: clear form
-    // document.getElementById('passwordForm').reset();
-  }
-
-  return false; // prevent default submission
-}
-</script>
+  </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <script>
+    function validateEditPasswordForm() {
+      let oldPwd = document.getElementById("editOldPassword");
+      let newPwd = document.getElementById("editNewPassword");
+      let confirmPwd = document.getElementById("editConfirmPassword");
+
+      let errOld = document.getElementById("errEditOldPassword");
+      let errNew = document.getElementById("errEditNewPassword");
+      let errConfirm = document.getElementById("errEditConfirmPassword");
+      let successBox = document.getElementById("successEditPasswordMsg");
+
+      const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
+      let valid = true;
+
+      errOld.innerHTML = "";
+      errNew.innerHTML = "";
+      errConfirm.innerHTML = "";
+      successBox.classList.add("d-none");
+
+      oldPwd.classList.remove("error", "success");
+      newPwd.classList.remove("error", "success");
+      confirmPwd.classList.remove("error", "success");
+
+      if (oldPwd.value.trim() == "") {
+        errOld.innerHTML = `${icon} Please enter old password.`;
+        oldPwd.classList.add("error");
+        valid = false;
+      } else {
+        oldPwd.classList.add("success");
+      }
+
+      
+      const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;
+      if (newPwd.value.trim() == "") {
+        errNew.innerHTML = `${icon} Please enter new password.`;
+        newPwd.classList.add("error");
+        valid = false;
+      } else if (!pwdRegex.test(newPwd.value.trim())) {
+        errNew.innerHTML = `${icon} Password must be at least 6 characters and include a letter, number, and special character.`;
+        newPwd.classList.add("error");
+        valid = false;
+      } else {
+        newPwd.classList.add("success");
+      }
+
+      if (confirmPwd.value.trim() == "") {
+        errConfirm.innerHTML = `${icon} Please confirm new password.`;
+        confirmPwd.classList.add("error");
+        valid = false;
+      } else if (newPwd.value.trim() != confirmPwd.value.trim()) {
+        errConfirm.innerHTML = `${icon} Passwords do not match.`;
+        confirmPwd.classList.add("error");
+        valid = false;
+      } else {
+        confirmPwd.classList.add("success");
+      }
+
+      if (!valid) return false;
+
+      successBox.classList.remove("d-none");
+
+      setTimeout(function () {
+        successBox.classList.add("d-none");
+        document.getElementById("editPasswordForm").submit();
+      }, 1500);
+
+      return false;  
+    }
+  </script>
+
+
+
 </body>
 
 </html>

@@ -43,7 +43,7 @@
 <body>
 
   <div class="container mt-5">
-    <div class="dashboard-header">Edit Meditation</div>
+    <div class="dashboard-header">Add / Edit Meditation</div>
     <nav aria-label="breadcrumb" class="breadcrumb-container">
       <ol class="breadcrumb mb-0 flex-wrap">
         <li class="breadcrumb-item">
@@ -55,14 +55,15 @@
         <li class="breadcrumb-item">
           <a href="manage-medition.html" class="breadcrumb-link">Manage Meditation</a>
         </li>
-        <li class="breadcrumb-item active text-dark" aria-current="page">Edit Meditation</li>
+        <li class="breadcrumb-item active text-dark" aria-current="page">Add - Edit Meditation</li>
       </ol>
     </nav>
 
     <div class="dashboard-content">
 
       <!-- Edit Meditation Form -->
-      <form onsubmit="return validateMeditationForm()">
+      <form id="Add/editmeditation" method="get" action="manage-medition.html"
+        onsubmit="return validateMeditationForm()">
 
         <div class="mb-3">
           <label for="meditationTitle" class="form-label fw-semibold"> Title</label>
@@ -91,8 +92,8 @@
               <div class="d-flex align-items-center mb-2 gap-2">
                 <input type="number" class="form-control form-control-sm rounded-pill text-center" value="1"
                   style="width: 60px;" placeholder="Step #">
-                <input type="text" class="form-control form-control-sm rounded-pill fw-bold"
-                  value="Breathing Exercise" placeholder="Step Title">
+                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="Breathing Exercise"
+                  placeholder="Step Title">
                 <button type="button" class="btn btn-outline-success btn-sm ms-auto">
                   <i class="bi bi-trash"></i>
                 </button>
@@ -105,8 +106,8 @@
               <div class="d-flex align-items-center mb-2 gap-2">
                 <input type="number" class="form-control form-control-sm rounded-pill text-center" value="2"
                   style="width: 60px;" placeholder="Step #">
-                <input type="text" class="form-control form-control-sm rounded-pill fw-bold"
-                  value="Breathing Exercise" placeholder="Step Title">
+                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="Breathing Exercise"
+                  placeholder="Step Title">
                 <button type="button" class="btn btn-outline-success btn-sm ms-auto">
                   <i class="bi bi-trash"></i>
                 </button>
@@ -119,8 +120,8 @@
               <div class="d-flex align-items-center mb-2 gap-2">
                 <input type="number" class="form-control form-control-sm rounded-pill text-center" value="3"
                   style="width: 60px;" placeholder="Step #">
-                <input type="text" class="form-control form-control-sm rounded-pill fw-bold"
-                  value="Breathing Exercise" placeholder="Step Title">
+                <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="Breathing Exercise"
+                  placeholder="Step Title">
                 <button type="button" class="btn btn-outline-success btn-sm ms-auto">
                   <i class="bi bi-trash"></i>
                 </button>
@@ -134,7 +135,6 @@
           <small id="errSteps" class="text-danger"></small>
         </div>
 
-        <!-- ✅ SUCCESS BOX -->
         <div id="successBox" class="alert alert-success d-none">
           Meditation saved successfully!
         </div>
@@ -157,63 +157,92 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-function validateMeditationForm() {
-  document.getElementById("errTitle").innerHTML = "";
-  document.getElementById("errDesc").innerHTML = "";
-  document.getElementById("errSteps").innerHTML = "";
+    function validateMeditationForm() {
+      const errTitle = document.getElementById("errTitle");
+      const errDesc = document.getElementById("errDesc");
+      const errSteps = document.getElementById("errSteps");
+      const successBox = document.getElementById("successBox");
 
-  let title = document.getElementById("meditationTitle").value.trim();
-  let desc = document.getElementById("meditationDescription").value.trim();
-  let steps = document.getElementsByClassName("step-card");
+      errTitle.innerHTML = "";
+      errDesc.innerHTML = "";
+      errSteps.innerHTML = "";
+      successBox.classList.add("d-none");
 
-  let valid = true;
+      let valid = true;
+      const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
 
-  if (title === "") {
-    document.getElementById("errTitle").innerHTML = "Please enter a title.";
-    valid = false;
-  }
+      // Title
+      const titleEl = document.getElementById("meditationTitle");
+      const title = titleEl.value.trim();
+      titleEl.classList.remove("error", "success");
+      if (title == "") {
+        errTitle.innerHTML = `${icon} Please enter a title.`;
+        titleEl.classList.add("error");
+        valid = false;
+      } else {
+        titleEl.classList.add("success");
+      }
 
-  if (desc === "") {
-    document.getElementById("errDesc").innerHTML = "Please enter a description.";
-    valid = false;
-  }
+      // Description
+      const descEl = document.getElementById("meditationDescription");
+      const desc = descEl.value.trim();
+      descEl.classList.remove("error", "success");
+      if (desc == "") {
+        errDesc.innerHTML = `${icon} Please enter a description.`;
+        descEl.classList.add("error");
+        valid = false;
+      } else {
+        descEl.classList.add("success");
+      }
 
-  if (steps.length === 0) {
-    document.getElementById("errSteps").innerHTML = "Please add at least one step.";
-    valid = false;
-  }
+      // Steps
+      const steps = document.getElementsByClassName("step-card");
+      if (steps.length == 2) {
+        errSteps.innerHTML = `${icon} Please add at least three step.`;
+        valid = false;
+      } else {
+        for (let i = 0; i < steps.length; i++) {
+          const stepCard = steps[i];
+          const stepNoEl = stepCard.getElementsByTagName("input")[0];
+          const stepTitleEl = stepCard.getElementsByTagName("input")[1];
+          const stepDescEl = stepCard.getElementsByTagName("textarea")[0];
 
-  for (let i = 0; i < steps.length; i++) {
-    let stepNo = steps[i].getElementsByTagName("input")[0].value.trim();
-    let stepTitle = steps[i].getElementsByTagName("input")[1].value.trim();
-    let stepDesc = steps[i].getElementsByTagName("textarea")[0].value.trim();
+          stepNoEl.classList.remove("error", "success");
+          stepTitleEl.classList.remove("error", "success");
+          stepDescEl.classList.remove("error", "success");
 
-    if (stepNo === "" || stepTitle === "" || stepDesc === "") {
-      document.getElementById("errSteps").innerHTML = "All steps must be fully filled.";
-      valid = false;
-      break;
+          const stepNo = stepNoEl.value.trim();
+          const stepTitle = stepTitleEl.value.trim();
+          const stepDesc = stepDescEl.value.trim();
+
+          if (stepNo == "" || stepTitle == "" || stepDesc == "") {
+            errSteps.innerHTML = `${icon} All steps must be fully filled.`;
+            stepNoEl.classList.add("error");
+            stepTitleEl.classList.add("error");
+            stepDescEl.classList.add("error");
+            valid = false;
+            break;
+          } else {
+            stepNoEl.classList.add("success");
+            stepTitleEl.classList.add("success");
+            stepDescEl.classList.add("success");
+          }
+        }
+      }
+
+      if (!valid) return false;
+
+      successBox.classList.remove("d-none");
+
+      setTimeout(() => {
+        successBox.classList.add("d-none");
+        document.getElementById("Add/editmeditation").submit();
+      }, 1500);
+
+      return false;
     }
-  }
+  </script>
 
-  if (!valid) return false;
-
-  // ✅ Show Success Box
-  let box = document.getElementById("successBox");
-  box.classList.remove("d-none");
-
-  // Clear input fields
-  document.getElementById("meditationTitle").value = "";
-  document.getElementById("meditationDescription").value = "";
-
-  // Hide after 2 sec and redirect
-  setTimeout(function () {
-    box.classList.add("d-none");
-    window.location.href = "manage-medition.html";
-  }, 2000);
-
-  return false;
-}
-</script>
 
 
 </body>

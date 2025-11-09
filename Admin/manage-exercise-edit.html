@@ -14,7 +14,6 @@
   <link href="css/style.css" rel="stylesheet">
 
   <style>
-
     .form-control,
     .form-label {
       font-size: 1rem;
@@ -50,7 +49,7 @@
 <body>
 
   <div class="container mt-5">
-    <div class="dashboard-header">Edit Exercise</div>
+    <div class="dashboard-header">Add / Edit Exercise</div>
 
     <nav aria-label="breadcrumb" class="breadcrumb-container">
       <ol class="breadcrumb mb-0 flex-wrap">
@@ -63,14 +62,14 @@
         <li class="breadcrumb-item">
           <a href="manage-exercise.html" class="breadcrumb-link">Manage Exercise</a>
         </li>
-        <li class="breadcrumb-item active text-dark" aria-current="page">Edit Exercise</li>
+        <li class="breadcrumb-item active text-dark" aria-current="page">Add - Edit Exercise</li>
       </ol>
     </nav>
 
     <div class="dashboard-content">
 
       <!-- Edit Exercise Form -->
-      <form onsubmit="return validateExerciseForm()">
+      <form method="get" action="manage-exercise.html" id="addeditexercise" onsubmit="return validateExerciseForm()">
 
         <div class="mb-3">
           <label class="form-label fw-semibold">Exercise Title</label>
@@ -80,7 +79,8 @@
 
         <div class="mb-3">
           <label class="form-label fw-semibold">Exercise Description</label>
-          <textarea class="form-control" id="exerciseDescription" rows="4">A set of simple stretches to wake up your body in the morning.</textarea>
+          <textarea class="form-control" id="exerciseDescription"
+            rows="4">A set of simple stretches to wake up your body in the morning.</textarea>
           <small id="errDesc" class="text-danger"></small>
         </div>
 
@@ -93,45 +93,52 @@
 
             <div class="step-card d-flex flex-column p-3 mb-3">
               <div class="d-flex align-items-center mb-2 gap-2">
-                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="1" style="width: 60px;">
+                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="1"
+                  style="width: 60px;">
                 <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="title">
-                <button type="button" class="btn btn-outline-success btn-sm ms-auto"><i class="bi bi-trash"></i></button>
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto"><i
+                    class="bi bi-trash"></i></button>
               </div>
               <textarea class="form-control rounded-4" rows="2">Stand tall, stretch arms overhead.</textarea>
             </div>
 
             <div class="step-card d-flex flex-column p-3 mb-3">
               <div class="d-flex align-items-center mb-2 gap-2">
-                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="2" style="width: 60px;">
+                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="2"
+                  style="width: 60px;">
                 <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="title">
-                <button type="button" class="btn btn-outline-success btn-sm ms-auto"><i class="bi bi-trash"></i></button>
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto"><i
+                    class="bi bi-trash"></i></button>
               </div>
               <textarea class="form-control rounded-4" rows="2">Bend sideways gently to stretch the sides.</textarea>
             </div>
 
             <div class="step-card d-flex flex-column p-3 mb-3">
               <div class="d-flex align-items-center mb-2 gap-2">
-                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="3" style="width: 60px;">
+                <input type="number" class="form-control form-control-sm rounded-pill text-center" value="3"
+                  style="width: 60px;">
                 <input type="text" class="form-control form-control-sm rounded-pill fw-bold" value="title">
-                <button type="button" class="btn btn-outline-success btn-sm ms-auto"><i class="bi bi-trash"></i></button>
+                <button type="button" class="btn btn-outline-success btn-sm ms-auto"><i
+                    class="bi bi-trash"></i></button>
               </div>
               <textarea class="form-control rounded-4" rows="2">Twist torso gently from left to right.</textarea>
             </div>
 
           </div>
-
           <small id="errSteps" class="text-danger"></small>
+        </div>
+
+        <div id="successBox" class="alert alert-success d-none">
+          Exercise updated successfully!
         </div>
 
         <div class="d-flex gap-2">
           <button type="submit" class="btn btn-success rounded-pill"><i class="bi bi-save"></i> Save Changes</button>
-          <a href="manage-exercise.html" class="btn btn-secondary rounded-pill"><i class="bi bi-x-circle"></i> Cancel</a>
+          <a href="manage-exercise.html" class="btn btn-secondary rounded-pill"><i class="bi bi-x-circle"></i>
+            Cancel</a>
         </div>
 
-        <!-- SUCCESS MESSAGE -->
-        <div id="successBox" class="text-success fw-semibold mt-3 d-none">
-          Exercise updated successfully!
-        </div>
+        
 
       </form>
 
@@ -141,72 +148,100 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-function validateExerciseForm() {
+    function validateExerciseForm() {
+      const errTitle = document.getElementById("errTitle");
+      const errDesc = document.getElementById("errDesc");
+      const errSteps = document.getElementById("errSteps");
+      const successBox = document.getElementById("successBox");
 
-  document.getElementById("errTitle").innerHTML = "";
-  document.getElementById("errDesc").innerHTML = "";
-  document.getElementById("errSteps").innerHTML = "";
+      errTitle.innerHTML = "";
+      errDesc.innerHTML = "";
+      errSteps.innerHTML = "";
+      successBox.classList.add("d-none");
 
-  let title = document.getElementById("exerciseTitle").value.trim();
-  let desc = document.getElementById("exerciseDescription").value.trim();
-  let steps = document.getElementsByClassName("step-card");
+      let valid = true;
+      const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
 
-  let valid = true;
+      const titleEl = document.getElementById("exerciseTitle");
+      const title = titleEl.value.trim();
+      titleEl.classList.remove("error", "success");
+      if (title == "") {
+        errTitle.innerHTML = `${icon} Please enter a title.`;
+        titleEl.classList.add("error");
+        valid = false;
+      } else if (!isNaN(title)) {
+        errTitle.innerHTML = `${icon} Title must contain letters.`;
+        titleEl.classList.add("error");
+        valid = false;
+      } else if (title.length > 100) {
+        errTitle.innerHTML = `${icon} Title must be under 100 characters.`;
+        titleEl.classList.add("error");
+        valid = false;
+      } else {
+        titleEl.classList.add("success");
+      }
 
-  // Title
-  if (title === "") {
-    document.getElementById("errTitle").innerHTML = "Please enter a title.";
-    valid = false;
-  }
+      const descEl = document.getElementById("exerciseDescription");
+      const desc = descEl.value.trim();
+      descEl.classList.remove("error", "success");
+      if (desc == "") {
+        errDesc.innerHTML = `${icon} Please enter a description.`;
+        descEl.classList.add("error");
+        valid = false;
+      } else if (desc.length < 10) {
+        errDesc.innerHTML = `${icon} Description must be at least 10 characters.`;
+        descEl.classList.add("error");
+        valid = false;
+      } else {
+        descEl.classList.add("success");
+      }
 
-  // Description
-  if (desc === "") {
-    document.getElementById("errDesc").innerHTML = "Please enter a description.";
-    valid = false;
-  }
+      const steps = document.getElementsByClassName("step-card");
+      if (steps.length < 1) {
+        errSteps.innerHTML = `${icon} Please add at least one step.`;
+        valid = false;
+      } else {
+        for (let i = 0; i < steps.length; i++) {
+          const stepCard = steps[i];
+          const stepNoEl = stepCard.getElementsByTagName("input")[0];
+          const stepTitleEl = stepCard.getElementsByTagName("input")[1];
+          const stepDescEl = stepCard.getElementsByTagName("textarea")[0];
 
-  // Steps count
-  if (steps.length === 0) {
-    document.getElementById("errSteps").innerHTML = "Please add at least one step.";
-    valid = false;
-  }
+          stepNoEl.classList.remove("error", "success");
+          stepTitleEl.classList.remove("error", "success");
+          stepDescEl.classList.remove("error", "success");
 
-  // Validate each step
-  for (let i = 0; i < steps.length; i++) {
-    let stepNo = steps[i].getElementsByTagName("input")[0].value.trim();
-    let stepTitle = steps[i].getElementsByTagName("input")[1].value.trim();
-    let stepDesc = steps[i].getElementsByTagName("textarea")[0].value.trim();
+          const stepNo = stepNoEl.value.trim();
+          const stepTitle = stepTitleEl.value.trim();
+          const stepDesc = stepDescEl.value.trim();
 
-    if (stepNo === "" || stepTitle === "" || stepDesc === "") {
-      document.getElementById("errSteps").innerHTML = "All steps must be fully filled.";
-      valid = false;
-      break;
+          if (stepNo == "" || stepTitle == "" || stepDesc == "") {
+            errSteps.innerHTML = `${icon} All steps must be fully filled.`;
+            stepNoEl.classList.add("error");
+            stepTitleEl.classList.add("error");
+            stepDescEl.classList.add("error");
+            valid = false;
+            break;
+          } else {
+            stepNoEl.classList.add("success");
+            stepTitleEl.classList.add("success");
+            stepDescEl.classList.add("success");
+          }
+        }
+      }
+
+      if (!valid) return false;
+
+      successBox.classList.remove("d-none");
+
+      setTimeout(() => {
+        successBox.classList.add("d-none");
+        document.getElementById("addeditexercise").submit();
+      }, 1500);
+
+      return false;
     }
-  }
-
-  if (!valid) return false;
-
-  // SUCCESS
-  let box = document.getElementById("successBox");
-  box.classList.remove("d-none");
-
-  // Clear fields
-  document.getElementById("exerciseTitle").value = "";
-  document.getElementById("exerciseDescription").value = "";
-
-  // Clear all steps
-  let container = document.getElementById("stepsContainer");
-  container.innerHTML = "";
-
-  // Hide after 2 sec + redirect
-  setTimeout(function () {
-    box.classList.add("d-none");
-    window.location.href = "manage-exercise.html";
-  }, 2000);
-
-  return false;
-}
-</script>
+  </script>
 
 
 </body>

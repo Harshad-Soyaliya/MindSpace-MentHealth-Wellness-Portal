@@ -1,15 +1,15 @@
  body {
    margin: 0;
    font-family: 'Segoe UI', sans-serif;
-   background: #f0fdf4;
+   background: #bcf0cd7c; 
  }
 
  .sidebar {
-   background: #fff;
+   background: #f0fdf4;
    min-height: 100vh;
    padding: 1.5rem 1rem;
    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
-   border-radius: 29px;
+   border-radius: 40px;
  }
 
  .sidebar .navbar-brand {
@@ -33,7 +33,7 @@
  .sidebar .nav-link .icon-box {
    width: 38px;
    height: 38px;
-   border-radius: 10px;
+   border-radius: 30px;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -57,8 +57,9 @@
 
  .sidebar .nav-link:hover,
  .sidebar .nav-link.active {
-   background: #e6f7ec;
+   background: #7ad39966;
    color: #16a34a;
+   border-radius: 30px;
  }
 
  .sidebar .nav-link:hover .icon-box,
@@ -70,7 +71,7 @@
 
  .dashboard-header {
    background: #fff;
-   border-radius: 12px;
+   border-radius: 30px;
    padding: 1rem 1.5rem;
    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
    margin-bottom: 1.5rem;
@@ -113,7 +114,7 @@
    margin: 1rem 0;
    padding: 0.5rem 1rem;
    border: 1px solid #16a34a;
-   border-radius: 12px;
+   border-radius: 30px;
    background: #ffffff;
    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
  }
@@ -154,3 +155,82 @@
    justify-content: center;
    margin-bottom: 2rem;
  }
+
+
+ 
+
+ /* Base form control style */
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1.5px solid #ccc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    background-color: #fff; /* keep it clean, no color change on error/success */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Focus state */
+.form-control:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 6px rgba(74, 144, 226, 0.25);
+}
+
+/* Error state */
+.form-control.error {
+    border-color: #e63946;
+    box-shadow: 0 0 6px rgba(230, 57, 70, 0.2);
+}
+
+/* Success state */
+.form-control.success {
+    border-color: #2ecc71;
+    box-shadow: 0 0 6px rgba(46, 204, 113, 0.2);
+}
+
+/* Error / Success messages */
+.form-control .text-danger, .form-control .text-success {
+    font-size: 0.85rem;
+    margin-top: 4px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+/* Error message style */
+.form-control .text-danger {
+    color: #e63946;
+}
+
+/* Success message style */
+.form-control .text-success {
+    color: #2ecc71;
+}
+
+/* Optional: subtle icon indicators (inside input wrapper, not background) */
+.form-control .input-wrapper {
+    position: relative;
+}
+
+.form-control .input-wrapper .form-control.error::after,
+.form-control .input-wrapper .form-control.success::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.form-control .input-wrapper .form-control.error::after {
+    content: '⚠';
+    color: #e63946;
+}
+
+.form-control .input-wrapper .form-control.success::after {
+    content: '✔';
+    color: #2ecc71;
+}
+

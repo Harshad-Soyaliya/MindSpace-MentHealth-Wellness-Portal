@@ -48,12 +48,11 @@
 
     .exercise-card {
       background: #fff;
-      border-radius: 16px;
+      border-radius: 30px;
       padding: 2rem;
       max-height: 400px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
-
   </style>
 </head>
 
@@ -117,8 +116,7 @@
       <!-- Sidebar Offcanvas for small screens -->
       <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarCanvas">
         <div class="offcanvas-header">
-          <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1"
-            href="dashboard.html">
+          <a class="navbar-brand fw-bold fs-3 text-success d-flex align-items-center gap-1" href="dashboard.html">
             <span class="fw-semibold">Mind</span><span class="text-dark">Space</span>
           </a>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
@@ -180,7 +178,7 @@
             <div class="row g-4">
               <!-- Exercise Card Example -->
               <div class="col-12 col-md-6 col-lg-4">
-                <div class="exercise-card p-4 rounded-4 shadow-sm d-flex flex-column align-items-center">
+                <div class="exercise-card p-4 shadow-sm d-flex flex-column align-items-center">
                   <h5 class="fw-bold text-success mb-2">Jumping Jacks</h5>
                   <p class="text-muted text-center mb-3">Full body cardio to energize and improve stamina.</p>
                   <div class="d-flex gap-2">
@@ -198,7 +196,7 @@
               </div>
 
               <div class="col-12 col-md-6 col-lg-4">
-                <div class="exercise-card p-4 rounded-4 shadow-sm d-flex flex-column align-items-center">
+                <div class="exercise-card p-4  shadow-sm d-flex flex-column align-items-center">
                   <h5 class="fw-bold text-success mb-2">Push-Ups</h5>
                   <p class="text-muted text-center mb-3">Strength exercise targeting chest, shoulders, and arms.</p>
                   <div class="d-flex gap-2">
@@ -217,7 +215,7 @@
               </div>
 
               <div class="col-12 col-md-6 col-lg-4">
-                <div class="exercise-card p-4 rounded-4 shadow-sm d-flex flex-column align-items-center">
+                <div class="exercise-card p-4 shadow-sm d-flex flex-column align-items-center">
                   <h5 class="fw-bold text-success mb-2">Burpees</h5>
                   <p class="text-muted text-center mb-3">High-intensity full body workout for strength and cardio.</p>
                   <div class="d-flex gap-2">
@@ -255,7 +253,7 @@
 
         <!-- Modal Body -->
         <div class="modal-body">
-         <form onsubmit="return validateExerciseForm()">
+          <form method="get" id="exerciseform" action="manage-exercise.html" onsubmit="return validateExerciseForm()">
             <div class="mb-3">
               <label for="exerciseTitle" class="form-label fw-semibold">Exercise Title</label>
               <input type="text" class="form-control rounded-pill" id="exerciseTitle" placeholder="Enter title">
@@ -264,13 +262,16 @@
 
             <div class="mb-3">
               <label for="exerciseDescription" class="form-label fw-semibold">Description</label>
-              <textarea class="form-control rounded-4" id="exerciseDescription" rows="4" placeholder="Enter description"></textarea>
+              <textarea class="form-control rounded-4" id="exerciseDescription" rows="4"
+                placeholder="Enter description"></textarea>
               <small id="descError" class="text-danger d-none">* Description is required</small>
             </div>
 
             <button type="submit" class="btn w-100 btn-success rounded-pill">Add Exercise</button>
 
-            <div id="successMsg" class="text-success fw-semibold mt-3 d-none">
+            <br><br>
+
+            <div id="successMsg" class="alert alert-success d-none">
               Exercise added successfully!
             </div>
           </form>
@@ -333,55 +334,80 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-function validateExerciseForm() {
+    function validateExerciseForm() {
+      const title = document.getElementById("exerciseTitle");
+      const desc = document.getElementById("exerciseDescription");
 
-  let title = document.getElementById("exerciseTitle");
-  let description = document.getElementById("exerciseDescription");
+      const errTitle = document.getElementById("titleError");
+      const errDesc = document.getElementById("descError");
+      const successBox = document.getElementById("successMsg");
 
-  let titleError = document.getElementById("titleError");
-  let descError = document.getElementById("descError");
-  let successMsg = document.getElementById("successMsg");
+      const icon = '<i class="bi bi-exclamation-circle-fill"></i> ';
+      let valid = true;
 
-  let valid = true;
+      errTitle.innerHTML = "";
+      errDesc.innerHTML = "";
+      errTitle.classList.add("d-none");
+      errDesc.classList.add("d-none");
+      successBox.classList.add("d-none");
 
-  // Title validation
-  if (title.value.trim() === "") {
-    titleError.classList.remove("d-none");
-    valid = false;
-  } else {
-    titleError.classList.add("d-none");
-  }
+      title.classList.remove("error", "success");
+      desc.classList.remove("error", "success");
 
-  // Description validation
-  if (description.value.trim() === "") {
-    descError.classList.remove("d-none");
-    valid = false;
-  } else {
-    descError.classList.add("d-none");
-  }
+      const titleVal = title.value.trim();
+      if (titleVal == "") {
+        errTitle.innerHTML = `${icon} Please enter a title.`;
+        errTitle.classList.remove("d-none"); 
+        title.classList.add("error");
+        valid = false;
+      } else if (!isNaN(titleVal)) {
+        errTitle.innerHTML = `${icon} Title must contain letters.`;
+        errTitle.classList.remove("d-none");
+        title.classList.add("error");
+        valid = false;
+      } else if (titleVal.length > 100) {
+        errTitle.innerHTML = `${icon} Title must be under 100 characters.`;
+        errTitle.classList.remove("d-none");
+        title.classList.add("error");
+        valid = false;
+      } else {
+        title.classList.add("success");
+      }
 
-  // If validation fails stop submit
-  if (!valid) return false;
+      const descVal = desc.value.trim();
+      if (descVal == "") {
+        errDesc.innerHTML = `${icon} Please enter a description.`;
+        errDesc.classList.remove("d-none");
+        desc.classList.add("error");
+        valid = false;
+      } else if (descVal.length < 10) {
+        errDesc.innerHTML = `${icon} Description must be at least 10 characters.`;
+        errDesc.classList.remove("d-none");
+        desc.classList.add("error");
+        valid = false;
+      } else {
+        desc.classList.add("success");
+      }
 
-  // Show success msg
-  successMsg.classList.remove("d-none");
+      if (!valid) return false;
 
-  // Clear fields
-  title.value = "";
-  description.value = "";
+      successBox.classList.remove("d-none");
 
-  // Hide success msg after 2 sec + redirect
-  setTimeout(() => {
-    successMsg.classList.add("d-none");
-    window.location.href = "manage-medition.html";
-  }, 2000);
+      title.value = "";
+      desc.value = "";
 
-  return false; 
-}
-</script>
+      setTimeout(() => {
+        successBox.classList.add("d-none");
+        document.getElementById("exerciseform").submit();
+      }, 1500);
+
+      return false;
+    }
+  </script>
+
+
 
 
 </body>
 
 </html>
-
