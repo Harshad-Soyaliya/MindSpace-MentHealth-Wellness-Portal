@@ -1,16 +1,3 @@
-Below is a **premium-grade, professional GitHub README** including:
-
-* A **modern banner**
-* **Shields.io technology badges**
-* A **clean features table**
-* A **workflow diagram**
-* A **short repository description**
-* **GitHub topics/tags**
-
-No emojis are used.
-Everything is formatted in a minimal, modern, industry-ready style.
-
----
 
 # MindSpace – Mental Health & Wellness Platform
 
@@ -30,10 +17,6 @@ The UI, flows, and features are fully based on the project documentation provide
   <img src="https://img.shields.io/badge/CSS3-20232A?style=for-the-badge&logo=css3&logoColor=white" />
   <img src="https://img.shields.io/badge/Bootstrap-20232A?style=for-the-badge&logo=bootstrap&logoColor=white" />
   <img src="https://img.shields.io/badge/JavaScript-20232A?style=for-the-badge&logo=javascript&logoColor=white" />
-  <img src="https://img.shields.io/badge/JSP-20232A?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Servlet-20232A?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/MySQL-20232A?style=for-the-badge&logo=mysql&logoColor=white" />
-  <img src="https://img.shields.io/badge/Tomcat-20232A?style=for-the-badge&logo=apache-tomcat&logoColor=white" />
 </p>
 
 ---
@@ -104,39 +87,9 @@ A structured mental wellness platform featuring a full client portal and admin d
 
 ---
 
-## Recommended GitHub Topics (Tags)
-
-Use these for better discoverability:
-
-```
-mental-health
-web-application
-jsp
-servlet
-bootstrap
-javascript
-mysql
-admin-dashboard
-wellness-platform
-fullstack-project
-web-technology
-student-project
-```
-
----
-
 ## Author
 
 Harshad Soyliya
 MindSpace – Web Technology Project
 
 ---
-
-If you want, I can also generate:
-
-* A polished LICENSE section
-* A Contribution Guide
-* A Clean Folder Structure for the repository
-* A Deploy section (Tomcat deployment guide)
-
-Just tell me.
