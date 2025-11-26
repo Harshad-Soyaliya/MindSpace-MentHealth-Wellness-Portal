@@ -1,5 +1,4 @@
 
-# MindSpace – Mental Health & Wellness Platform
 
 ![MindSpace Banner](https://dummyimage.com/1200x260/1a1b1e/ffffff\&text=MindSpace+-+Mental+Health+%26+Wellness+Platform)
 
@@ -84,6 +83,16 @@ A simplified flow of the MindSpace system:
 ## Repository Description (Short)
 
 A structured mental wellness platform featuring a full client portal and admin dashboard. Includes modules for meditation, exercise, habits, goals, blogs, specialist sessions, help requests, and feedback, built using JSP, Servlet, JavaScript, Bootstrap, and MySQL.
+
+---
+
+## Live Website Links
+
+**Client Side:**  
+[https://harshad-soyaliya.github.io/MindSpace-MentHealth-Wellness-Portal/User/]
+
+**Admin Side:**  
+[https://harshad-soyaliya.github.io/MindSpace-MentHealth-Wellness-Portal/admin/]
 
 ---
 
