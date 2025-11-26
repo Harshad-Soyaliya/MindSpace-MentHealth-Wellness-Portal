@@ -92,7 +92,7 @@ A structured mental wellness platform featuring a full client portal and admin d
 [https://harshad-soyaliya.github.io/MindSpace-MentHealth-Wellness-Portal/User/]
 
 **Admin Side:**  
-[https://harshad-soyaliya.github.io/MindSpace-MentHealth-Wellness-Portal/admin/]
+[https://harshad-soyaliya.github.io/MindSpace-MentHealth-Wellness-Portal/Admin/]
 
 ---
 
