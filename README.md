@@ -89,7 +89,8 @@ A structured mental wellness platform featuring a full client portal and admin d
 
 ## Author
 
-Harshad Soyliya
-MindSpace – Web Technology Project
+Harshad Soyaliya <br>
+MindSpace – Web Technology Subject Project <br>
+Marwadi University - B.Tech : CE in 3rd sem
 
 ---
